@@ -1,0 +1,790 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Live view</title>
+  <style>
+    body { font-family: sans-serif; padding: 16px; }
+    pre { background: #f4f4f4; padding: 12px; border-radius: 8px; }
+    .row { display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
+    .pill { padding:6px 10px; border:1px solid #ddd; border-radius:10px; background:#fafafa; }
+    label { display:flex; gap:8px; align-items:center; }
+    input[type="number"] { width: 90px; padding: 6px; }
+    button { padding: 6px 10px; cursor: pointer; }
+
+    #stop-btn {
+        background-color: #d32f2f;
+        color: white;
+        border: none;
+        padding: 16px 24px;
+        font-size: 18px;
+        font-weight: bold;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+    #stop-btn:hover {
+        background-color: #b71c1c;
+    }
+  </style>
+</head>
+<body>
+  <h1>Live MuOnline Data:</h1>
+  <p><b>CPU:</b> <span id="live-cpu">{{ live.system.cpu }}%</span><b> RAM:</b> <span id="live-ram">{{ live.system.ram_percent }}%</span></p>
+  <p><b>Last update:</b> <span id="live-status">{{ live.status }}</span></p>
+  <p><b>Player_name:</b> <span id="live-player">{{ live.player_name }}</span></p>
+  <p><b>Level:</b> <span id="live-level">{{ live.level }}</span>, Health: <span id="live-health">{{ live.health }}</span></p>
+  <p><b>Money ZEN:</b> <span id="live-zen">{{ "{:,}".format(live.zen | int) }}</span></p>
+  <p><b>Exp per minute:</b> <span id="live-epm">{{ "{:,}".format(live.exp_per_minute | int) }}</span></p>
+  <p><b>Location:</b> <span id="live-location">{{ live.location }}</span>, x: <span id="live-x">{{ live.location_coord_x }}</span>, y: <span id="live-y">{{ live.location_coord_y }}</span></p>
+  <p>
+    <div style="margin-top:16px; display:flex; gap:12px; flex-wrap:wrap;">
+  <button id="resets-stop-btn" style="
+    background:#c62828;color:white;border:none;padding:12px 18px;
+    font-size:16px;font-weight:bold;border-radius:8px;cursor:pointer;
+  ">⛔ Stop Resets</button>
+
+  <button id="resets-start-btn" style="
+    background:#2e7d32;color:white;border:none;padding:12px 18px;
+    font-size:16px;font-weight:bold;border-radius:8px;cursor:pointer;
+  ">▶ Continue Resets</button>
+</div>
+<b>Resets disabled:</b> <span id="live-disabled">{{ live.resets_disabled }}</span>
+  <p><b>Resets:</b> <span id="live-resets">{{ live.resets }}</span> | <b>While-loop:</b> <span id="live-while-loop">{{ live.while_loop }}</span></p>
+  <p><b>Time:</b> <span id="live-time">{{ live.time }}</span></p>
+  <p><b>Speedrun:</b> <span id="live-speedrun">{{ live.is_it_speedrun }}</span> | <b>Helper status:</b> <span id="live-helperstate">{{ live.helper_state }}</span></p>
+
+  <hr>
+  <table border="1" cellpadding="6" cellspacing="0">
+    <thead>
+      <tr>
+        <th>Mapa</th>
+        <th>Min level</th>
+        <th>Max level</th>
+      </tr>
+    </thead>
+    <tbody id="map-level-table"></tbody>
+  </table>
+
+  <br>
+  <button id="btn-save-levels">Save</button>
+  <hr>
+  <div class="row">
+    <span class="pill"><b>Auto refresh:</b></span>
+
+    <label class="pill">
+      co
+      <input id="refresh-seconds" type="number" min="60" step="10" value="60">
+      sekund
+    </label>
+
+    <button id="btn-start" onclick="startAutoRefresh()">Start</button>
+    <button id="btn-stop" onclick="stopAutoRefresh()" disabled>Stop</button>
+
+    <span class="pill" id="next-run">następne: —</span>
+    <span class="pill" id="paused-indicator" style="display:none;">PAUSED (tab inactive)</span>
+  </div>
+
+  <hr>
+
+  <img id="capture-img"
+       src="http://192.168.50.200:5055/ui/capture.png"
+       style="max-width:600px;border:1px solid #ccc;display:block">
+
+  <br>
+  <button onclick="capture()">Update screenshot</button>
+
+  <hr>
+
+  <h2>Last 100 log lines</h2>
+  <pre id="logs-pre" style="
+    background:#111;
+    color:#0f0;
+    padding:12px;
+    max-height:300px;
+    overflow:auto;
+    font-size:12px;
+  ">{{ logs | join('') }}</pre>
+
+  <h2>Last 15 level logs lines</h2>
+  <pre id="level-logs-pre" style="
+    background:#111;
+    color:#0f0;
+    padding:12px;
+    max-height:200px;
+    overflow:auto;
+    font-size:12px;
+  ">{{ level_logs | join('') }}</pre>
+
+  <hr>
+  <h2>Search in logs</h2>
+
+  <div class="row">
+    <label class="pill">
+      tekst:
+      <input id="log-q" type="text" style="width:260px;padding:6px" placeholder="np. Warp process">
+    </label>
+
+    <label class="pill">
+      limit:
+      <input id="log-limit" type="number" value="200" min="1" max="2000">
+    </label>
+
+    <label class="pill">
+      tail lines:
+      <input id="log-tail" type="number" value="200000" min="1000" step="1000">
+    </label>
+
+    <label class="pill">
+      <input id="log-icase" type="checkbox" checked>
+      ignore case
+    </label>
+
+    <button onclick="searchLogs()">Search</button>
+  </div>
+
+  <pre id="search-results" style="
+    background:#111;color:#0f0;padding:12px;max-height:260px;overflow:auto;font-size:12px;
+  ">[no search yet]</pre>
+<hr>
+<h2>Atlans spots</h2>
+<div class="row">
+  <label class="pill">
+    Atlans location:
+    <select id="atlans-select" style="padding:6px;min-width:360px">
+      <option value="">-- wybierz --</option>
+      {% for opt in atlans_options %}
+        <option value="{{ opt.id }}">{{ opt.label }}</option>
+      {% endfor %}
+    </select>
+  </label>
+
+  <button id="atlans-send-btn">Set Atlans location</button>
+
+  <span class="pill" id="atlans-status">—</span><br>
+  <img src="/maps/atlans.png" style="max-width:400px;border:1px solid #ccc;display:block">
+</div>
+<hr>
+<h2>Aida spots</h2>
+<div class="row">
+  <label class="pill">
+    Aida location:
+    <select id="aida-select" style="padding:6px;min-width:360px">
+      <option value="">-- wybierz --</option>
+      {% for opt in aida_options %}
+        <option value="{{ opt.id }}">{{ opt.label }}</option>
+      {% endfor %}
+    </select>
+  </label>
+
+  <button id="aida-send-btn">Set Aida location</button>
+
+  <span class="pill" id="aida-status">—</span><br>
+  <img src="/maps/aida.png" style="max-width:400px;border:1px solid #ccc;display:block">
+</div>
+<h2>lacleon spots</h2>
+<div class="row">
+  <label class="pill">
+    lacleon location:
+    <select id="lacleon-select" style="padding:6px;min-width:360px">
+      <option value="">-- wybierz --</option>
+      {% for opt in lacleon_options %}
+        <option value="{{ opt.id }}">{{ opt.label }}</option>
+      {% endfor %}
+    </select>
+  </label>
+
+  <button id="lacleon-send-btn">Set lacleon location</button>
+
+  <span class="pill" id="lacleon-status">—</span><br>
+  <img src="/maps/lacleon.png" style="max-width:400px;border:1px solid #ccc;display:block">
+</div>
+<hr>
+<h2>Kalima spots</h2>
+<div class="row">
+  <label class="pill">
+    Kalima location:
+    <select id="kalima-select" style="padding:6px;min-width:360px">
+      <option value="">-- wybierz --</option>
+      {% for opt in kalima_options %}
+        <option value="{{ opt.id }}">{{ opt.label }}</option>
+      {% endfor %}
+    </select>
+  </label>
+
+  <button id="kalima-send-btn">Set Kalima location</button>
+
+  <span class="pill" id="kalima-status">—</span><br>
+  <img src="/maps/kalima.png" style="max-width:400px;border:1px solid #ccc;display:block">
+</div>
+
+<hr>
+  <!-- <button id="stop-btn">🛑 STOP BOT</button> -->
+  <button id="kalima-btn" style="
+  background:#1976d2;color:white;border:none;padding:12px 18px;
+  font-size:16px;font-weight:bold;border-radius:8px;cursor:pointer;
+">🏁 Start Kalima</button>
+<hr>
+  <button id="speedrun-start-btn" style="
+  background:#44d219;color:white;border:none;padding:12px 18px;
+  font-size:16px;font-weight:bold;border-radius:8px;cursor:pointer;
+">🏁 Next Run is Speedrun</button>
+  <button id="speedrun-stop-btn" style="
+  background:#f83757;color:white;border:none;padding:12px 18px;
+  font-size:16px;font-weight:bold;border-radius:8px;cursor:pointer;
+">Disable Speedrun Queue</button>
+<hr> 
+<label for="min-zen">Minimum Zen:</label>
+<select id="min-zen">
+  <option value="120000000">120kk</option>
+  <option value="130000000">130kk</option>
+  <option value="140000000">140kk</option>
+  <option value="150000000">150kk</option>
+  <option value="160000000">160kk</option>
+  <option value="170000000">170kk</option>
+  <option value="180000000">180kk</option>
+  <option value="190000000">190kk</option>
+  <option value="200000000">200kk</option>
+</select>
+
+<button onclick="setMinimumZen()">Ustaw</button>
+
+<div id="min-zen-status" style="margin-top:8px;"></div>
+
+<script>
+const CAPTURE_BASE = "http://192.168.50.200:5055";
+
+let refreshTimer = null;
+let tickTimer = null;
+
+let nextAt = 0;              // timestamp (ms) kiedy ma odpalić kolejny refresh
+let remainingMs = 0;         // ile zostało do kolejnego odpalenia (dla pauzy)
+let autoEnabled = false;
+let isPausedByHidden = false;
+let isRefreshing = false;
+
+function $(id) { return document.getElementById(id); }
+
+function scrollLogsToBottom() {
+  const logs = $("logs-pre");
+  const levelLogs = $("level-logs-pre");
+  if (logs) logs.scrollTop = logs.scrollHeight;
+  if (levelLogs) levelLogs.scrollTop = levelLogs.scrollHeight;
+}
+
+function updateNextRunLabel() {
+  const el = $("next-run");
+  if (!el) return;
+  if (!autoEnabled || isPausedByHidden || !nextAt) { el.textContent = "następne: —"; return; }
+  const ms = Math.max(0, nextAt - Date.now());
+  el.textContent = "następne: " + Math.ceil(ms / 1000) + "s";
+}
+
+function setPausedUI(paused) {
+  const p = $("paused-indicator");
+  if (!p) return;
+  p.style.display = paused ? "inline-block" : "none";
+}
+
+function capture() {
+  return fetch(CAPTURE_BASE + "/ui/capture", { method: "POST" })
+    .then(r => r.json())
+    .then(j => {
+      if (j.ok) {
+        const img = $("capture-img");
+        img.src = CAPTURE_BASE + "/ui/capture.png?t=" + Date.now(); // cache-buster
+        return true;
+      } else {
+        alert("Capture failed");
+        return false;
+      }
+    })
+    .catch(e => { alert("Error: " + e); return false; });
+}
+
+/**
+ * SOFT REFRESH:
+ * - robi screenshot (POST /ui/capture)
+ * - pobiera aktualny HTML tej samej strony (bez cache)
+ * - parsuje go i podmienia tylko: live pola + logi + level logi
+ * Bez reload().
+ */
+async function softRefreshOnce() {
+  if (isRefreshing) return;
+  if (document.hidden) return; // jak tab niewidoczny, nie odświeżaj
+
+  isRefreshing = true;
+  try {
+    // screenshot równolegle, nie blokuj reszty
+    const capPromise = capture();
+
+    const resp = await fetch(window.location.href, {
+      cache: "no-store",
+      headers: { "Cache-Control": "no-cache" }
+    });
+    const html = await resp.text();
+    const doc = new DOMParser().parseFromString(html, "text/html");
+
+    // LIVE поля
+    const ids = [
+      "live-status","live-player","live-level","live-health",
+      "live-epm","live-zen","live-location","live-x","live-y",
+      "live-resets","live-time","live-speedrun", "live-while-loop", "live-helperstate",
+      "live-disabled"
+    ];
+    for (const id of ids) {
+      const newEl = doc.getElementById(id);
+      const curEl = document.getElementById(id);
+      if (newEl && curEl) curEl.textContent = newEl.textContent;
+    }
+
+    // LOGI
+    const newLogs = doc.getElementById("logs-pre");
+    const curLogs = $("logs-pre");
+    if (newLogs && curLogs) curLogs.textContent = newLogs.textContent;
+
+    const newLevelLogs = doc.getElementById("level-logs-pre");
+    const curLevelLogs = $("level-logs-pre");
+    if (newLevelLogs && curLevelLogs) curLevelLogs.textContent = newLevelLogs.textContent;
+
+    scrollLogsToBottom();
+    await capPromise;
+  } finally {
+    isRefreshing = false;
+  }
+}
+
+function clearTimers() {
+  if (refreshTimer) clearTimeout(refreshTimer);
+  if (tickTimer) clearInterval(tickTimer);
+  refreshTimer = null;
+  tickTimer = null;
+  nextAt = 0;
+}
+
+function scheduleNext(ms) {
+  clearTimers();
+
+  if (!autoEnabled || isPausedByHidden) return;
+
+  nextAt = Date.now() + ms;
+  updateNextRunLabel();
+  tickTimer = setInterval(updateNextRunLabel, 250);
+
+  refreshTimer = setTimeout(async () => {
+    // jak tab ukryty w momencie strzału, nic nie rób (pauza obsługiwana osobno)
+    if (document.hidden) return;
+    await softRefreshOnce();
+
+    // kolejne odpalenie bierze aktualną wartość z inputa (po clampie)
+    const seconds = getClampedSecondsFromInput(true);
+    scheduleNext(seconds * 1000);
+  }, ms);
+}
+
+function getClampedSecondsFromInput(writeBack) {
+  const input = $("refresh-seconds");
+  let seconds = parseInt(input.value, 10);
+
+  // HARD LIMIT: minimum 60s
+  if (!Number.isFinite(seconds) || seconds < 60) seconds = 60;
+
+  if (writeBack) input.value = seconds;
+  return seconds;
+}
+
+function startAutoRefresh() {
+  autoEnabled = true;
+  isPausedByHidden = false;
+  setPausedUI(false);
+
+  const seconds = getClampedSecondsFromInput(true);
+
+  localStorage.setItem("refreshSeconds", String(seconds));
+  localStorage.setItem("autoRefreshEnabled", "1");
+
+  $("btn-start").disabled = true;
+  $("btn-stop").disabled = false;
+
+  // od razu strzał (soft)
+  softRefreshOnce();
+
+  scheduleNext(seconds * 1000);
+}
+
+function stopAutoRefresh() {
+  autoEnabled = false;
+  isPausedByHidden = false;
+  setPausedUI(false);
+
+  clearTimers();
+
+  localStorage.setItem("autoRefreshEnabled", "0");
+
+  const startBtn = $("btn-start");
+  const stopBtn = $("btn-stop");
+  if (startBtn) startBtn.disabled = false;
+  if (stopBtn) stopBtn.disabled = true;
+
+  $("next-run").textContent = "następne: —";
+}
+
+function pauseBecauseHidden() {
+  if (!autoEnabled || isPausedByHidden) return;
+
+  isPausedByHidden = true;
+  setPausedUI(true);
+
+  // policz ile zostało do strzału
+  remainingMs = nextAt ? Math.max(0, nextAt - Date.now()) : 0;
+
+  clearTimers();
+  updateNextRunLabel();
+}
+
+function resumeAfterHidden() {
+  if (!autoEnabled || !isPausedByHidden) return;
+
+  isPausedByHidden = false;
+  setPausedUI(false);
+
+  // jak nic nie zostało, odpal od razu, inaczej kontynuuj odliczanie
+  const ms = remainingMs > 0 ? remainingMs : 0;
+  remainingMs = 0;
+
+  if (ms === 0) {
+    softRefreshOnce();
+    const seconds = getClampedSecondsFromInput(true);
+    scheduleNext(seconds * 1000);
+  } else {
+    scheduleNext(ms);
+  }
+}
+
+// --- init ---
+(function init() {
+  // restore seconds
+  const saved = parseInt(localStorage.getItem("refreshSeconds") || "60", 10);
+  if (Number.isFinite(saved) && saved >= 60) $("refresh-seconds").value = saved;
+  else $("refresh-seconds").value = 60;
+
+  // zawsze scroll na dół po renderze
+  scrollLogsToBottom();
+
+  // pauzuj/resume gdy tab niewidoczny
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) pauseBecauseHidden();
+    else resumeAfterHidden();
+  });
+
+  // auto start jeśli było włączone
+  if (localStorage.getItem("autoRefreshEnabled") === "1") {
+    startAutoRefresh();
+  }
+})();
+
+// document.getElementById("stop-btn").onclick = () => {
+//     fetch("http://192.168.50.200:5055/bot/stop", {
+//         method: "POST"
+//     })
+//     .then(r => r.json())
+//     .then(j => {
+//         console.log("STOP:", j);
+//         alert("BOT STOPPING");
+//     })
+//     .catch(err => alert("STOP FAILED: " + err));
+// };
+
+async function searchLogs() {
+  const q = $("log-q").value.trim();
+  if (!q) { alert("Wpisz tekst"); return; }
+
+  const limit = parseInt($("log-limit").value, 10) || 200;
+  const tail  = parseInt($("log-tail").value, 10) || 200000;
+  const icase = $("log-icase").checked ? "1" : "0";
+
+  const url = `/logs/search?q=${encodeURIComponent(q)}&limit=${limit}&tail=${tail}&icase=${icase}`;
+
+  const out = $("search-results");
+  out.textContent = "Searching...";
+
+  try {
+    const r = await fetch(url, { cache: "no-store" });
+    const j = await r.json();
+    if (!j.ok) {
+      out.textContent = "ERROR: " + (j.error || "unknown");
+      return;
+    }
+
+    if (!j.lines || j.lines.length === 0) {
+      out.textContent = `No matches (tail=${j.tail}, limit=${j.limit})`;
+      return;
+    }
+
+    out.textContent = j.lines.join("\n");
+  } catch (e) {
+    out.textContent = "FETCH ERROR: " + e;
+  }
+}
+
+$("log-q").addEventListener("keydown", (e) => {
+  if (e.key === "Enter") searchLogs();
+});
+
+document.getElementById("kalima-btn").onclick = () => {
+  fetch("/bot/start-kalima", { method: "POST" })
+    .then(r => r.json())
+    .then(j => {
+      if (j.ok) alert("Kalima flag set: start_kalima=true");
+      else alert("FAILED: " + (j.error || "unknown"));
+    })
+    .catch(err => alert("FAILED: " + err));
+};
+
+document.getElementById("speedrun-start-btn").onclick = () => {
+  fetch("/bot/next-speedrun", { method: "POST" })
+    .then(r => r.json())
+    .then(j => {
+      if (j.ok) alert("Speedrun flag set: run_speedrun=true");
+      else alert("FAILED: " + (j.error || "unknown"));
+    })
+    .catch(err => alert("FAILED: " + err));
+};
+
+document.getElementById("speedrun-stop-btn").onclick = () => {
+  fetch("/bot/stop-speedrun", { method: "POST" })
+    .then(r => r.json())
+    .then(j => {
+      if (j.ok) alert("Speedrun flag set: run_speedrun=false");
+      else alert("FAILED: " + (j.error || "unknown"));
+    })
+    .catch(err => alert("FAILED: " + err));
+};
+
+document.getElementById("resets-stop-btn").onclick = () => {
+  fetch("http://192.168.50.200:5065/bot/resets-stop", { method: "POST" })
+    .then(r => r.json())
+    .then(j => {
+      if (j.ok) {
+        alert("Resets DISABLED");
+      } else {
+        alert("FAILED: " + (j.error || "unknown"));
+      }
+    })
+    .catch(err => alert("FAILED: " + err));
+};
+
+document.getElementById("resets-start-btn").onclick = () => {
+  fetch("http://192.168.50.200:5065/bot/resets-start", { method: "POST" })
+    .then(r => r.json())
+    .then(j => {
+      if (j.ok) {
+        alert("Resets ENABLED");
+      } else {
+        alert("FAILED: " + (j.error || "unknown"));
+      }
+    })
+    .catch(err => alert("FAILED: " + err));
+};
+
+
+document.getElementById("atlans-send-btn").onclick = async () => {
+  const sel = document.getElementById("atlans-select");
+  const id = sel.value;
+  const status = document.getElementById("atlans-status");
+
+  if (!id) { alert("Wybierz lokację"); return; }
+
+  status.textContent = "Sending...";
+
+  try {
+    const r = await fetch("/bot/set-atlans-location-by-id", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id })
+    });
+
+    const j = await r.json();
+
+    if (!j.ok) {
+      status.textContent = "FAILED";
+      alert("FAILED: " + (j.error || "unknown"));
+      return;
+    }
+
+    status.textContent = "OK: " + j.matched_id;
+    // opcjonalnie: odśwież live view
+    // softRefreshOnce();
+  } catch (e) {
+    status.textContent = "FAILED";
+    alert("FAILED: " + e);
+  }
+};
+
+document.getElementById("aida-send-btn").onclick = async () => {
+  const sel = document.getElementById("aida-select");
+  const id = sel.value;
+  const status = document.getElementById("aida-status");
+
+  if (!id) { alert("Wybierz lokację"); return; }
+
+  status.textContent = "Sending...";
+
+  try {
+    const r = await fetch("/bot/set-aida-location-by-id", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id })
+    });
+
+    const j = await r.json();
+
+    if (!j.ok) {
+      status.textContent = "FAILED";
+      alert("FAILED: " + (j.error || "unknown"));
+      return;
+    }
+
+    status.textContent = "OK: " + j.matched_id;
+    // opcjonalnie: odśwież live view
+    // softRefreshOnce();
+  } catch (e) {
+    status.textContent = "FAILED";
+    alert("FAILED: " + e);
+  }
+};
+
+document.getElementById("kalima-send-btn").onclick = async () => {
+  const sel = document.getElementById("kalima-select");
+  const id = sel.value;
+  const status = document.getElementById("kalima-status");
+
+  if (!id) { alert("Wybierz lokację"); return; }
+
+  status.textContent = "Sending...";
+
+  try {
+    const r = await fetch("/bot/set-kalima-location-by-id", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id })
+    });
+
+    const j = await r.json();
+
+    if (!j.ok) {
+      status.textContent = "FAILED";
+      alert("FAILED: " + (j.error || "unknown"));
+      return;
+    }
+
+    status.textContent = "OK: " + j.matched_id;
+    // opcjonalnie: odśwież live view
+    // softRefreshOnce();
+  } catch (e) {
+    status.textContent = "FAILED";
+    alert("FAILED: " + e);
+  }
+};
+
+document.getElementById("lacleon-send-btn").onclick = async () => {
+  const sel = document.getElementById("lacleon-select");
+  const id = sel.value;
+  const status = document.getElementById("lacleon-status");
+
+  if (!id) { alert("Wybierz lokację"); return; }
+
+  status.textContent = "Sending...";
+
+  try {
+    const r = await fetch("/bot/set-lacleon-location-by-id", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id })
+    });
+
+    const j = await r.json();
+
+    if (!j.ok) {
+      status.textContent = "FAILED";
+      alert("FAILED: " + (j.error || "unknown"));
+      return;
+    }
+
+    status.textContent = "OK: " + j.matched_id;
+    // opcjonalnie: odśwież live view
+    // softRefreshOnce();
+  } catch (e) {
+    status.textContent = "FAILED";
+    alert("FAILED: " + e);
+  }
+};
+
+let mapLevelLimits = {};
+
+async function loadMapLevels() {
+  const r = await fetch("/state/map-level-limits");
+  const j = await r.json();
+  if (!j.ok) throw new Error(j.error || "Load failed");
+  mapLevelLimits = j.map_level_limits || {};
+  renderMapLevelTable();
+}
+
+function renderMapLevelTable() {
+  const tbody = document.getElementById("map-level-table");
+  tbody.innerHTML = "";
+
+  for (const [map, limits] of Object.entries(mapLevelLimits)) {
+    const tr = document.createElement("tr");
+
+    const tdMap = document.createElement("td");
+    tdMap.textContent = map;
+
+    const tdMin = document.createElement("td");
+    const inMin = document.createElement("input");
+    inMin.type = "number";
+    inMin.value = limits.min;
+    inMin.addEventListener("input", () => {
+      mapLevelLimits[map].min = parseInt(inMin.value || "0", 10);
+    });
+    tdMin.appendChild(inMin);
+
+    const tdMax = document.createElement("td");
+    const inMax = document.createElement("input");
+    inMax.type = "number";
+    inMax.value = limits.max;
+    inMax.addEventListener("input", () => {
+      mapLevelLimits[map].max = parseInt(inMax.value || "0", 10);
+    });
+    tdMax.appendChild(inMax);
+
+    tr.appendChild(tdMap);
+    tr.appendChild(tdMin);
+    tr.appendChild(tdMax);
+    tbody.appendChild(tr);
+  }
+}
+
+async function saveMapLevels() {
+  const r = await fetch("/bot/get-map-level-limits", {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({ map_level_limits: mapLevelLimits })
+  });
+  const j = await r.json();
+  if (!j.ok) throw new Error(j.error || "Save failed");
+
+  // opcjonalnie: backend może zwrócić znormalizowane inty
+  mapLevelLimits = j.map_level_limits || mapLevelLimits;
+  renderMapLevelTable();
+  alert("Saved");
+}
+
+document.getElementById("btn-save-levels").addEventListener("click", () => {
+  saveMapLevels().catch(e => alert(e.message));
+});
+
+loadMapLevels().catch(e => alert(e.message));
+</script>
+
+</body>
+</html>

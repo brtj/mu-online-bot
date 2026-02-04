@@ -1,0 +1,83 @@
+# ======================
+# Python
+# ======================
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# ======================
+# Packaging / build
+# ======================
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# ======================
+# Test / coverage
+# ======================
+.coverage
+.coverage.*
+htmlcov/
+.pytest_cache/
+.tox/
+.nox/
+
+# ======================
+# IDEs / Editors
+# ======================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ======================
+# OS files
+# ======================
+.DS_Store
+Thumbs.db
+
+# ======================
+# Logs / runtime
+# ======================
+*.log
+logs/
+
+# ======================
+# Env / secrets
+# ======================
+.env
+.env.*
+*.pem
+*.key
+*.crt
+
+# ======================
+# OCR / temp / debug
+# ======================
+temp/
+
+# ======================
+# Cache / tooling
+# ======================
+.mypy_cache/
+.ruff_cache/
+.pytype/
+.pyright/
+
+# ======================
+# Jupyter
+# ======================
+.ipynb_checkpoints/
+
+test.png
+ocr_api.log
+level_log.csv
+bot_CoZaBzdura_state.json

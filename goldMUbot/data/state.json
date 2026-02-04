@@ -1,0 +1,176 @@
+{
+  "snapshot": {
+    "ts": 1770229020.797175,
+    "state": {
+      "time": "19:17:00",
+      "player": "AleElfisko",
+      "player_in_party": "to do",
+      "level": 163,
+      "exp_per_minute": 0,
+      "reset": 119,
+      "rect": {
+        "bottom": 645,
+        "height": 639,
+        "left": 797,
+        "right": 1613,
+        "top": 6,
+        "width": 816
+      },
+      "location_name": "Atlans",
+      "location_coord_x": 182,
+      "location_coord_y": 89,
+      "mouse_position": {
+        "ok": true,
+        "x": 807,
+        "y": 46
+      },
+      "mouse_relative_pos": {
+        "cursor": {
+          "x": 807,
+          "y": 46
+        },
+        "inside": true,
+        "ok": true,
+        "window": {
+          "bottom": 645,
+          "left": 797,
+          "right": 1613,
+          "top": 6
+        },
+        "x": 10,
+        "y": 40
+      },
+      "helper_status": "Running",
+      "health": 76462,
+      "connected": true
+    }
+  },
+  "player_data": {
+    "time": "19:17:00",
+    "player": "AleElfisko",
+    "player_in_party": "to do",
+    "level": 163,
+    "exp_per_minute": 0,
+    "reset": 119,
+    "rect": {
+      "bottom": 645,
+      "height": 639,
+      "left": 797,
+      "right": 1613,
+      "top": 6,
+      "width": 816
+    },
+    "is_it_speedrun": false,
+    "run_speedrun": false,
+    "location_name": "Atlans",
+    "location_coord_x": 182,
+    "location_coord_y": 89,
+    "mouse_position": {
+      "ok": true,
+      "x": 807,
+      "y": 46
+    },
+    "mouse_relative_pos": {
+      "cursor": {
+        "x": 807,
+        "y": 46
+      },
+      "inside": true,
+      "ok": true,
+      "window": {
+        "bottom": 645,
+        "left": 797,
+        "right": 1613,
+        "top": 6
+      },
+      "x": 10,
+      "y": 40
+    },
+    "helper_status": "Running",
+    "health": 76462,
+    "connected": true,
+    "map_level_limits": {
+      "Lorencia": {
+        "min": 1,
+        "max": 50,
+        "enabled": true
+      },
+      "Noria": {
+        "min": 1,
+        "max": 50,
+        "enabled": true
+      },
+      "Devias": {
+        "min": 50,
+        "max": 80,
+        "enabled": true
+      },
+      "Atlans": {
+        "min": 80,
+        "max": 210,
+        "enabled": true
+      },
+      "Aida": {
+        "min": 210,
+        "max": 400,
+        "enabled": true
+      },
+      "Icarus2": {
+        "min": 0,
+        "max": 0,
+        "enabled": false
+      },
+      "LaCleon": {
+        "min": 0,
+        "max": 0,
+        "enabled": false
+      }
+    },
+    "map_spots": {
+      "aida_map_spots": {
+        "id": "aida2_drider1",
+        "loc_x": 22,
+        "loc_y": 147,
+        "map": "Aida",
+        "moobs": "Bloody Death Rider 115 lvl",
+        "tolerance": 9,
+        "x": 196,
+        "y": 267
+      },
+      "atlans_map_spots": {
+        "id": "aa5",
+        "loc_x": 181,
+        "loc_y": 92,
+        "map": "Atlans2",
+        "moobs": "Lizard King 70 lvl",
+        "tolerance": 9,
+        "x": 522,
+        "y": 379
+      },
+      "lacleon_map_spots": {
+        "id": "r16",
+        "loc_x": 68,
+        "loc_y": 155,
+        "map": "LaCleon",
+        "moobs": "Iron Knight 142 lvl",
+        "tolerance": 9,
+        "x": 291,
+        "y": 249
+      },
+      "icarus2_map_spots": {
+        "id": "icarus2_9",
+        "loc_x": 89,
+        "loc_y": 198,
+        "map": "Icarus2",
+        "moobs": "Great Drakan 100 lvl",
+        "tolerance": 5,
+        "x": 334,
+        "y": 161
+      }
+    },
+    "stats_added": true
+  },
+  "players": {},
+  "_ts": 1770229020.797227,
+  "paused": false
+}
