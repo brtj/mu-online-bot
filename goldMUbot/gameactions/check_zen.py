@@ -57,16 +57,3 @@ def check_zen(player_info=None):
     })
     print(r["value"])
     return r["value"]
-
-
-  ip: 192.168.50.200
-  port: 5055
-  endpoints:
-    parse_title: /window/parse-title
-    mouse_goto_xy_relative: /mouse/goto_xy_relative
-    screen_ocr: /screen/ocr
-    window_activate_topmost: /window/activate-topmost
-    window_move: /window/move
-    autorun_state: /screen/autorun-state
-    ocr_health: /screen/ocr/health
-    ocr_zen: /screen/ocr/zen

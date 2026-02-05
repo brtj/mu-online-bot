@@ -2,7 +2,7 @@ from functions.location_checks import is_at_position
 from gameactions.go_to_point import go_to_point_and_wait
 from gameactions.helper_attack import click_on_helper
 from functions.host_api import activate_window
-
+from functions.host_api import send_message
 import logging, time
 from logger_config import setup_logging
 
@@ -51,6 +51,8 @@ def round_attack(player_info, deltas, step_delay=0.005, pause_range=(0.1, 0.4), 
     }) #click on skill number 1
     time.sleep(0.25)
     post(HIDAPI_ENDPOINTS["mouse_click"], {"button": "left", "action": "click", "hold_time": 0.5})
+
+    send_message(f"ja tu tylko na chwilke do {level_max} lvlu", player_info=player_info)
 
     delta360 = [(400, 100), (250, 300), (580, 300), (400, 400)]
     payload_click360 = {"button": "right", "action": "click", "hold_time": 1}
@@ -127,7 +129,7 @@ def attack_no_helper_on_spot(player_info, location_coord_x, location_coord_y, de
     go_to_point_and_wait(player_info=player_info, mouse_x=mouse_on_map_x, mouse_y=mouse_on_map_y, target_loc_x=desired_coord_x, target_loc_y=desired_coord_y, print_txt=print_txt)
 
 
-def attack_with_helper_on_spot(player_info, mouse_on_map_x, mouse_on_map_y, desired_coord_x, desired_coord_y, tolerance=8, timeout=80, print_txt="helper attack"):
+def attack_with_helper_on_spot(player_info, mouse_on_map_x, mouse_on_map_y, desired_coord_x, desired_coord_y, main_player_location_name,tolerance=8, timeout=80, print_txt="helper attack"):
 
   state = STATE.get_all()
   player_data = state.get("player_data") or {}
@@ -137,7 +139,7 @@ def attack_with_helper_on_spot(player_info, mouse_on_map_x, mouse_on_map_y, desi
       logger.info("I need to turn on helper...")
       go_to_point_and_wait(player_info=player_info, mouse_x=mouse_on_map_x, mouse_y=mouse_on_map_y, target_loc_x=desired_coord_x, target_loc_y=desired_coord_y, timeout=timeout, tol=tolerance, print_txt=print_txt)
       click_on_helper(player_info=player_info)
-      time.sleep(5)
+      send_message(f"/post PT pod P (sub2) na {main_player_location_name} ({desired_coord_x},{desired_coord_y})", player_info=player_info)
     else:
       logger.debug("Helper is running")
 

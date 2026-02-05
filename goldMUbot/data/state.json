@@ -1,12 +1,12 @@
 {
   "snapshot": {
-    "ts": 1770306037.2695782,
+    "ts": 1770307442.8207636,
     "state": {
-      "time": "16:40:37",
+      "time": "17:04:02",
       "player": "AleElfisko",
       "player_in_party": "to do",
-      "level": 318,
-      "exp_per_minute": "29237600",
+      "level": 348,
+      "exp_per_minute": "39978400",
       "reset": 124,
       "rect": {
         "bottom": 643,
@@ -16,18 +16,18 @@
         "top": 4,
         "width": 816
       },
-      "location_name": "Aida",
-      "location_coord_x": 22,
-      "location_coord_y": 145,
+      "location_name": "LaCleon",
+      "location_coord_x": 38,
+      "location_coord_y": 108,
       "mouse_position": {
         "ok": true,
-        "x": 14,
-        "y": 48
+        "x": 647,
+        "y": 522
       },
       "mouse_relative_pos": {
         "cursor": {
-          "x": 14,
-          "y": 48
+          "x": 647,
+          "y": 522
         },
         "inside": true,
         "ok": true,
@@ -37,20 +37,20 @@
           "right": 813,
           "top": 4
         },
-        "x": 17,
-        "y": 44
+        "x": 650,
+        "y": 518
       },
       "helper_status": "Running",
-      "health": 76326,
+      "health": 76325,
       "connected": true
     }
   },
   "player_data": {
-    "time": "16:40:40",
+    "time": "17:04:10",
     "player": "AleElfisko",
     "player_in_party": "to do",
-    "level": 318,
-    "exp_per_minute": "30118600",
+    "level": 348,
+    "exp_per_minute": "39469600",
     "reset": 124,
     "rect": {
       "bottom": 643,
@@ -60,21 +60,21 @@
       "top": 4,
       "width": 816
     },
-    "zen_ammount": 12345,
+    "zen_ammount": 804027300,
     "is_it_speedrun": false,
     "run_speedrun": false,
-    "location_name": "Aida",
-    "location_coord_x": 22,
-    "location_coord_y": 145,
+    "location_name": "LaCleon",
+    "location_coord_x": 38,
+    "location_coord_y": 108,
     "mouse_position": {
       "ok": true,
-      "x": 624,
-      "y": 606
+      "x": 647,
+      "y": 522
     },
     "mouse_relative_pos": {
       "cursor": {
-        "x": 624,
-        "y": 606
+        "x": 647,
+        "y": 522
       },
       "inside": true,
       "ok": true,
@@ -84,11 +84,11 @@
         "right": 813,
         "top": 4
       },
-      "x": 627,
-      "y": 602
+      "x": 650,
+      "y": 518
     },
     "helper_status": "Running",
-    "health": 76328,
+    "health": 76362,
     "connected": true,
     "map_level_limits": {
       "Lorencia": {
@@ -113,15 +113,15 @@
       },
       "Aida": {
         "min": 210,
+        "max": 325,
+        "enabled": true
+      },
+      "LaCleon": {
+        "min": 325,
         "max": 400,
         "enabled": true
       },
       "Icarus2": {
-        "min": 0,
-        "max": 0,
-        "enabled": false
-      },
-      "LaCleon": {
         "min": 0,
         "max": 0,
         "enabled": false
@@ -149,14 +149,14 @@
         "y": 379
       },
       "lacleon_map_spots": {
-        "id": "r16",
-        "loc_x": 68,
-        "loc_y": 155,
+        "id": "r14",
+        "loc_x": 38,
+        "loc_y": 108,
         "map": "LaCleon",
-        "moobs": "Iron Knight 142 lvl",
+        "moobs": "Shadow Master 136 lvl",
         "tolerance": 9,
-        "x": 291,
-        "y": 249
+        "x": 230,
+        "y": 343
       },
       "icarus2_map_spots": {
         "id": "icarus2_9",
@@ -172,7 +172,7 @@
     "stats_added": true
   },
   "players": {},
-  "_ts": 1770306040.7647483,
+  "_ts": 1770307450.00898,
   "paused": false,
   "send_message_via_ui": {
     "message": "~mialem rr teraz atlans",

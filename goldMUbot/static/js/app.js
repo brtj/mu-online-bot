@@ -91,6 +91,13 @@ function setText(id, value) {
   el.textContent = value;
 }
 
+function formatNumber(value) {
+  if (value === null || value === undefined || value === '') return '-';
+  const num = Number(value);
+  if (Number.isNaN(num)) return String(value);
+  return num.toLocaleString();
+}
+
 function setConnected(value) {
   const el = $('connected');
   if (!el) return;
@@ -128,6 +135,8 @@ async function refreshPlayer() {
     setText('health', src.health ?? '-');
     setText('helperStatus', src.helper_status ?? '-');
     setText('pauseState', d.paused === true ? 'Paused' : (d.paused === false ? 'Running' : (src.pause_state ?? '-')));
+    const zenValue = (src.zen_ammount ?? src.zen);
+    setText('zen', formatNumber(zenValue));
     // Speedrun info
     const speedrunDiv = document.getElementById('speedrun');
     if (speedrunDiv) {
@@ -136,19 +145,34 @@ async function refreshPlayer() {
       speedrunDiv.textContent = `${isIt}`;
     }
     // get global pause status from /api/pause if available
+    // keep latest pause state when /api/pause is unreachable
     try {
       const p = await fetch('/api/pause', { cache: 'no-store' });
       if (p.ok) {
         const pj = await p.json();
-        setText('pauseState', pj.paused ? 'Paused' : 'Running');
+        if (typeof pj.paused === 'boolean') {
+          setText('pauseState', pj.paused ? 'Paused' : 'Running');
+          window.__lastPauseState = pj.paused ? 'Paused' : 'Running';
+        } else if (window.__lastPauseState) {
+          setText('pauseState', window.__lastPauseState);
+        }
+      } else if (window.__lastPauseState) {
+        setText('pauseState', window.__lastPauseState);
       }
     } catch (err) {
-      // ignore; keep previous value
+      if (window.__lastPauseState) {
+        setText('pauseState', window.__lastPauseState);
+      }
     }
     setText('location', src.location_name ?? '-');
     if (src.location_coord_x !== undefined && src.location_coord_y !== undefined) setText('coords', `${src.location_coord_x}, ${src.location_coord_y}`);
-    setText('partyMode', src.player_in_party ?? 'Solo / Party / Independend');
-    setText('zen', src.zen ?? '');
+    const partyValue = src.player_in_party ?? window.__lastPartyMode;
+    if (partyValue) {
+      setText('partyMode', partyValue);
+      window.__lastPartyMode = partyValue;
+    } else {
+      setText('partyMode', 'Solo / Party / Independend');
+    }
     setText('time', src.time ?? '-');
     setText('mouseRel', pretty(src.mouse_relative_pos ?? src.mouse_position ?? '-'));
     setConnected(!!src.connected);

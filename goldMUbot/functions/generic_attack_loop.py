@@ -33,6 +33,7 @@ def generic_attack_on_spot(
               mouse_on_map_y=map_spot.get("y", 0),
               desired_coord_x=map_spot.get("loc_x", 0),
               desired_coord_y=map_spot.get("loc_y", 0),
+              main_player_location_name=main_player_location_name
           )
       else:
           logger.warning("No map_spot set in state, skipping attack on %s.", map_name)
