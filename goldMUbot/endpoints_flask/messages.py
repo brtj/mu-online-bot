@@ -9,6 +9,8 @@ from functions import config_loader
 
 messages_bp = Blueprint('messages', __name__)
 
+#test repo
+
 CONFIG = config_loader.load_config()
 HOSTAPI = CONFIG["hostapi"]
 HOSTAPI_BASE_URL = f"http://{HOSTAPI['ip']}:{HOSTAPI['port']}"
