@@ -17,6 +17,7 @@ from loops.action_loop import action_loop
 from endpoints_flask.state import state_bp
 from endpoints_flask.map_levels import map_levels_bp
 from endpoints_flask.map_spots import map_spots_bp
+from endpoints_flask.messages import messages_bp
 
 
 config = config_loader.load_config()
@@ -34,6 +35,7 @@ app = Flask(__name__)
 app.register_blueprint(state_bp)
 app.register_blueprint(map_levels_bp)
 app.register_blueprint(map_spots_bp)
+app.register_blueprint(messages_bp)
 
 @app.post("/api/scraper/force")
 def force_scraper():

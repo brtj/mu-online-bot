@@ -25,6 +25,7 @@ hostapi:
     find_templates: /screen/find-templates
     find_and_hover: /screen/find-and-hover
     screen_map: /screen/map
+    screen_capture: /screen/capture.png
 
 
 playerapi:

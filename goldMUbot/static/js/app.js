@@ -394,6 +394,11 @@ async function wireMapLevels() {
 async function wireActions() {
   const btn = document.getElementById('btnTogglePause');
   const label = document.getElementById('pauseStateLabel');
+  const sendBtn = document.getElementById('btnSendAction');
+  const input = document.getElementById('actionInput');
+  const previewBtn = document.getElementById('btnRefreshScreen');
+  const previewImg = document.getElementById('screenPreview');
+  const previewStatus = document.getElementById('screenPreviewStatus');
   if (!btn || !label) return;
   let current = null;
 
@@ -429,6 +434,68 @@ async function wireActions() {
       console.error('toggle pause failed', e);
     }
   });
+
+  if (sendBtn && input) {
+    sendBtn.addEventListener('click', async () => {
+      const text = input.value.trim();
+      if (!text) return;
+      try {
+        const res = await fetch('/api/send_message_ui', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ text })
+        });
+        if (!res.ok) throw new Error('Send failed');
+        input.value = '';
+        // Optionally show a success message
+      } catch (e) {
+        console.error('Send message error', e);
+      }
+    });
+  }
+
+  async function refreshScreenPreview() {
+    if (!previewImg) return;
+    if (previewBtn) {
+      previewBtn.disabled = true;
+      previewBtn.textContent = 'Refreshing...';
+    }
+    if (previewStatus) previewStatus.textContent = 'Fetching preview...';
+    try {
+      const playerLabel = document.getElementById('player');
+      const playerName = playerLabel ? playerLabel.textContent.trim() : '';
+      const payload = {
+        title: playerName ? `GoldMU || Player: ${playerName}` : 'GoldMU || Player:',
+        rect: { x: 0, y: 0, w: 800, h: 630 }
+      };
+      const res = await fetch('/api/screen_preview', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      const data = await res.json();
+      if (!res.ok || !data.ok) throw new Error(data.error || 'Capture failed');
+      const src = data.path || `/static/data/screen_preview.png?v=${Date.now()}`;
+      previewImg.src = src.includes('v=') ? src : `${src}&cb=${Date.now()}`;
+      if (previewStatus) previewStatus.textContent = 'Preview updated just now';
+    } catch (e) {
+      console.error('screen preview failed', e);
+      if (previewStatus) previewStatus.textContent = `Error: ${e.message}`;
+    } finally {
+      if (previewBtn) {
+        previewBtn.disabled = false;
+        previewBtn.textContent = 'Refresh';
+      }
+    }
+  }
+
+  if (previewBtn) {
+    previewBtn.addEventListener('click', refreshScreenPreview);
+  }
+
+  if (previewImg) {
+    refreshScreenPreview();
+  }
 
   await refreshPause();
 }

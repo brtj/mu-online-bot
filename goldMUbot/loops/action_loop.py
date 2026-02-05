@@ -8,6 +8,7 @@ from gameactions.addstats import main_player_add_stats
 from gameactions.attacks import attack_no_helper_on_spot, attack_with_helper_on_spot
 from gameactions.warp_to import warp_to
 from gameactions.pop_ups import popups_closer
+from gameactions.send_message_ui import send_message_via_ui
 
 
 logger = logging.getLogger(__name__)
@@ -163,6 +164,9 @@ def action_loop(stop_event, interval=1):
 
             # --- Errory z helperami/okienkami ---
             popups_closer(player_info=main_player_name)
+
+            # --- akcje wymagające izolacji od innych ---
+            send_message_via_ui(player_info=main_player_name)
 
             # --- Twoja logika akcji ---
 

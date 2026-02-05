@@ -11,6 +11,33 @@
       <span class="align-self-center text-muted small mono" id="pauseStateLabel">
         -
       </span>
+
+
+        
     </div>
+
+    </div>
+    <div class="card-body"> 
+      <p class="mb-2">Send Message to Game UI:</p>
+      <div class="d-flex gap-2 flex-wrap">
+        <input type="text" class="form-control" id="actionInput" placeholder="Enter action..." style="max-width: 300px;" maxlength="59">
+        <button class="btn btn-primary" id="btnSendAction">Send</button>
+      </div>
+    </div>
+
+    <div class="card-body border-top">
+      <div class="d-flex justify-content-between align-items-center mb-2">
+        <div>
+          <h6 class="mb-0">Screen Preview</h6>
+          <small class="text-muted">Latest capture from host</small>
+        </div>
+        <button class="btn btn-outline-secondary btn-sm" id="btnRefreshScreen">Refresh</button>
+      </div>
+      <div class="border rounded bg-light p-2 text-center">
+        <img id="screenPreview" src="" alt="Screen preview" class="img-fluid" style="max-height: 600px; object-fit: contain;">
+      </div>
+      <small class="text-muted d-block mt-2" id="screenPreviewStatus">No preview captured yet.</small>
+    </div>
+
   </div>
 </div>

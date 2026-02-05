@@ -1,93 +1,93 @@
 {
   "snapshot": {
-    "ts": 1770229020.797175,
+    "ts": 1770303537.4153206,
     "state": {
-      "time": "19:17:00",
+      "time": "15:58:57",
       "player": "AleElfisko",
       "player_in_party": "to do",
-      "level": 163,
+      "level": 118,
       "exp_per_minute": 0,
-      "reset": 119,
+      "reset": 124,
       "rect": {
-        "bottom": 645,
+        "bottom": 643,
         "height": 639,
-        "left": 797,
-        "right": 1613,
-        "top": 6,
+        "left": -3,
+        "right": 813,
+        "top": 4,
         "width": 816
       },
       "location_name": "Atlans",
-      "location_coord_x": 182,
-      "location_coord_y": 89,
+      "location_coord_x": 180,
+      "location_coord_y": 90,
       "mouse_position": {
         "ok": true,
-        "x": 807,
-        "y": 46
+        "x": 7,
+        "y": 44
       },
       "mouse_relative_pos": {
         "cursor": {
-          "x": 807,
-          "y": 46
+          "x": 7,
+          "y": 44
         },
         "inside": true,
         "ok": true,
         "window": {
-          "bottom": 645,
-          "left": 797,
-          "right": 1613,
-          "top": 6
+          "bottom": 643,
+          "left": -3,
+          "right": 813,
+          "top": 4
         },
         "x": 10,
         "y": 40
       },
       "helper_status": "Running",
-      "health": 76462,
+      "health": 76443,
       "connected": true
     }
   },
   "player_data": {
-    "time": "19:17:00",
+    "time": "15:59:04",
     "player": "AleElfisko",
     "player_in_party": "to do",
-    "level": 163,
+    "level": 120,
     "exp_per_minute": 0,
-    "reset": 119,
+    "reset": 124,
     "rect": {
-      "bottom": 645,
+      "bottom": 643,
       "height": 639,
-      "left": 797,
-      "right": 1613,
-      "top": 6,
+      "left": -3,
+      "right": 813,
+      "top": 4,
       "width": 816
     },
     "is_it_speedrun": false,
     "run_speedrun": false,
     "location_name": "Atlans",
-    "location_coord_x": 182,
-    "location_coord_y": 89,
+    "location_coord_x": 185,
+    "location_coord_y": 95,
     "mouse_position": {
       "ok": true,
-      "x": 807,
-      "y": 46
+      "x": 7,
+      "y": 44
     },
     "mouse_relative_pos": {
       "cursor": {
-        "x": 807,
-        "y": 46
+        "x": 7,
+        "y": 44
       },
       "inside": true,
       "ok": true,
       "window": {
-        "bottom": 645,
-        "left": 797,
-        "right": 1613,
-        "top": 6
+        "bottom": 643,
+        "left": -3,
+        "right": 813,
+        "top": 4
       },
       "x": 10,
       "y": 40
     },
     "helper_status": "Running",
-    "health": 76462,
+    "health": 76443,
     "connected": true,
     "map_level_limits": {
       "Lorencia": {
@@ -171,6 +171,11 @@
     "stats_added": true
   },
   "players": {},
-  "_ts": 1770229020.797227,
-  "paused": false
+  "_ts": 1770303544.5451338,
+  "paused": false,
+  "send_message_via_ui": {
+    "message": "~mialem rr teraz atlans",
+    "new_message": false,
+    "player": "AleElfisko"
+  }
 }
