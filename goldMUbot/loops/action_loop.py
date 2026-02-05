@@ -9,6 +9,7 @@ from gameactions.attacks import attack_no_helper_on_spot, attack_with_helper_on_
 from gameactions.warp_to import warp_to
 from gameactions.pop_ups import popups_closer
 from gameactions.send_message_ui import send_message_via_ui
+from gameactions.check_zen import check_inventory_zen
 
 
 logger = logging.getLogger(__name__)
@@ -43,7 +44,10 @@ def action_loop(stop_event, interval=1):
 
     last_log_sig = None  # żeby nie spamować logów
 
-    time.sleep(5)  # dajmy czas na zebranie pierwszych danych
+    time.sleep(2)  # dajmy czas na zebranie pierwszych danych
+
+    INVENTORY_INTERVAL = 60 * 5  # 5 minut
+    last_check_inventory = 0
 
     while not stop_event.is_set():
         try:
@@ -165,8 +169,14 @@ def action_loop(stop_event, interval=1):
             # --- Errory z helperami/okienkami ---
             popups_closer(player_info=main_player_name)
 
-            # --- akcje wymagające izolacji od innych ---
+            # --- akcje wymagające izolacji od innych uruchamiane z UI ---
             send_message_via_ui(player_info=main_player_name)
+
+            # --- akcje wymagające izolacji od innych cykliczne ---
+            now = time.time()
+            if now - last_check_inventory >= INVENTORY_INTERVAL:
+                check_inventory_zen(player_info=main_player_name)
+                last_check_inventory = now
 
             # --- Twoja logika akcji ---
 

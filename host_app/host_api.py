@@ -2277,7 +2277,7 @@ def api_screen_ocr_zen():
     JSON:
     {
       "rect": {"x": 688, "y": 478, "w": 100, "h": 16},
-      "title": "GoldMU",
+      "title": "PlayerName",
       "pad": 0
     }
     """
@@ -2325,7 +2325,7 @@ def api_screen_ocr_zen():
     INVENTORY_STATE_URL = "http://192.168.50.200:5055/screen/inventory_state"
 
     payload_inventory = {
-        "title": "GoldMU || Player: CoZaBzdura",
+        "title": title,
         "target_x": 654,
         "target_y": 600,
         "require_inside": False
@@ -2337,7 +2337,7 @@ def api_screen_ocr_zen():
         "hold_time": 0.5
     }
     payload_inventory_state = {
-        "title": "GoldMU || Player: CoZaBzdura",
+        "title": title,
         "rect": {"x": 630, "y": 496, "w": 30, "h": 40},
         "thr": 0.88,
         "pad": 2
