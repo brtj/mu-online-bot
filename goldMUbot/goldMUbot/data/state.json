@@ -1,0 +1,176 @@
+{
+  "snapshot": {
+    "ts": 1770298692.4500775,
+    "state": {
+      "time": "14:38:12",
+      "player": "AleElfisko",
+      "player_in_party": "to do",
+      "level": 349,
+      "exp_per_minute": "48164000",
+      "reset": 123,
+      "rect": {
+        "bottom": 643,
+        "height": 639,
+        "left": -3,
+        "right": 813,
+        "top": 4,
+        "width": 816
+      },
+      "location_name": "LaCleon",
+      "location_coord_x": 39,
+      "location_coord_y": 108,
+      "mouse_position": {
+        "ok": true,
+        "x": 1205,
+        "y": 577
+      },
+      "mouse_relative_pos": {
+        "cursor": {
+          "x": 1148,
+          "y": 477
+        },
+        "inside": false,
+        "ok": true,
+        "window": {
+          "bottom": 643,
+          "left": -3,
+          "right": 813,
+          "top": 4
+        },
+        "x": 1151,
+        "y": 473
+      },
+      "helper_status": "Running",
+      "health": 76363,
+      "connected": true
+    }
+  },
+  "player_data": {
+    "time": "14:38:12",
+    "player": "AleElfisko",
+    "player_in_party": "to do",
+    "level": 349,
+    "exp_per_minute": "48164000",
+    "reset": 123,
+    "rect": {
+      "bottom": 643,
+      "height": 639,
+      "left": -3,
+      "right": 813,
+      "top": 4,
+      "width": 816
+    },
+    "is_it_speedrun": false,
+    "run_speedrun": false,
+    "location_name": "LaCleon",
+    "location_coord_x": 39,
+    "location_coord_y": 108,
+    "mouse_position": {
+      "ok": true,
+      "x": 1205,
+      "y": 577
+    },
+    "mouse_relative_pos": {
+      "cursor": {
+        "x": 1148,
+        "y": 477
+      },
+      "inside": false,
+      "ok": true,
+      "window": {
+        "bottom": 643,
+        "left": -3,
+        "right": 813,
+        "top": 4
+      },
+      "x": 1151,
+      "y": 473
+    },
+    "helper_status": "Running",
+    "health": 76363,
+    "connected": true,
+    "map_level_limits": {
+      "Lorencia": {
+        "min": 1,
+        "max": 50,
+        "enabled": true
+      },
+      "Noria": {
+        "min": 1,
+        "max": 50,
+        "enabled": true
+      },
+      "Devias": {
+        "min": 50,
+        "max": 80,
+        "enabled": true
+      },
+      "Atlans": {
+        "min": 80,
+        "max": 210,
+        "enabled": true
+      },
+      "Aida": {
+        "min": 210,
+        "max": 325,
+        "enabled": true
+      },
+      "LaCleon": {
+        "min": 325,
+        "max": 400,
+        "enabled": true
+      },
+      "Icarus2": {
+        "min": 0,
+        "max": 0,
+        "enabled": false
+      }
+    },
+    "map_spots": {
+      "aida_map_spots": {
+        "id": "aida2_drider1",
+        "loc_x": 22,
+        "loc_y": 147,
+        "map": "Aida",
+        "moobs": "Bloody Death Rider 115 lvl",
+        "tolerance": 9,
+        "x": 196,
+        "y": 267
+      },
+      "atlans_map_spots": {
+        "id": "aa5",
+        "loc_x": 181,
+        "loc_y": 92,
+        "map": "Atlans2",
+        "moobs": "Lizard King 70 lvl",
+        "tolerance": 9,
+        "x": 522,
+        "y": 379
+      },
+      "lacleon_map_spots": {
+        "id": "r14",
+        "loc_x": 38,
+        "loc_y": 108,
+        "map": "LaCleon",
+        "moobs": "Shadow Master 136 lvl",
+        "tolerance": 9,
+        "x": 230,
+        "y": 343
+      },
+      "icarus2_map_spots": {
+        "id": "icarus2_9",
+        "loc_x": 89,
+        "loc_y": 198,
+        "map": "Icarus2",
+        "moobs": "Great Drakan 100 lvl",
+        "tolerance": 5,
+        "x": 334,
+        "y": 161
+      }
+    },
+    "stats_added": true
+  },
+  "players": {},
+  "_ts": 1770298692.469439,
+  "paused": false
+}
