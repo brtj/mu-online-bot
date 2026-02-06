@@ -189,9 +189,10 @@ def action_loop(stop_event, interval=1):
 
             if main_player_level == 400:
                 logger.info("Need to do reset")
-                STATE.update_dict("player_data", {"stats_added": False})
+                STATE.update_dict("player_data", {"stats_added": False, "is_it_speedrun": False, "run_speedrun": False})
                 jewels_to_bank(player_info=main_player_name)
-                elf_reset(player_info=main_player_name, reset_count=main_player_reset + 1)
+                reset_count = main_player_reset + 1
+                elf_reset(player_info=main_player_name, reset_count=reset_count)
 
             if main_player_level == 1 and not stats_added:
                 logger.info("Player after reset, need to adjust character")

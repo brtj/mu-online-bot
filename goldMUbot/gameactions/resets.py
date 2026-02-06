@@ -9,9 +9,9 @@ logger = logging.getLogger(__name__)
 
 
 
-def elf_reset(player_info=""):
+def elf_reset(player_info="", reset_count=0):
   activate_window(player_info=player_info)
   logger.info("reset done")
-  send_message(player_info=player_info, text="To juz moj {reset_count} reset, a jak u was?")
+  send_message(player_info=player_info, text=f"To juz moj {reset_count} reset, a jak u was?")
   send_message(player_info=player_info, text="/reset")
   time.sleep(4) #sleep to change map
