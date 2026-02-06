@@ -39,15 +39,15 @@ pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tessera
 
 
 BASE_DIR = os.path.dirname(__file__)
-TEMP_DIR = os.path.join(BASE_DIR, "temp")
-TPL_PAUSE = os.path.join(BASE_DIR, "autorun_pause.png")
-TPL_PLAY  = os.path.join(BASE_DIR, "autorun_play.png")
-TPL_MAP_ON = os.path.join(BASE_DIR, "map_on.png")
-TPL_CHAT_ON = os.path.join(BASE_DIR, "chat_on.png")
-TPL_SYSTEM_ON = os.path.join(BASE_DIR, "system_on.png")
-TPL_INV_ON = os.path.join(BASE_DIR, "helper_inventory_opened.png")
-TPL_HELPER_RUNS_ON = os.path.join(BASE_DIR, "helper_only_runs_in_filed.png")
-TPL_INVENTORY_ON = os.path.join(BASE_DIR, "inventory_on.png")
+TEMP_DIR = os.path.join(BASE_DIR, "search_templates", "temp")
+TPL_PAUSE = os.path.join(BASE_DIR, "search_templates", "autorun_pause.png")
+TPL_PLAY  = os.path.join(BASE_DIR, "search_templates", "autorun_play.png")
+TPL_MAP_ON = os.path.join(BASE_DIR, "search_templates", "map_on.png")
+TPL_CHAT_ON = os.path.join(BASE_DIR, "search_templates", "chat_on.png")
+TPL_SYSTEM_ON = os.path.join(BASE_DIR, "search_templates", "system_on.png")
+TPL_INV_ON = os.path.join(BASE_DIR, "search_templates", "helper_inventory_opened.png")
+TPL_HELPER_RUNS_ON = os.path.join(BASE_DIR, "search_templates", "helper_only_runs_in_filed.png")
+TPL_INVENTORY_ON = os.path.join(BASE_DIR, "search_templates", "inventory_on.png")
 
 
 
