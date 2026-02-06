@@ -64,7 +64,7 @@ def round_attack(player_info, deltas, step_delay=0.005, pause_range=(0.1, 0.4), 
             "require_inside": False
         })
         post(HIDAPI_ENDPOINTS["mouse_click"], payload_click360)
-        time.sleep(0.1)
+        time.sleep(0.05)
     
     TIMEOUT_SEC = 7 * 60  # 7 minut
     start_ts = time.monotonic()

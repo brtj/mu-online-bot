@@ -408,25 +408,25 @@ def api_send_message():
                 "require_inside": False
             }
             r = post(SGO_TO_XY_URL, payload)
-            time.sleep(0.3)
+            time.sleep(0.25)
             payload = {
                 "button": "left",
                 "action": "click",
                 "hold_time": 0.5
             }
             r = post(MOUSE_CLICK_URL,payload)
-            time.sleep(0.4)
+            time.sleep(0.3)
             hid_api.press_enter()
-            time.sleep(0.5)
+            time.sleep(0.3)
 
         hid_api.press_enter()
-        time.sleep(0.4)
+        time.sleep(0.3)
         hid_api.press_tab()
-        time.sleep(0.4)
+        time.sleep(0.3)
         hid_api.press_backspace()
-        time.sleep(0.4)
+        time.sleep(0.3)
         hid_api.press_tab()
-        time.sleep(0.4)
+        time.sleep(0.3)
 
         payload = {
             "text": text
@@ -439,7 +439,7 @@ def api_send_message():
            # tu możesz zdecydować co dalej:
            return {"ok": False, "error": str(e)}
         
-        time.sleep(1)
+        time.sleep(0.5)
         hid_api.press_enter()
         
 
@@ -562,7 +562,7 @@ def api_mouse_goto_xy_relative():
     try:
         tolerance = int(data.get("tolerance", 1))
         max_iters = int(data.get("max_iters", 600))
-        sleep_s = float(data.get("sleep_s", 0.012))
+        sleep_s = float(data.get("sleep_s", 0.006))
         require_inside = bool(data.get("require_inside", True))
     except (TypeError, ValueError):
         return jsonify(ok=False, error="tolerance/max_iters/sleep_s have invalid type"), 400
