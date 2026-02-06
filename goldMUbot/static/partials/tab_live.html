@@ -132,24 +132,34 @@
     </div>
   </div>
 
-  <!-- Config changes -->
+  <!-- Reset history -->
   <div class="col-12">
     <div class="card shadow-sm">
       <div class="card-body">
         <div class="d-flex justify-content-between align-items-center">
-          <div class="text-muted small">Test</div>
+          <div>
+            <div class="text-muted small">Reset history</div>
+            <div class="fw-semibold">Last 5 entries</div>
+          </div>
           <div class="text-muted small">
-            bla bla<span class="mono" id="time">-</span>
+            Source: <span class="mono">player_data.reset_history</span>
           </div>
         </div>
 
-        <div class="row mt-2 g-3">
-          <div class="col-12 col-lg-6">
-            <div class="border rounded p-2 bg-body-tertiary">
-              <div class="text-muted small mb-1">1234</div>
-              <div class="qwer" id="">-12312312</div>
-            </div>
-          </div>
+        <div class="table-responsive mt-3">
+          <table class="table table-sm mb-0">
+            <thead>
+              <tr>
+                <th scope="col" class="text-muted small">Date</th>
+                <th scope="col" class="text-muted small">Reset count</th>
+              </tr>
+            </thead>
+            <tbody id="resetHistoryBody">
+              <tr>
+                <td colspan="2" class="text-center text-muted">No data</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
 
       </div>

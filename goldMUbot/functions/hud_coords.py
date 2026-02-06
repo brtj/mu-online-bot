@@ -4,6 +4,7 @@ def get_hud_xy(hud_coords: list, hud_id: str) -> tuple[int, int]:
             return item["x"], item["y"]
     raise KeyError(f"HUD id '{hud_id}' not found")
 
+#HUD COORDS for 800x600 resolution, if u play on different resolution, u need to adjust them, they are used to click on specific places on screen, like safe spot, inventory icon, etc
 HUD_COORDS = [
     {
         "id": "middle_screen",

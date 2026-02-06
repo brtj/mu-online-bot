@@ -6,5 +6,9 @@ STATE_PATH = BASE_DIR / "data" / "state.json"
 
 STATE = JsonStateStore(
     STATE_PATH,
-    default={"snapshot": None, "player_data": {}, "players": {}}
+    default={
+        "snapshot": None,
+        "player_data": {},
+        "players": {}
+    }
 )

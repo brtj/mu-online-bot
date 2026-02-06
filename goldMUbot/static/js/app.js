@@ -106,6 +106,37 @@ function setConnected(value) {
   el.classList.add(value ? 'text-success' : 'text-danger');
 }
 
+function renderResetHistory(history) {
+  const tbody = $('resetHistoryBody');
+  if (!tbody) return;
+  const entries = Array.isArray(history)
+    ? history.filter(item => item && item.date && item.reset !== undefined)
+    : [];
+  if (!entries.length) {
+    tbody.innerHTML = '<tr><td colspan="2" class="text-center text-muted">No data</td></tr>';
+    return;
+  }
+  const sorted = [...entries].sort((a, b) => {
+    const da = new Date(a.date).getTime();
+    const db = new Date(b.date).getTime();
+    if (Number.isNaN(da) && Number.isNaN(db)) return 0;
+    if (Number.isNaN(da)) return 1;
+    if (Number.isNaN(db)) return -1;
+    return db - da;
+  });
+  const limited = sorted.slice(0, 5);
+  tbody.innerHTML = limited.map(entry => {
+    const dateObj = new Date(entry.date);
+    const dateLabel = Number.isNaN(dateObj.getTime()) ? entry.date : dateObj.toLocaleDateString();
+    return `
+      <tr>
+        <td>${dateLabel}</td>
+        <td>${formatNumber(entry.reset)}</td>
+      </tr>
+    `;
+  }).join('');
+}
+
 function pretty(obj) {
   try { return JSON.stringify(obj, null, 2); } catch { return String(obj); }
 }
@@ -137,6 +168,7 @@ async function refreshPlayer() {
     setText('pauseState', d.paused === true ? 'Paused' : (d.paused === false ? 'Running' : (src.pause_state ?? '-')));
     const zenValue = (src.zen_ammount ?? src.zen);
     setText('zen', formatNumber(zenValue));
+    renderResetHistory(src.reset_history ?? d.player_data?.reset_history ?? d.reset_history ?? []);
     // Speedrun info
     const speedrunDiv = document.getElementById('speedrun');
     if (speedrunDiv) {
