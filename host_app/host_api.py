@@ -2319,37 +2319,6 @@ def api_screen_ocr_zen():
     w_p = w + 2 * pad
     h_p = h + 2 * pad
 
-    # --- automatyka myszki ---
-    SGO_TO_XY_URL = "http://192.168.50.200:5055/mouse/goto_xy_relative"
-    MOUSE_CLICK_URL = "http://192.168.50.228:5000/mouse/click"
-    INVENTORY_STATE_URL = "http://192.168.50.200:5055/screen/inventory_state"
-
-    payload_inventory = {
-        "title": title,
-        "target_x": 654,
-        "target_y": 600,
-        "require_inside": False
-    }
-
-    payload_click_inventory = {
-        "button": "left",
-        "action": "click",
-        "hold_time": 0.5
-    }
-    payload_inventory_state = {
-        "title": title,
-        "rect": {"x": 630, "y": 496, "w": 30, "h": 40},
-        "thr": 0.88,
-        "pad": 2
-    }
-    inventory_state = post(INVENTORY_STATE_URL, payload_inventory_state)
-    if inventory_state["state"] == "INV OFF":
-        print("inventory is closed I need to open...")
-        post(SGO_TO_XY_URL, payload_inventory)
-        time.sleep(0.3)
-        post(MOUSE_CLICK_URL, payload_click_inventory)
-        time.sleep(0.5)
-
     try:
         # --- screen grab ---
         with mss.mss() as sct:
@@ -2371,18 +2340,6 @@ def api_screen_ocr_zen():
 
         # --- OCR ---
         res = ocr_zen_digits(img_bgr)
-
-        # --- powrót myszki ---
-        time.sleep(0.4)
-        inventory_state = post(INVENTORY_STATE_URL, payload_inventory_state)
-        if inventory_state["state"] == "INV ON":
-            print("inventory is opened I need to close it...")
-            post(SGO_TO_XY_URL, payload_inventory)
-            time.sleep(0.3)
-            post(MOUSE_CLICK_URL, payload_click_inventory)
-            time.sleep(0.5)
-        else:
-            print(inventory_state)
 
         return jsonify(
             ok=True,

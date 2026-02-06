@@ -1,12 +1,12 @@
 {
   "snapshot": {
-    "ts": 1770377164.572717,
+    "ts": 1770380658.788033,
     "state": {
-      "time": "12:26:04",
+      "time": "13:24:18",
       "player": "AleElfisko",
       "player_in_party": "to do 2",
-      "level": 317,
-      "exp_per_minute": "23959300",
+      "level": 370,
+      "exp_per_minute": "3254800",
       "reset": 133,
       "rect": {
         "bottom": 643,
@@ -16,9 +16,9 @@
         "top": 4,
         "width": 816
       },
-      "location_name": "Aida",
-      "location_coord_x": 20,
-      "location_coord_y": 144,
+      "location_name": "LaCleon",
+      "location_coord_x": 37,
+      "location_coord_y": 109,
       "mouse_position": {
         "ok": true,
         "x": 647,
@@ -41,16 +41,16 @@
         "y": 518
       },
       "helper_status": "Running",
-      "health": 76327,
+      "health": 76360,
       "connected": true
     }
   },
   "player_data": {
-    "time": "12:26:04",
+    "time": "13:24:18",
     "player": "AleElfisko",
     "player_in_party": "to do 2",
-    "level": 317,
-    "exp_per_minute": "23959300",
+    "level": 370,
+    "exp_per_minute": "3254800",
     "reset": 133,
     "rect": {
       "bottom": 643,
@@ -60,12 +60,12 @@
       "top": 4,
       "width": 816
     },
-    "zen_ammount": 1,
+    "zen_ammount": 873066457,
     "is_it_speedrun": false,
     "run_speedrun": false,
-    "location_name": "Aida",
-    "location_coord_x": 20,
-    "location_coord_y": 144,
+    "location_name": "LaCleon",
+    "location_coord_x": 37,
+    "location_coord_y": 109,
     "mouse_position": {
       "ok": true,
       "x": 647,
@@ -88,7 +88,7 @@
       "y": 518
     },
     "helper_status": "Running",
-    "health": 76327,
+    "health": 76360,
     "connected": true,
     "map_level_limits": {
       "Lorencia": {
@@ -172,7 +172,7 @@
     "stats_added": true
   },
   "players": {},
-  "_ts": 1770377164.5727687,
+  "_ts": 1770380658.7880833,
   "paused": false,
   "send_message_via_ui": {
     "message": "~mialem rr teraz atlans",

@@ -77,14 +77,14 @@ def popups_closer(player_info):
     payload_close_menu = {
         "title": f"{player_info}",
         "rect": { "x": 0, "y": 0, "w": 800, "h": 650 },
-        "templates": ["system_on.png"],
-        "thr": 0.85,
+        "templates": ["system_button_pressed.png"],
+        "thr": 0.999,
         "nms_radius": 25,
         "pick": "best",
         "hover": { "require_inside": False }
     }
     popup_status_close_menu = post(HOSTAPI_ENDPOINTS["find_and_hover"], payload_close_menu)
-    logger.info(f"{popup_status_close_menu}")
+    logger.debug(f"{popup_status_close_menu}")
     if popup_status_close_menu.get("ok") == True:
         logger.info("need to close popup system menu")
         post(HIDAPI_ENDPOINTS["mouse_click"], payload_click)
