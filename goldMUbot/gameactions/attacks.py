@@ -52,7 +52,7 @@ def round_attack(player_info, deltas, step_delay=0.005, pause_range=(0.1, 0.4), 
     time.sleep(0.25)
     post(HIDAPI_ENDPOINTS["mouse_click"], {"button": "left", "action": "click", "hold_time": 0.5})
 
-    send_message(f"ja tu tylko na chwilke do {level_max} lvlu", player_info=player_info)
+    # send_message(f"ja tu tylko na chwilke do {level_max} lvlu", player_info=player_info)
 
     delta360 = [(400, 100), (250, 300), (580, 300), (400, 400)]
     payload_click360 = {"button": "right", "action": "click", "hold_time": 1}
@@ -123,7 +123,7 @@ def round_attack(player_info, deltas, step_delay=0.005, pause_range=(0.1, 0.4), 
 
 
 def attack_no_helper_on_spot(player_info, location_coord_x, location_coord_y, desired_coord_x, desired_coord_y, mouse_on_map_x, mouse_on_map_y, delta, level_max=100, print_txt="no helper attack", ):
-  if is_at_position(location_coord_x, location_coord_y, desired_coord_x, desired_coord_y):
+  if is_at_position(location_coord_x, location_coord_y, desired_coord_x, desired_coord_y, tol=20):
       round_attack(player_info=player_info, hold_time=3, level_max=level_max, coord_x=desired_coord_x, coord_y=desired_coord_y, deltas=delta)
   else:
     go_to_point_and_wait(player_info=player_info, mouse_x=mouse_on_map_x, mouse_y=mouse_on_map_y, target_loc_x=desired_coord_x, target_loc_y=desired_coord_y, print_txt=print_txt)
