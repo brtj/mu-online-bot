@@ -40,7 +40,7 @@ LOCALAPI_ENDPOINTS = {
 def round_attack(player_info, deltas, step_delay=0.005, pause_range=(0.1, 0.4), hold_time=1, level_max=100, coord_x=0, coord_y=0):
     logger.info("Attacking...")
 
-    activate_window(player_info=player_info)
+    # activate_window(player_info=player_info)
 
     x, y = get_hud_xy(HUD_COORDS, "safe_spot")
     post(HOSTAPI_ENDPOINTS["mouse_goto_xy_relative"], {
