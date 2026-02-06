@@ -572,7 +572,7 @@ def api_mouse_goto_xy_relative():
     try:
         tolerance = int(data.get("tolerance", 1))
         max_iters = int(data.get("max_iters", 600))
-        sleep_s = float(data.get("sleep_s", 0.006))
+        sleep_s = float(data.get("sleep_s", 0.012))
         require_inside = bool(data.get("require_inside", True))
     except (TypeError, ValueError):
         return jsonify(ok=False, error="tolerance/max_iters/sleep_s have invalid type"), 400
