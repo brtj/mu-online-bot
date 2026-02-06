@@ -71,7 +71,7 @@ def player_data(player_info=""):
         location_x = 0
         location_y = 0
 
-    check_party_state = "to do"
+    check_party_state = "to do 2"
     now = datetime.now().strftime("%H:%M:%S")
 
     result = {

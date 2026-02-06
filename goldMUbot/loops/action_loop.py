@@ -46,7 +46,6 @@ def action_loop(stop_event, interval=1):
 
     time.sleep(2)  # dajmy czas na zebranie pierwszych danych
 
-    INVENTORY_INTERVAL = 60 * 5  # 5 minut
     last_check_inventory = 0
 
     while not stop_event.is_set():
@@ -173,6 +172,8 @@ def action_loop(stop_event, interval=1):
             send_message_via_ui(player_info=main_player_name)
 
             # --- akcje wymagające izolacji od innych cykliczne ---
+            inv_interval_state = STATE.get("inventory_interval", 60 * 5)  # default 5 minut, można nadpisać z state.json
+            INVENTORY_INTERVAL = 60 * inv_interval_state
             now = time.time()
             if now - last_check_inventory >= INVENTORY_INTERVAL:
                 check_inventory_zen(player_info=main_player_name)

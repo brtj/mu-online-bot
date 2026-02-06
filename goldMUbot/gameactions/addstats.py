@@ -10,5 +10,5 @@ def main_player_add_stats(player_info="", main_player_reset=0):
         send_message("/addene 3000", player_info=player_info); time.sleep(sleept)
         send_message("/addstr 29978", player_info=player_info); time.sleep(sleept)
         send_message("/addagi 29975", player_info=player_info); time.sleep(sleept)
-        send_message("/addvit 26000", player_info=player_info); time.sleep(sleept)
+        send_message("/addvit 29980", player_info=player_info); time.sleep(sleept)
     send_message("/re auto", player_info=player_info)
