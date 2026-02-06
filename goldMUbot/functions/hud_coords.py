@@ -131,6 +131,54 @@ HUD_COORDS = [
         "x": 325,
         "y": 600
     },
+    {
+        "id": "jewel_bank_1st_all_icon",
+        "description": "Jewel bank, first all icon to click to put chaos jewels in bank",
+        "x": 544,
+        "y": 274
+    },
+    {
+        "id": "jewel_bank_2nd_all_icon",
+        "description": "Jewel bank, 2nd all icon to click to put chaos jewels in bank",
+        "x": 544,
+        "y": 296
+    },
+    {
+        "id": "jewel_bank_3rd_all_icon",
+        "description": "Jewel bank, 3rd all icon to click to put chaos jewels in bank",
+        "x": 544,
+        "y": 321
+    },
+    {
+        "id": "jewel_bank_4th_all_icon",
+        "description": "Jewel bank, 4th all icon to click to put chaos jewels in bank",
+        "x": 544,
+        "y": 346
+    },
+    {
+        "id": "jewel_bank_5th_all_icon",
+        "description": "Jewel bank, 5th all icon to click to put chaos jewels in bank",
+        "x": 544,
+        "y": 373
+    },
+    {
+        "id": "jewel_bank_6th_all_icon",
+        "description": "Jewel bank, 6th all icon to click to put chaos jewels in bank",
+        "x": 544,
+        "y": 395
+    },
+    {
+        "id": "jewel_bank_7th_all_icon",
+        "description": "Jewel bank, 7th all icon to click to put chaos jewels in bank",
+        "x": 544,
+        "y": 420
+    },
+    {
+        "id": "jewel_bank_8th_all_icon",
+        "description": "Jewel bank, 8th all icon to click to put chaos jewels in bank",
+        "x": 544,
+        "y": 450
+    },
 ]
 
 def get_rect(rect_id: str) -> dict:

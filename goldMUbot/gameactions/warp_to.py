@@ -10,12 +10,12 @@ setup_logging()
 logger = logging.getLogger(__name__)
 
 
-def warp_to(player_info, desired_location, actual_location, actual_location_coord_x, sleept=1):
+def warp_to(player_info, desired_location, actual_location, actual_location_coord_x, sleept=1, timeout=30):
     activate_window(player_info=player_info);time.sleep(0.2)
     logger.info(f"warping from {actual_location} to {desired_location}")
-    send_message(f"dobra lece tu {desired_location}", player_info=player_info)
+    # send_message(f"dobra lece tu {desired_location}", player_info=player_info)
     send_message(f"/warp {desired_location}", player_info=player_info)
-    wait_for_location_name_change(actual_location, actual_location_coord_x)
+    wait_for_location_name_change(actual_location, actual_location_coord_x, timeout=timeout)
     time.sleep(sleept)
 
 def wait_for_location_name_change(before_location, before_location_coord_x, timeout=30, interval=0.5):

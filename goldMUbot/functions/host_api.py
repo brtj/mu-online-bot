@@ -71,3 +71,19 @@ def check_map_on(player_info=""):
     logger.info(f"Check map on state: {r}")
     time.sleep(0.2)
     return r["state"]
+
+def press_leter_i():
+    letter_i_button={
+        "keycode": 12,
+        "modifier": 0,
+        "press_time": 0.1
+    }
+    press_key(letter_i_button)
+
+def press_escape():
+    escape_button={
+      "keycode": 41,
+      "modifier": 0,
+      "press_time": 0.1
+    }
+    press_key(escape_button)

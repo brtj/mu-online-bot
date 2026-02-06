@@ -11,6 +11,7 @@ from gameactions.pop_ups import popups_closer
 from gameactions.send_message_ui import send_message_via_ui
 from gameactions.check_zen import check_inventory_zen
 from gameactions.inventory_actions import jewels_to_bank
+from gameactions.chaos_machine_bc_invite import chaos_machine_bc_invite
 
 
 logger = logging.getLogger(__name__)
@@ -166,15 +167,15 @@ def action_loop(stop_event, interval=1):
                 )
                 last_log_sig = sig
 
+            # --- miejsce na akcje do protypowania ---
+            # chaos_machine_bc_invite(player_info=main_player_name)
+            # time.sleep(1000)
+
             # --- Errory z helperami/okienkami ---
-            # popups_closer(player_info=main_player_name)
+            popups_closer(player_info=main_player_name)
 
             # --- akcje wymagające izolacji od innych uruchamiane z UI ---
             send_message_via_ui(player_info=main_player_name)
-
-            jewels_to_bank(player_info=main_player_name)
-            logger.info("KONIEC --------------")
-            time.sleep(30)
 
             # --- akcje wymagające izolacji od innych cykliczne ---
             inv_interval_state = STATE.get("inventory_interval", 60 * 5)  # default 5 minut, można nadpisać z state.json
@@ -189,6 +190,7 @@ def action_loop(stop_event, interval=1):
             if main_player_level == 400:
                 logger.info("Need to do reset")
                 STATE.update_dict("player_data", {"stats_added": False})
+                jewels_to_bank(player_info=main_player_name)
                 elf_reset(player_info=main_player_name)
 
             if main_player_level == 1 and not stats_added:
