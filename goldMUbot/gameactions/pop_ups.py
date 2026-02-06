@@ -84,6 +84,7 @@ def popups_closer(player_info):
         "hover": { "require_inside": False }
     }
     popup_status_close_menu = post(HOSTAPI_ENDPOINTS["find_and_hover"], payload_close_menu)
+    logger.info(f"{popup_status_close_menu}")
     if popup_status_close_menu.get("ok") == True:
         logger.info("need to close popup system menu")
         post(HIDAPI_ENDPOINTS["mouse_click"], payload_click)
