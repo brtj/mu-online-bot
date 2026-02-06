@@ -517,14 +517,24 @@ def get_pos():
 def adaptive_step(err):
     a = abs(err)
     if a > 500:
-        return 170
-    if a > 300:
+        return 250
+    if a > 250:
+        return 150
+    if a > 200:
         return 100
     if a > 150:
-        return 30
+        return 75
+    if a > 100:
+        return 50
+    if a > 80:
+        return 40
     if a > 60:
-        return 15
-    if a > 15:
+        return 30
+    if a > 40:
+        return 20
+    if a > 20:
+        return 10
+    if a > 10:
         return 5
     if a > 4:
         return 2
