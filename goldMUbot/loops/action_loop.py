@@ -208,7 +208,7 @@ def action_loop(stop_event, interval=1):
 
             if primary_enabled and primary_max >= main_player_level >= primary_min:
                 logger.info("Exping on %s (min=%s max=%s)...", primary_map_name, primary_min, primary_max)
-                delta = [(620, 305), (620, 365), (620, 430)]
+                delta = [(620, 290), (620, 365)]
                 attack_no_helper_on_spot(
                     player_info=main_player_name,
                     level_max=primary_max,
