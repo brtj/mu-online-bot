@@ -1,13 +1,13 @@
 {
   "snapshot": {
-    "ts": 1770380658.788033,
+    "ts": 1770392531.9409244,
     "state": {
-      "time": "13:24:18",
+      "time": "16:42:11",
       "player": "AleElfisko",
       "player_in_party": "to do 2",
-      "level": 370,
-      "exp_per_minute": "3254800",
-      "reset": 133,
+      "level": 320,
+      "exp_per_minute": 0,
+      "reset": 135,
       "rect": {
         "bottom": 643,
         "height": 639,
@@ -16,18 +16,18 @@
         "top": 4,
         "width": 816
       },
-      "location_name": "LaCleon",
-      "location_coord_x": 37,
-      "location_coord_y": 109,
+      "location_name": "Aida",
+      "location_coord_x": 23,
+      "location_coord_y": 145,
       "mouse_position": {
         "ok": true,
-        "x": 647,
-        "y": 522
+        "x": 139,
+        "y": 601
       },
       "mouse_relative_pos": {
         "cursor": {
-          "x": 647,
-          "y": 522
+          "x": 139,
+          "y": 601
         },
         "inside": true,
         "ok": true,
@@ -37,21 +37,21 @@
           "right": 813,
           "top": 4
         },
-        "x": 650,
-        "y": 518
+        "x": 142,
+        "y": 597
       },
       "helper_status": "Running",
-      "health": 76360,
+      "health": 87936,
       "connected": true
     }
   },
   "player_data": {
-    "time": "13:24:18",
+    "time": "16:42:19",
     "player": "AleElfisko",
     "player_in_party": "to do 2",
-    "level": 370,
-    "exp_per_minute": "3254800",
-    "reset": 133,
+    "level": 321,
+    "exp_per_minute": 0,
+    "reset": 135,
     "rect": {
       "bottom": 643,
       "height": 639,
@@ -63,18 +63,18 @@
     "zen_ammount": 873066457,
     "is_it_speedrun": false,
     "run_speedrun": false,
-    "location_name": "LaCleon",
-    "location_coord_x": 37,
-    "location_coord_y": 109,
+    "location_name": "Aida",
+    "location_coord_x": 23,
+    "location_coord_y": 146,
     "mouse_position": {
       "ok": true,
-      "x": 647,
-      "y": 522
+      "x": 139,
+      "y": 603
     },
     "mouse_relative_pos": {
       "cursor": {
-        "x": 647,
-        "y": 522
+        "x": 139,
+        "y": 603
       },
       "inside": true,
       "ok": true,
@@ -84,11 +84,11 @@
         "right": 813,
         "top": 4
       },
-      "x": 650,
-      "y": 518
+      "x": 142,
+      "y": 599
     },
     "helper_status": "Running",
-    "health": 76360,
+    "health": 87936,
     "connected": true,
     "map_level_limits": {
       "Lorencia": {
@@ -172,7 +172,7 @@
     "stats_added": true
   },
   "players": {},
-  "_ts": 1770380658.7880833,
+  "_ts": 1770392539.209605,
   "paused": false,
   "send_message_via_ui": {
     "message": "~mialem rr teraz atlans",
