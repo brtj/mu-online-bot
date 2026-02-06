@@ -1,12 +1,12 @@
 {
   "snapshot": {
-    "ts": 1770396181.2633202,
+    "ts": 1770397379.0972123,
     "state": {
-      "time": "17:43:01",
+      "time": "18:02:59",
       "player": "AleElfisko",
       "player_in_party": "to do 2",
-      "level": 355,
-      "exp_per_minute": 0,
+      "level": 361,
+      "exp_per_minute": "146456640",
       "reset": 135,
       "rect": {
         "bottom": 643,
@@ -16,18 +16,18 @@
         "top": 4,
         "width": 816
       },
-      "location_name": "Noria",
-      "location_coord_x": 171,
-      "location_coord_y": 91,
+      "location_name": "not_available",
+      "location_coord_x": 0,
+      "location_coord_y": 0,
       "mouse_position": {
         "ok": true,
-        "x": 497,
-        "y": 383
+        "x": 321,
+        "y": 126
       },
       "mouse_relative_pos": {
         "cursor": {
-          "x": 497,
-          "y": 383
+          "x": 315,
+          "y": 123
         },
         "inside": true,
         "ok": true,
@@ -37,20 +37,20 @@
           "right": 813,
           "top": 4
         },
-        "x": 500,
-        "y": 379
+        "x": 318,
+        "y": 119
       },
-      "helper_status": "Not running",
-      "health": 87975,
+      "helper_status": "Running",
+      "health": 87898,
       "connected": true
     }
   },
   "player_data": {
-    "time": "17:43:04",
+    "time": "18:03:02",
     "player": "AleElfisko",
     "player_in_party": "to do 2",
-    "level": 355,
-    "exp_per_minute": 0,
+    "level": 362,
+    "exp_per_minute": "143865690",
     "reset": 135,
     "rect": {
       "bottom": 643,
@@ -63,20 +63,20 @@
     "zen_ammount": 890350907,
     "is_it_speedrun": false,
     "run_speedrun": false,
-    "location_name": "Noria",
-    "location_coord_x": 171,
-    "location_coord_y": 91,
+    "location_name": "not_available",
+    "location_coord_x": 0,
+    "location_coord_y": 0,
     "mouse_position": {
       "ok": true,
-      "x": 497,
-      "y": 383
+      "x": 1912,
+      "y": 754
     },
     "mouse_relative_pos": {
       "cursor": {
-        "x": 497,
-        "y": 383
+        "x": 1912,
+        "y": 754
       },
-      "inside": true,
+      "inside": false,
       "ok": true,
       "window": {
         "bottom": 643,
@@ -84,10 +84,10 @@
         "right": 813,
         "top": 4
       },
-      "x": 500,
-      "y": 379
+      "x": 1915,
+      "y": 750
     },
-    "helper_status": "Not running",
+    "helper_status": "Running",
     "health": 87975,
     "connected": true,
     "map_level_limits": {
@@ -172,8 +172,8 @@
     "stats_added": true
   },
   "players": {},
-  "_ts": 1770396184.7374308,
-  "paused": false,
+  "_ts": 1770397382.5731626,
+  "paused": true,
   "send_message_via_ui": {
     "message": "~mialem rr teraz atlans",
     "new_message": false,
