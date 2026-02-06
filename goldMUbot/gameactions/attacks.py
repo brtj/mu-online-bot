@@ -37,7 +37,7 @@ LOCALAPI_ENDPOINTS = {
 
 
 # sposób na atak do czasu az bedzie mozna uzywac helper (>=80lvl)
-def round_attack(player_info, deltas, step_delay=0.005, pause_range=(0.1, 0.4), hold_time=1, level_max=100, coord_x=0, coord_y=0):
+def round_attack(player_info, deltas, step_delay=0.005, pause_range=(0.1, 0.4), hold_time=1, level_max=100, coord_x=0, coord_y=0, tol=20):
     logger.info("Attacking...")
 
     # activate_window(player_info=player_info)
@@ -52,7 +52,7 @@ def round_attack(player_info, deltas, step_delay=0.005, pause_range=(0.1, 0.4), 
     time.sleep(0.25)
     post(HIDAPI_ENDPOINTS["mouse_click"], {"button": "left", "action": "click", "hold_time": 0.5})
 
-    # send_message(f"ja tu tylko na chwilke do {level_max} lvlu", player_info=player_info)
+    send_message(f"ja tu tylko na chwilke do {level_max} lvlu", player_info=player_info)
 
     delta360 = [(400, 100), (250, 300), (580, 300), (400, 400)]
     payload_click360 = {"button": "right", "action": "click", "hold_time": 1}
@@ -98,7 +98,7 @@ def round_attack(player_info, deltas, step_delay=0.005, pause_range=(0.1, 0.4), 
             location_y,
             coord_x,
             coord_y,
-            tol=20
+            tol=tol
         ):
             logger.warning(
                 "[SAFE EXIT] Player not at expected position — aborting loop"
@@ -124,7 +124,7 @@ def round_attack(player_info, deltas, step_delay=0.005, pause_range=(0.1, 0.4), 
 
 def attack_no_helper_on_spot(player_info, location_coord_x, location_coord_y, desired_coord_x, desired_coord_y, mouse_on_map_x, mouse_on_map_y, delta, level_max=100, print_txt="no helper attack", ):
   if is_at_position(location_coord_x, location_coord_y, desired_coord_x, desired_coord_y, tol=20):
-      round_attack(player_info=player_info, hold_time=3, level_max=level_max, coord_x=desired_coord_x, coord_y=desired_coord_y, deltas=delta)
+      round_attack(player_info=player_info, hold_time=3, level_max=level_max, coord_x=desired_coord_x, coord_y=desired_coord_y, deltas=delta, tol=20)
   else:
     go_to_point_and_wait(player_info=player_info, mouse_x=mouse_on_map_x, mouse_y=mouse_on_map_y, target_loc_x=desired_coord_x, target_loc_y=desired_coord_y, print_txt=print_txt)
 
@@ -139,7 +139,7 @@ def attack_with_helper_on_spot(player_info, mouse_on_map_x, mouse_on_map_y, desi
       logger.info("I need to turn on helper...")
       go_to_point_and_wait(player_info=player_info, mouse_x=mouse_on_map_x, mouse_y=mouse_on_map_y, target_loc_x=desired_coord_x, target_loc_y=desired_coord_y, timeout=timeout, tol=tolerance, print_txt=print_txt)
       click_on_helper(player_info=player_info)
-      send_message(f"/post PT pod P (sub2) na {main_player_location_name} ({desired_coord_x},{desired_coord_y})", player_info=player_info)
+      send_message(f"/post Super party bulwo (sub2) na {main_player_location_name} ({desired_coord_x},{desired_coord_y})", player_info=player_info)
     else:
       logger.debug("Helper is running")
 
