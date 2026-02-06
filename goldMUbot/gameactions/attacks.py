@@ -4,6 +4,7 @@ from gameactions.helper_attack import click_on_helper
 from functions.host_api import activate_window
 from functions.host_api import send_message
 import logging, time
+from gameactions.random_messages import generate_mu_party_message, generate_spot_message
 from logger_config import setup_logging
 
 from functions import config_loader
@@ -52,7 +53,8 @@ def round_attack(player_info, deltas, step_delay=0.005, pause_range=(0.1, 0.4), 
     time.sleep(0.25)
     post(HIDAPI_ENDPOINTS["mouse_click"], {"button": "left", "action": "click", "hold_time": 0.5})
 
-    send_message(f"ja tu tylko na chwilke do {level_max} lvlu", player_info=player_info)
+    spot_message = generate_spot_message(level_max)
+    send_message(f"{spot_message}", player_info=player_info)
 
     delta360 = [(400, 100), (250, 300), (580, 300), (400, 400)]
     payload_click360 = {"button": "right", "action": "click", "hold_time": 1}
@@ -139,7 +141,8 @@ def attack_with_helper_on_spot(player_info, mouse_on_map_x, mouse_on_map_y, desi
       logger.info("I need to turn on helper...")
       go_to_point_and_wait(player_info=player_info, mouse_x=mouse_on_map_x, mouse_y=mouse_on_map_y, target_loc_x=desired_coord_x, target_loc_y=desired_coord_y, timeout=timeout, tol=tolerance, print_txt=print_txt)
       click_on_helper(player_info=player_info)
-      send_message(f"/post Super party bulwo (sub2) na {main_player_location_name} ({desired_coord_x},{desired_coord_y})", player_info=player_info)
+      message = generate_mu_party_message(main_player_location_name, desired_coord_x, desired_coord_y)
+      send_message(f"{message}", player_info=player_info)
     else:
       logger.debug("Helper is running")
 
