@@ -10,9 +10,9 @@ def api_state():
         snap = STATE.get("snapshot", {})
     return jsonify(snap or {})
 
-@state_bp.get("/api/player_data")
-def api_player_data():
-    return jsonify(STATE.get("player_data", {}) or {})
+@state_bp.get("/api/main_player_data")
+def api_main_player_data():
+    return jsonify(STATE.get("main_player_data", {}) or {})
 
 @state_bp.get("/api/pause")
 def api_pause_status():

@@ -52,7 +52,7 @@ def check_zen(player_info=None):
     }
     r = post(SCREEN_ZEN_URL, payload)
     STATE.update_dict(
-      "player_data", {
+      "main_player_data", {
       "zen_ammount": int(r["value"])
     })
     print(r["value"])

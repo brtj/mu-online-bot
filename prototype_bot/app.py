@@ -17,7 +17,7 @@ from locations import AIDA_LOCATIONS, KALIMA_LOCATIONS, LACLEON_LOCATIONS, ATLAN
 from hud_coords import HUD_COORDS
 from hud_coords import get_rect
 
-PLAYER = "CoZaBzdura"
+PLAYER = "AleToBot"
 #PLAYER = "AleElfisko"
 
 state_lock = threading.Lock()

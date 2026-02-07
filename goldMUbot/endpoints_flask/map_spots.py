@@ -35,8 +35,8 @@ def save_aida_spot():
     if not data or 'location' not in data:
         return jsonify({"error": "Invalid data"}), 400
     location = data['location']
-    current_map_spots = STATE.get('player_data', {}).get('map_spots', {})
-    STATE.update_dict('player_data', {'map_spots': {**current_map_spots, 'aida_map_spots': location}})
+    current_map_spots = STATE.get('main_player_data', {}).get('map_spots', {})
+    STATE.update_dict('main_player_data', {'map_spots': {**current_map_spots, 'aida_map_spots': location}})
     return jsonify({"ok": True, "saved": location})
 
 @map_spots_bp.post("/icarus2/save")
@@ -45,8 +45,8 @@ def save_icarus2_spot():
     if not data or 'location' not in data:
         return jsonify({"error": "Invalid data"}), 400
     location = data['location']
-    current_map_spots = STATE.get('player_data', {}).get('map_spots', {})
-    STATE.update_dict('player_data', {'map_spots': {**current_map_spots, 'icarus2_map_spots': location}})
+    current_map_spots = STATE.get('main_player_data', {}).get('map_spots', {})
+    STATE.update_dict('main_player_data', {'map_spots': {**current_map_spots, 'icarus2_map_spots': location}})
     return jsonify({"ok": True, "saved": location})
 
 @map_spots_bp.post("/atlans/save")
@@ -55,8 +55,8 @@ def save_atlans_spot():
     if not data or 'location' not in data:
         return jsonify({"error": "Invalid data"}), 400
     location = data['location']
-    current_map_spots = STATE.get('player_data', {}).get('map_spots', {})
-    STATE.update_dict('player_data', {'map_spots': {**current_map_spots, 'atlans_map_spots': location}})
+    current_map_spots = STATE.get('main_player_data', {}).get('map_spots', {})
+    STATE.update_dict('main_player_data', {'map_spots': {**current_map_spots, 'atlans_map_spots': location}})
     return jsonify({"ok": True, "saved": location})
 
 @map_spots_bp.post("/lacleon/save")
@@ -65,6 +65,6 @@ def save_lacleon_spot():
     if not data or 'location' not in data:
         return jsonify({"error": "Invalid data"}), 400
     location = data['location']
-    current_map_spots = STATE.get('player_data', {}).get('map_spots', {})
-    STATE.update_dict('player_data', {'map_spots': {**current_map_spots, 'lacleon_map_spots': location}})
+    current_map_spots = STATE.get('main_player_data', {}).get('map_spots', {})
+    STATE.update_dict('main_player_data', {'map_spots': {**current_map_spots, 'lacleon_map_spots': location}})
     return jsonify({"ok": True, "saved": location})

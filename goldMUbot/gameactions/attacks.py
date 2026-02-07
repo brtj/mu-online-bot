@@ -71,8 +71,8 @@ def round_attack(player_info, deltas, step_delay=0.005, pause_range=(0.1, 0.4), 
     TIMEOUT_SEC = 7 * 60  # 7 minut
     start_ts = time.monotonic()
     state = STATE.get_all()
-    player_data = state.get("player_data") or {}
-    current_level = player_data["level"]
+    main_player_data = state.get("main_player_data") or {}
+    current_level = main_player_data["level"]
     while current_level <= level_max:
         if time.monotonic() - start_ts > TIMEOUT_SEC:
             logger.warning(
@@ -82,15 +82,15 @@ def round_attack(player_info, deltas, step_delay=0.005, pause_range=(0.1, 0.4), 
             break
 
         state = STATE.get_all()
-        player_data = state.get("player_data") or {}
+        main_player_data = state.get("main_player_data") or {}
 
         try:
-            location_name = player_data["location_name"]
-            location_x = player_data["location_coord_x"]
-            location_y = player_data["location_coord_y"]
+            location_name = main_player_data["location_name"]
+            location_x = main_player_data["location_coord_x"]
+            location_y = main_player_data["location_coord_y"]
             logger.debug("Location debug: %s, %s, %s", location_name, location_x, location_y)
         except (TypeError, KeyError):
-            logger.debug("Location raw ERROR: %s", player_data)
+            logger.debug("Location raw ERROR: %s", main_player_data)
             location_name = "not_available"
             location_x = 0
             location_y = 0
@@ -105,6 +105,7 @@ def round_attack(player_info, deltas, step_delay=0.005, pause_range=(0.1, 0.4), 
             logger.warning(
                 "[SAFE EXIT] Player not at expected position — aborting loop"
             )
+            logger.info(f"SAFE EXIT details: location_x={location_x}, location_y={location_y}, expected_x={coord_x}, expected_y={coord_y}, tol={tol}")
             break
 
         payload_click = {"button": "right", "action": "click", "hold_time": hold_time}
@@ -119,8 +120,8 @@ def round_attack(player_info, deltas, step_delay=0.005, pause_range=(0.1, 0.4), 
 
             post(LOCALAPI_ENDPOINTS["run_scraper_on_demand"], {})
             state = STATE.get_all()
-            player_data = state.get("player_data") or {}
-            current_level = player_data["level"]
+            main_player_data = state.get("main_player_data") or {}
+            current_level = main_player_data["level"]
         logger.info(f"Round attack, current level: {current_level}")
 
 
@@ -134,10 +135,10 @@ def attack_no_helper_on_spot(player_info, location_coord_x, location_coord_y, de
 def attack_with_helper_on_spot(player_info, mouse_on_map_x, mouse_on_map_y, desired_coord_x, desired_coord_y, main_player_location_name,tolerance=8, timeout=80, print_txt="helper attack"):
 
   state = STATE.get_all()
-  player_data = state.get("player_data") or {}
+  main_player_data = state.get("main_player_data") or {}
 
-  if is_at_position(player_data["location_coord_x"], player_data["location_coord_y"], desired_coord_x, desired_coord_y):
-    if player_data["helper_status"] != "Running":
+  if is_at_position(main_player_data["location_coord_x"], main_player_data["location_coord_y"], desired_coord_x, desired_coord_y):
+    if main_player_data["helper_status"] != "Running":
       logger.info("I need to turn on helper...")
       go_to_point_and_wait(player_info=player_info, mouse_x=mouse_on_map_x, mouse_y=mouse_on_map_y, target_loc_x=desired_coord_x, target_loc_y=desired_coord_y, timeout=timeout, tol=tolerance, print_txt=print_txt)
       click_on_helper(player_info=player_info)

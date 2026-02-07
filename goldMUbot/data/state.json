@@ -1,57 +1,20 @@
 {
-  "snapshot": {
-    "ts": 1770412532.3275945,
-    "state": {
-      "time": "22:15:32",
-      "player": "AleElfisko",
-      "player_in_party": "to do 2",
-      "level": 324,
-      "exp_per_minute": "29790400",
-      "reset": 137,
-      "rect": {
-        "bottom": 643,
-        "height": 639,
-        "left": -3,
-        "right": 813,
-        "top": 4,
-        "width": 816
-      },
-      "location_name": "Aida",
-      "location_coord_x": 23,
-      "location_coord_y": 146,
-      "mouse_position": {
-        "ok": true,
-        "x": 646,
-        "y": 606
-      },
-      "mouse_relative_pos": {
-        "cursor": {
-          "x": 646,
-          "y": 606
-        },
-        "inside": true,
-        "ok": true,
-        "window": {
-          "bottom": 643,
-          "left": -3,
-          "right": 813,
-          "top": 4
-        },
-        "x": 649,
-        "y": 602
-      },
-      "helper_status": "Running",
-      "health": 87934,
-      "connected": true
-    }
+  "players": {},
+  "_ts": 1770471238.2546387,
+  "paused": false,
+  "send_message_via_ui": {
+    "message": "~mialem rr teraz atlans",
+    "new_message": false,
+    "player": "AleElfisko"
   },
-  "player_data": {
-    "time": "22:15:32",
+  "inventory_interval": 10,
+  "main_player_data": {
+    "time": "14:33:58",
     "player": "AleElfisko",
     "player_in_party": "to do 2",
-    "level": 324,
-    "exp_per_minute": "29790400",
-    "reset": 137,
+    "level": 336,
+    "exp_per_minute": "43327680",
+    "reset": 144,
     "rect": {
       "bottom": 643,
       "height": 639,
@@ -60,23 +23,20 @@
       "top": 4,
       "width": 816
     },
-    "zen_ammount": 890350907,
-    "is_it_speedrun": false,
-    "run_speedrun": false,
-    "location_name": "Aida",
-    "location_coord_x": 23,
-    "location_coord_y": 146,
+    "location_name": "LaCleon",
+    "location_coord_x": 39,
+    "location_coord_y": 107,
     "mouse_position": {
       "ok": true,
-      "x": 646,
-      "y": 606
+      "x": 1129,
+      "y": 283
     },
     "mouse_relative_pos": {
       "cursor": {
-        "x": 646,
-        "y": 606
+        "x": 1129,
+        "y": 283
       },
-      "inside": true,
+      "inside": false,
       "ok": true,
       "window": {
         "bottom": 643,
@@ -84,12 +44,13 @@
         "right": 813,
         "top": 4
       },
-      "x": 649,
-      "y": 602
+      "x": 1132,
+      "y": 279
     },
     "helper_status": "Running",
-    "health": 87934,
+    "health": 94442,
     "connected": true,
+    "zen_ammount": 853158507,
     "map_level_limits": {
       "Lorencia": {
         "min": 1,
@@ -170,20 +131,53 @@
       }
     },
     "stats_added": true,
-    "reset_history": [
-      {
-        "date": "2026-02-06",
-        "reset": 135
-      }
-    ]
+    "is_it_speedrun": false,
+    "run_speedrun": false
   },
-  "players": {},
-  "_ts": 1770412532.3276496,
-  "paused": true,
-  "send_message_via_ui": {
-    "message": "~mialem rr teraz atlans",
-    "new_message": false,
-    "player": "AleElfisko"
-  },
-  "inventory_interval": 10
+  "snapshot": {
+    "ts": 1770471228.4022288,
+    "state": {
+      "time": "14:33:48",
+      "player": "AleElfisko",
+      "player_in_party": "to do 2",
+      "level": 336,
+      "exp_per_minute": "41803740",
+      "reset": 144,
+      "rect": {
+        "bottom": 643,
+        "height": 639,
+        "left": -3,
+        "right": 813,
+        "top": 4,
+        "width": 816
+      },
+      "location_name": "LaCleon",
+      "location_coord_x": 39,
+      "location_coord_y": 107,
+      "mouse_position": {
+        "ok": true,
+        "x": 1519,
+        "y": 271
+      },
+      "mouse_relative_pos": {
+        "cursor": {
+          "x": 1519,
+          "y": 271
+        },
+        "inside": false,
+        "ok": true,
+        "window": {
+          "bottom": 643,
+          "left": -3,
+          "right": 813,
+          "top": 4
+        },
+        "x": 1522,
+        "y": 267
+      },
+      "helper_status": "Running",
+      "health": 94451,
+      "connected": true
+    }
+  }
 }

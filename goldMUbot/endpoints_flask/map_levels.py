@@ -6,7 +6,7 @@ map_levels_bp = Blueprint("map_levels", __name__)
 
 @map_levels_bp.get("/api/map-level-limits")
 def api_get_map_level_limits():
-    pd = STATE.get("player_data", {}) or {}
+    pd = STATE.get("main_player_data", {}) or {}
     return jsonify(pd.get("map_level_limits", {}) or {})
 
 
@@ -40,7 +40,7 @@ def api_set_map_level_limits():
         if "enabled" in cfg and cfg["enabled"] is not None and not isinstance(cfg["enabled"], bool):
             return jsonify({"error": f"'{map_name}.enabled' must be true/false"}), 400
 
-    STATE.update_dict("player_data", {
+    STATE.update_dict("main_player_data", {
         "map_level_limits": limits
     })
 

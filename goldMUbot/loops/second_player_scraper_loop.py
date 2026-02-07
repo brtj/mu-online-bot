@@ -1,14 +1,14 @@
 import time
 import logging
-from functions.state_singleton import STATE
+from functions.state_singleton import STATE_SECOND_PLAYER
 from functions import check_player_data
 
 logger = logging.getLogger(__name__)
 
-def scraper_loop(
+def second_player_scraper_loop(
     stop_event,
     force_event,
-    main_player: str,
+    second_player: str,
     scraper_interval: float,
     persist_interval: float,
 ):
@@ -16,14 +16,18 @@ def scraper_loop(
 
     while not stop_event.is_set():
         try:
-            s = check_player_data.player_data(player_info=main_player)
+            s = check_player_data.player_data(
+                player_info=second_player,
+                state_store=STATE_SECOND_PLAYER,
+                state_key="second_player_data",
+            )
             ts = time.time()
             snap = {"ts": ts, "state": s}
 
-            STATE.set_snapshot(snap)
+            STATE_SECOND_PLAYER.set_snapshot(snap)
 
             if ts - last_flush >= persist_interval:
-                STATE.flush_snapshot()
+                STATE_SECOND_PLAYER.flush_snapshot()
                 last_flush = ts
 
         except Exception:

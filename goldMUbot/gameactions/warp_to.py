@@ -25,10 +25,10 @@ def wait_for_location_name_change(before_location, before_location_coord_x, time
 
     while True:
         state = STATE.get_all()
-        player_data = state.get("player_data") or {}
+        main_player_data = state.get("main_player_data") or {}
 
-        after_name = player_data["location_name"]
-        after_loc_x = player_data["location_coord_x"]
+        after_name = main_player_data["location_name"]
+        after_loc_x = main_player_data["location_coord_x"]
 
         if after_name != before_name and after_loc_x != before_loc_x:
             logger.info(f"Warped from {before_name} to {after_name}")

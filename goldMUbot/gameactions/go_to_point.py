@@ -42,9 +42,9 @@ def go_to_point_and_wait(mouse_x, mouse_y, target_loc_x, target_loc_y, print_txt
     press_key(payload=press_key_payload)
 
     state = STATE.get_all()
-    player_data = state.get("player_data") or {}
+    main_player_data = state.get("main_player_data") or {}
 
-    if player_data["helper_status"] == "Running":
+    if main_player_data["helper_status"] == "Running":
         logger.info("Helper is Running, need to turn it off")
         click_on_helper_to_turn_off(player_info=player_info)
 

@@ -3,8 +3,9 @@ from functions import config_loader
 import logging
 from logger_config import setup_logging
 from datetime import datetime
+import time
 
-from functions.state_singleton import STATE
+from functions.state_singleton import STATE, STATE_SECOND_PLAYER
 
 setup_logging()
 logger = logging.getLogger(__name__)
@@ -18,7 +19,12 @@ ENDPOINTS = {
     for name, path in HOSTAPI["endpoints"].items()
 }
 
-def player_data(player_info=""):
+MAX_LOCATION_RETRIES = 4
+LOCATION_RETRY_DELAY = 0.2
+
+def player_data(player_info="", state_store=None, state_key="main_player_data"):
+    if state_store is None:
+        state_store = STATE
     title_request = requests_functions.post(ENDPOINTS["parse_title"], {
         "title": f"{player_info}",
         "topmost": False
@@ -52,24 +58,33 @@ def player_data(player_info=""):
 
     conn_status = True if "Connected" in (title_request.get("raw", "") or "") else False
 
-    location_request = requests_functions.post(ENDPOINTS["screen_ocr"], {
-        "title": f"{player_info}",
-        "rect": hud_coords.get_rect("location_box"),
-        "psm": 7,
-        "whitelist": "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789(),"
-    })
+    location_name = "not_available"
+    location_x = 0
+    location_y = 0
+    for attempt in range(MAX_LOCATION_RETRIES):
+        location_request = requests_functions.post(ENDPOINTS["screen_ocr"], {
+            "title": f"{player_info}",
+            "rect": hud_coords.get_rect("location_box"),
+            "psm": 7,
+            "whitelist": "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789(),"
+        })
 
-    try:
-        parsed = location_request["parsed"]
-        location_name = parsed["name"]
-        location_x = parsed["x"]
-        location_y = parsed["y"]
-        logger.debug("Location debug: %s, %s, %s", location_name, location_x, location_y)
-    except (TypeError, KeyError):
-        logger.debug("Location raw ERROR: %s", location_request)
-        location_name = "not_available"
-        location_x = 0
-        location_y = 0
+        logger.debug("Location OCR attempt %s/%s: %s", attempt + 1, MAX_LOCATION_RETRIES, location_request)
+
+        try:
+            parsed = location_request["parsed"]
+            location_name = parsed["name"]
+            location_x = parsed["x"]
+            location_y = parsed["y"]
+            logger.debug("Location debug: %s, %s, %s", location_name, location_x, location_y)
+            break
+        except (TypeError, KeyError):
+            logger.debug("Location raw ERROR (attempt %s/%s): %s", attempt + 1, MAX_LOCATION_RETRIES, location_request)
+            location_name = "not_available"
+            location_x = 0
+            location_y = 0
+            if attempt < MAX_LOCATION_RETRIES - 1:
+                time.sleep(LOCATION_RETRY_DELAY)
 
     check_party_state = "to do 2"
     now = datetime.now().strftime("%H:%M:%S")
@@ -92,8 +107,8 @@ def player_data(player_info=""):
         "connected": conn_status
     }
 
-    # ✅ zapis do stanu (1) jako ostatni snapshot
-    STATE.update_dict("player_data", result)
+    # ✅ zapis do wskazanego stanu jako ostatni snapshot
+    state_store.update_dict(state_key, result)
 
     # ✅ zapis do stanu (2) per player (jeśli chcesz historię per gracz)
     # key = result.get("player") or player_info or "unknown"

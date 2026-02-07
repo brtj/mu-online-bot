@@ -40,8 +40,8 @@ def click_on_helper(player_info):
 
     post(LOCALAPI_ENDPOINTS["run_scraper_on_demand"], {})
     state = STATE.get_all()
-    player_data = state.get("player_data") or {}
-    helper_status = player_data["helper_status"]
+    main_player_data = state.get("main_player_data") or {}
+    helper_status = main_player_data["helper_status"]
 
     if helper_status != "Running":
         logger.info("Helper is not Running, need to turn it on")

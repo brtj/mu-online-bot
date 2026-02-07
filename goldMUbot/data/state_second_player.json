@@ -1,0 +1,137 @@
+{
+  "players": {},
+  "_ts": 1770471048.7463367,
+  "paused": false,
+  "send_message_via_ui": {
+    "message": "~mialem rr teraz atlans",
+    "new_message": false,
+    "player": "AleElfisko"
+  },
+  "inventory_interval": 10,
+  "snapshot": {
+    "ts": 1770471038.7662508,
+    "state": {
+      "time": "14:30:38",
+      "player": "AleToBot",
+      "player_in_party": "to do 2",
+      "level": 373,
+      "exp_per_minute": 0,
+      "reset": 0,
+      "rect": {
+        "bottom": 643,
+        "height": 639,
+        "left": 802,
+        "right": 1618,
+        "top": 4,
+        "width": 816
+      },
+      "location_name": "Lorencia",
+      "location_coord_x": 152,
+      "location_coord_y": 237,
+      "mouse_position": {
+        "ok": true,
+        "x": 812,
+        "y": 44
+      },
+      "mouse_relative_pos": {
+        "cursor": {
+          "x": 812,
+          "y": 44
+        },
+        "inside": true,
+        "ok": true,
+        "window": {
+          "bottom": 643,
+          "left": 802,
+          "right": 1618,
+          "top": 4
+        },
+        "x": 10,
+        "y": 40
+      },
+      "helper_status": "Not running",
+      "health": 2301,
+      "connected": true
+    }
+  },
+  "second_player_data": {
+    "time": "14:30:48",
+    "player": "AleToBot",
+    "player_in_party": "to do 2",
+    "level": 373,
+    "exp_per_minute": 0,
+    "reset": 0,
+    "rect": {
+      "bottom": 643,
+      "height": 639,
+      "left": 802,
+      "right": 1618,
+      "top": 4,
+      "width": 816
+    },
+    "location_name": "Lorencia",
+    "location_coord_x": 152,
+    "location_coord_y": 237,
+    "mouse_position": {
+      "ok": true,
+      "x": 1202,
+      "y": 403
+    },
+    "mouse_relative_pos": {
+      "cursor": {
+        "x": 1202,
+        "y": 403
+      },
+      "inside": true,
+      "ok": true,
+      "window": {
+        "bottom": 643,
+        "left": 802,
+        "right": 1618,
+        "top": 4
+      },
+      "x": 400,
+      "y": 399
+    },
+    "map_level_limits": {
+      "Lorencia": {
+        "min": 1,
+        "max": 50,
+        "enabled": true
+      },
+      "Noria": {
+        "min": 1,
+        "max": 50,
+        "enabled": true
+      },
+      "Devias": {
+        "min": 50,
+        "max": 80,
+        "enabled": true
+      },
+      "Atlans": {
+        "min": 80,
+        "max": 210,
+        "enabled": true
+      },
+      "Aida": {
+        "min": 210,
+        "max": 325,
+        "enabled": true
+      },
+      "LaCleon": {
+        "min": 325,
+        "max": 400,
+        "enabled": true
+      },
+      "Icarus2": {
+        "min": 0,
+        "max": 0,
+        "enabled": false
+      }
+    },
+    "helper_status": "Not running",
+    "health": 2322,
+    "connected": true
+  }
+}

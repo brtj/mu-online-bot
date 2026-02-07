@@ -30,10 +30,10 @@ HIDAPI_ENDPOINTS = {
 
 def chaos_machine_bc_invite(player_info):
   state = STATE.get_all()
-  player_data = state.get("player_data") or {}
+  main_player_data = state.get("main_player_data") or {}
 
-  actual_location = player_data["location_name"]
-  actual_location_coord_x = player_data["location_coord_x"]
+  actual_location = main_player_data["location_name"]
+  actual_location_coord_x = main_player_data["location_coord_x"]
   warp_to(player_info, "noria", actual_location, actual_location_coord_x, sleept=1, timeout=2)
 
   go_to_point_and_wait(

@@ -25,7 +25,7 @@ def api_send_message_ui():
 	text = data.get('text', '').strip()
 	player_info = data.get('player_info')
 	if not player_info:
-		player_info = STATE.get('player_data', {}).get('player') or ''
+		player_info = STATE.get('main_player_data', {}).get('player') or ''
 	result = None
 
 	STATE.update_dict('send_message_via_ui', {
@@ -41,7 +41,7 @@ def api_screen_preview():
 	data = request.get_json() or {}
 	title = data.get('title')
 	if not title:
-		player = STATE.get('player_data', {}).get('player') or ''
+		player = STATE.get('main_player_data', {}).get('player') or ''
 		title = f"GoldMU || Player: {player}".strip()
 	rect = data.get('rect') or {"x": 29, "y": 35, "w": 110, "h": 12}
 	if not isinstance(rect, dict):

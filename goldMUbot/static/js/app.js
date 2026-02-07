@@ -57,10 +57,10 @@ async function saveMapSpots(map) {
 async function refreshMapSpotsTable() {
   const spotsTbody = document.getElementById('map-spots-table');
   if (!spotsTbody) return;
-  const res = await fetch('/api/player_data', { cache: 'no-store' });
+  const res = await fetch('/api/main_player_data', { cache: 'no-store' });
   if (!res.ok) return;
   const d = await res.json();
-  const spots = d.player_data?.map_spots || {};
+  const spots = d.main_player_data?.map_spots || {};
   spotsTbody.innerHTML = '';
   for (const [key, spot] of Object.entries(spots)) {
     spotsTbody.innerHTML += `<tr>
@@ -153,11 +153,11 @@ async function refreshPlayer() {
   const pre = $('rawJson');
   if (!pre) return;
   try {
-    const res = await fetch('/api/player_data', { cache: 'no-store' });
+    const res = await fetch('/api/main_player_data', { cache: 'no-store' });
     if (!res.ok) throw new Error(res.statusText || res.status);
     const d = await res.json();
-    // response may contain nested `player_data` or snapshot/state
-    const src = d.player_data || d.snapshot?.state || d;
+    // response may contain nested `main_player_data` or snapshot/state
+    const src = d.main_player_data || d.snapshot?.state || d;
     setText('lastRefresh', new Date().toLocaleTimeString());
     setText('player', src.player ?? '-');
     setText('level', src.level ?? '-');
@@ -168,7 +168,7 @@ async function refreshPlayer() {
     setText('pauseState', d.paused === true ? 'Paused' : (d.paused === false ? 'Running' : (src.pause_state ?? '-')));
     const zenValue = (src.zen_ammount ?? src.zen);
     setText('zen', formatNumber(zenValue));
-    renderResetHistory(src.reset_history ?? d.player_data?.reset_history ?? d.reset_history ?? []);
+    renderResetHistory(src.reset_history ?? d.main_player_data?.reset_history ?? d.reset_history ?? []);
     // Speedrun info
     const speedrunDiv = document.getElementById('speedrun');
     if (speedrunDiv) {
@@ -421,7 +421,7 @@ async function wireMapLevels() {
   if (spotsTbody) {
     spotsTbody.innerHTML = '';
     try {
-      const res = await fetch('/api/player_data', { cache: 'no-store' });
+      const res = await fetch('/api/main_player_data', { cache: 'no-store' });
       if (res.ok) {
         const data = await res.json();
         const mapSpots = data.map_spots || {};

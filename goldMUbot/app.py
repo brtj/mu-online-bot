@@ -10,8 +10,9 @@ from flask_cors import CORS
 
 from functions import config_loader
 from logger_config import setup_logging
-from functions.state_singleton import STATE
+from functions.state_singleton import STATE, STATE_SECOND_PLAYER
 from loops.scraper_loop import scraper_loop
+from loops.second_player_scraper_loop import second_player_scraper_loop
 from loops.action_loop import action_loop
 
 from endpoints_flask.state import state_bp
@@ -29,6 +30,8 @@ logger.info(config)
 SCRAPER_INTERVAL = config["scraper"]["interval"]
 SCRAPER_PERSIST_INTERVAL = config["scraper"]["persist_interval"]
 MAIN_PLAYER = config["mainplayer"]["nickname"]
+SECOND_PLAYER = config["secondaccount"]["nickname"]
+TYPE_GAME = config.get("type_game", "single")
 
 app = Flask(__name__)
 
@@ -75,7 +78,22 @@ def start_threads():
         name="scraper-loop",
     )
     t.start()
-    logger.info("Scraper thread started")
+    logger.info("Scraper for main player thread started")
+    if TYPE_GAME == "two_players":
+        t2 = threading.Thread(
+            target=second_player_scraper_loop,
+            kwargs={
+                "stop_event": stop_event,
+                "force_event": force_event,
+                "second_player": SECOND_PLAYER,
+                "scraper_interval": SCRAPER_INTERVAL,
+                "persist_interval": SCRAPER_PERSIST_INTERVAL,
+            },
+            daemon=True,
+            name="second-player-scraper-loop",
+        )
+        t2.start()
+        logger.info("Second player scraper thread started")
     # --- ACTION THREAD ---
     t_action = threading.Thread(
         target=action_loop,
@@ -96,9 +114,6 @@ def api_state():
         snap = STATE.get("snapshot", {})
     return jsonify(snap or {})
     
-
-
-
 if __name__ == "__main__":
     start_threads()
     start_scheduler()

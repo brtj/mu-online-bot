@@ -4,17 +4,17 @@ from functions.state_singleton import STATE
 
 def set_run_speedrun_true():
 	print(f"[SPEEDRUN] Ustawiam run_speedrun=True o {datetime.datetime.now()}")
-	STATE.update_dict('player_data', {'run_speedrun': True})
+	STATE.update_dict('main_player_data', {'run_speedrun': True})
 
 def log_daily_reset_value():
 	today = datetime.date.today().isoformat()
-	player_data = STATE.get('player_data', {}) or {}
-	reset_value = player_data.get('reset')
+	main_player_data = STATE.get('main_player_data', {}) or {}
+	reset_value = main_player_data.get('reset')
 	if reset_value is None:
-		print(f"[RESET-LOG] Brak wartości reset w player_data ({today})")
+		print(f"[RESET-LOG] Brak wartości reset w main_player_data ({today})")
 		return
 
-	reset_history = player_data.get('reset_history', [])
+	reset_history = main_player_data.get('reset_history', [])
 	if not isinstance(reset_history, list):
 		reset_history = []
 
@@ -24,7 +24,7 @@ def log_daily_reset_value():
 	else:
 		reset_history.append(entry)
 
-	STATE.update_dict('player_data', {'reset_history': reset_history})
+	STATE.update_dict('main_player_data', {'reset_history': reset_history})
 	print(f"[RESET-LOG] Zapisano reset={reset_value} dla {today}")
 
 def start_scheduler():

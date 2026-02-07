@@ -12,3 +12,15 @@ def main_player_add_stats(player_info="", main_player_reset=0):
         send_message("/addagi 29975", player_info=player_info); time.sleep(sleept)
         send_message("/addvit 29980", player_info=player_info); time.sleep(sleept)
     send_message("/re auto", player_info=player_info)
+
+
+def second_player_add_stats(player_info="", second_player_reset=0):
+    activate_window(player_info=player_info)
+
+    sleept = 0.2
+    if second_player_reset <= 161:
+        send_message("/addene 100", player_info=player_info); time.sleep(sleept)
+        send_message("/addstr 100", player_info=player_info); time.sleep(sleept)
+        send_message("/addagi 100", player_info=player_info); time.sleep(sleept)
+        send_message("/addvit 100", player_info=player_info); time.sleep(sleept)
+    send_message("/re auto", player_info=player_info)
