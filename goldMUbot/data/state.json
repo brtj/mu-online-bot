@@ -1,6 +1,6 @@
 {
   "players": {},
-  "_ts": 1770471238.2546387,
+  "_ts": 1770494308.210957,
   "paused": false,
   "send_message_via_ui": {
     "message": "~mialem rr teraz atlans",
@@ -9,12 +9,12 @@
   },
   "inventory_interval": 10,
   "main_player_data": {
-    "time": "14:33:58",
+    "time": "20:58:28",
     "player": "AleElfisko",
     "player_in_party": "to do 2",
-    "level": 336,
-    "exp_per_minute": "43327680",
-    "reset": 144,
+    "level": 210,
+    "exp_per_minute": 0,
+    "reset": 147,
     "rect": {
       "bottom": 643,
       "height": 639,
@@ -23,20 +23,20 @@
       "top": 4,
       "width": 816
     },
-    "location_name": "LaCleon",
-    "location_coord_x": 39,
-    "location_coord_y": 107,
+    "location_name": "Atlans",
+    "location_coord_x": 182,
+    "location_coord_y": 91,
     "mouse_position": {
       "ok": true,
-      "x": 1129,
-      "y": 283
+      "x": 138,
+      "y": 604
     },
     "mouse_relative_pos": {
       "cursor": {
-        "x": 1129,
-        "y": 283
+        "x": 138,
+        "y": 604
       },
-      "inside": false,
+      "inside": true,
       "ok": true,
       "window": {
         "bottom": 643,
@@ -44,13 +44,13 @@
         "right": 813,
         "top": 4
       },
-      "x": 1132,
-      "y": 279
+      "x": 141,
+      "y": 600
     },
     "helper_status": "Running",
-    "health": 94442,
+    "health": 94347,
     "connected": true,
-    "zen_ammount": 853158507,
+    "zen_ammount": 103632964,
     "map_level_limits": {
       "Lorencia": {
         "min": 1,
@@ -135,14 +135,14 @@
     "run_speedrun": false
   },
   "snapshot": {
-    "ts": 1770471228.4022288,
+    "ts": 1770494308.210896,
     "state": {
-      "time": "14:33:48",
+      "time": "20:58:28",
       "player": "AleElfisko",
       "player_in_party": "to do 2",
-      "level": 336,
-      "exp_per_minute": "41803740",
-      "reset": 144,
+      "level": 210,
+      "exp_per_minute": 0,
+      "reset": 147,
       "rect": {
         "bottom": 643,
         "height": 639,
@@ -151,20 +151,20 @@
         "top": 4,
         "width": 816
       },
-      "location_name": "LaCleon",
-      "location_coord_x": 39,
-      "location_coord_y": 107,
+      "location_name": "Atlans",
+      "location_coord_x": 182,
+      "location_coord_y": 91,
       "mouse_position": {
         "ok": true,
-        "x": 1519,
-        "y": 271
+        "x": 138,
+        "y": 604
       },
       "mouse_relative_pos": {
         "cursor": {
-          "x": 1519,
-          "y": 271
+          "x": 138,
+          "y": 604
         },
-        "inside": false,
+        "inside": true,
         "ok": true,
         "window": {
           "bottom": 643,
@@ -172,11 +172,11 @@
           "right": 813,
           "top": 4
         },
-        "x": 1522,
-        "y": 267
+        "x": 141,
+        "y": 600
       },
       "helper_status": "Running",
-      "health": 94451,
+      "health": 94347,
       "connected": true
     }
   }

@@ -5,14 +5,15 @@ from functions.generic_attack_loop import generic_attack_on_spot
 
 from gameactions.resets import elf_reset
 from gameactions.addstats import main_player_add_stats
-from gameactions.attacks import attack_no_helper_on_spot, attack_with_helper_on_spot
+from gameactions.attacks import attack_no_helper_on_spot
 from gameactions.warp_to import warp_to
 from gameactions.pop_ups import popups_closer
 from gameactions.send_message_ui import send_message_via_ui
 from gameactions.check_zen import check_inventory_zen
 from gameactions.inventory_actions import jewels_to_bank
 from gameactions.chaos_machine_bc_invite import chaos_machine_bc_invite
-
+from functions.host_api import switch_window
+from functions.location_checks import is_at_position
 
 logger = logging.getLogger(__name__)
 
@@ -148,18 +149,8 @@ def main_player_loop(state):
             # time.sleep(1000)
 
             # --- Errory z helperami/okienkami ---
+            switch_window(player_info=main_player_name)
             popups_closer(player_info=main_player_name)
-
-            # --- akcje wymagające izolacji od innych uruchamiane z UI ---
-            send_message_via_ui(player_info=main_player_name)
-
-            # --- akcje wymagające izolacji od innych cykliczne ---
-            inv_interval_state = STATE.get("inventory_interval", 60 * 5)  # default 5 minut, można nadpisać z state.json
-            INVENTORY_INTERVAL = 60 * inv_interval_state
-            now = time.time()
-            if now - LAST_CHECK_INVENTORY >= INVENTORY_INTERVAL:
-                check_inventory_zen(player_info=main_player_name)
-                LAST_CHECK_INVENTORY = now
 
             # --- Twoja logika akcji ---
 
@@ -184,7 +175,7 @@ def main_player_loop(state):
 
             if primary_enabled and primary_max >= main_player_level >= primary_min:
                 logger.info("Exping on %s (min=%s max=%s)...", primary_map_name, primary_min, primary_max)
-                delta = [(620, 290), (620, 365)]
+                delta = [(620, 270), (620, 365)]
                 attack_no_helper_on_spot(
                     player_info=main_player_name,
                     level_max=primary_max,
@@ -220,18 +211,50 @@ def main_player_loop(state):
                     delta=delta,
                 )
 
-            atlans_spot = (main_player_data.get("map_spots") or {}).get("atlans_map_spots")
+            #atlans1 manual
+            atlans_spot_manual = {'id': 'test', 'loc_x': 23, 'loc_y': 123, 'map': 'Atlans2', 'moobs': 'Vepar 45 lvl', 'tolerance': 9, 'x': 199, 'y': 315}
             generic_attack_on_spot(
                 atlans_enabled, 
                 "Atlans", # map_name
-                atlans_max, # lvl_max
-                atlans_min, # lvl_min
+                120, # lvl_max
+                80, # lvl_min
                 main_player_name,
                 main_player_level,
                 main_player_location_name,
                 main_player_location_x,
                 "atlans", #warp string (ex atlans2, aida2 etc)
-                atlans_spot # map_spot data
+                atlans_spot_manual, # map_spot data
+                send_message=False
+            )
+
+            #atlans2
+            atlans_spot = (main_player_data.get("map_spots") or {}).get("atlans_map_spots")
+            logger.info(atlans_spot)
+            if atlans_enabled and atlans_max >= main_player_level >= 120 and (main_player_location_name == "Atlans" or main_player_location_name == "not_available"):
+                desired_coord_x=atlans_spot.get("loc_x", 0)
+                desired_coord_y=atlans_spot.get("loc_y", 0)
+                logger.info(desired_coord_x)
+                logger.info(desired_coord_y)
+                if not is_at_position(main_player_location_x, main_player_location_y, desired_coord_x, desired_coord_y, tol=20):
+                    warp_to(
+                        player_info=main_player_name,
+                        desired_location="Atlans2",
+                        actual_location=main_player_location_name,
+                        actual_location_coord_x=main_player_location_x,
+                    )
+
+            generic_attack_on_spot(
+                atlans_enabled, 
+                "Atlans", # map_name
+                atlans_max, # lvl_max
+                120, # lvl_min
+                main_player_name,
+                main_player_level,
+                main_player_location_name,
+                main_player_location_x,
+                "atlans2", #warp string (ex atlans2, aida2 etc)
+                atlans_spot,
+                send_message=False
             )
 
             icarus2_spot = (main_player_data.get("map_spots") or {}).get("icarus2_map_spots")
@@ -275,3 +298,14 @@ def main_player_loop(state):
                 "raklion", #warp string (ex atlans2, aida2 etc)
                 lacleon_spot # map_spot data
             )
+
+            # --- akcje wymagające izolacji od innych uruchamiane z UI ---
+            send_message_via_ui(player_info=main_player_name)
+
+            # --- akcje wymagające izolacji od innych cykliczne ---
+            inv_interval_state = STATE.get("inventory_interval", 60 * 5)  # default 5 minut, można nadpisać z state.json
+            INVENTORY_INTERVAL = 60 * inv_interval_state
+            now = time.time()
+            if now - LAST_CHECK_INVENTORY >= INVENTORY_INTERVAL:
+                check_inventory_zen(player_info=main_player_name)
+                LAST_CHECK_INVENTORY = now

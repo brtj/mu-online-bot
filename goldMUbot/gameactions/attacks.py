@@ -63,6 +63,7 @@ def round_attack(player_info, deltas, step_delay=0.005, pause_range=(0.1, 0.4), 
             "title": f"{player_info}",
             "target_x": dx,
             "target_y": dy,
+            "sleep_s": 0.005,
             "require_inside": False
         })
         post(HIDAPI_ENDPOINTS["mouse_click"], payload_click360)
@@ -132,7 +133,7 @@ def attack_no_helper_on_spot(player_info, location_coord_x, location_coord_y, de
     go_to_point_and_wait(player_info=player_info, mouse_x=mouse_on_map_x, mouse_y=mouse_on_map_y, target_loc_x=desired_coord_x, target_loc_y=desired_coord_y, print_txt=print_txt)
 
 
-def attack_with_helper_on_spot(player_info, mouse_on_map_x, mouse_on_map_y, desired_coord_x, desired_coord_y, main_player_location_name,tolerance=8, timeout=80, print_txt="helper attack"):
+def attack_with_helper_on_spot(player_info, mouse_on_map_x, mouse_on_map_y, desired_coord_x, desired_coord_y, main_player_location_name,tolerance=8, timeout=80, print_txt="helper attack", send_message=False):
 
   state = STATE.get_all()
   main_player_data = state.get("main_player_data") or {}
@@ -142,8 +143,9 @@ def attack_with_helper_on_spot(player_info, mouse_on_map_x, mouse_on_map_y, desi
       logger.info("I need to turn on helper...")
       go_to_point_and_wait(player_info=player_info, mouse_x=mouse_on_map_x, mouse_y=mouse_on_map_y, target_loc_x=desired_coord_x, target_loc_y=desired_coord_y, timeout=timeout, tol=tolerance, print_txt=print_txt)
       click_on_helper(player_info=player_info)
-      message = generate_mu_party_message(main_player_location_name, desired_coord_x, desired_coord_y)
-      send_message(f"{message}", player_info=player_info)
+      if send_message:
+        message = generate_mu_party_message(main_player_location_name, desired_coord_x, desired_coord_y)
+        send_message(f"{message}", player_info=player_info)
     else:
       logger.debug("Helper is running")
 

@@ -39,6 +39,7 @@ def activate_window(player_info=""):
         "title": f"{player_info}",
         "target_x": x,
         "target_y": y,
+        "sleep_s": 0.012,
         "require_inside": False
     })
     time.sleep(0.2)
@@ -53,6 +54,22 @@ def activate_window(player_info=""):
     post(HIDAPI_ENDPOINTS["mouse_click"], {"button": "left", "action": "click", "hold_time": 0.2})
     post(HIDAPI_ENDPOINTS["mouse_click"], {"button": "left", "action": "click", "hold_time": 0.1})
     time.sleep(0.2)
+    return "Mouse clicked"
+
+def switch_window(player_info=""):
+    x, y = get_hud_xy(HUD_COORDS, "shortcut_w_box")
+    post(HOSTAPI_ENDPOINTS["mouse_goto_xy_relative"], { 
+        "title": f"{player_info}",
+        "target_x": x,
+        "target_y": y,
+        "require_inside": False
+    })
+    post(HIDAPI_ENDPOINTS["mouse_click"], {"button": "left", "action": "click", "hold_time": 0.2})
+    post(HIDAPI_ENDPOINTS["mouse_click"], {"button": "right", "action": "click", "hold_time": 0.2})
+    post(HIDAPI_ENDPOINTS["mouse_click"], {"button": "left", "action": "click", "hold_time": 0.2})
+    post(HIDAPI_ENDPOINTS["mouse_click"], {"button": "right", "action": "click", "hold_time": 0.2})
+    post(HIDAPI_ENDPOINTS["mouse_click"], {"button": "left", "action": "click", "hold_time": 0.2})
+    time.sleep(0.1)
     return "Mouse clicked"
 
 
@@ -79,6 +96,14 @@ def press_leter_i():
         "press_time": 0.1
     }
     press_key(letter_i_button)
+
+def press_leter_p():
+    letter_p_button={
+        "keycode": 19,
+        "modifier": 0,
+        "press_time": 0.1
+    }
+    press_key(letter_p_button)
 
 def press_escape():
     escape_button={

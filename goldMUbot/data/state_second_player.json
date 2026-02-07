@@ -111,23 +111,65 @@
       },
       "Atlans": {
         "min": 80,
-        "max": 210,
+        "max": 400,
         "enabled": true
       },
       "Aida": {
-        "min": 210,
-        "max": 325,
+        "min": 0,
+        "max": 0,
         "enabled": true
       },
       "LaCleon": {
-        "min": 325,
-        "max": 400,
-        "enabled": true
+        "min": 0,
+        "max": 0,
+        "enabled": false
       },
       "Icarus2": {
         "min": 0,
         "max": 0,
         "enabled": false
+      }
+    },
+    "map_spots": {
+      "aida_map_spots": {
+        "id": "aida2_drider1",
+        "loc_x": 22,
+        "loc_y": 147,
+        "map": "Aida",
+        "moobs": "Bloody Death Rider 115 lvl",
+        "tolerance": 9,
+        "x": 196,
+        "y": 267
+      },
+      "atlans_map_spots": {
+        "id": "aa5",
+        "loc_x": 181,
+        "loc_y": 92,
+        "map": "Atlans2",
+        "moobs": "Lizard King 70 lvl",
+        "tolerance": 9,
+        "x": 522,
+        "y": 379
+      },
+      "lacleon_map_spots": {
+        "id": "r14",
+        "loc_x": 38,
+        "loc_y": 108,
+        "map": "LaCleon",
+        "moobs": "Shadow Master 136 lvl",
+        "tolerance": 9,
+        "x": 230,
+        "y": 343
+      },
+      "icarus2_map_spots": {
+        "id": "icarus2_9",
+        "loc_x": 89,
+        "loc_y": 198,
+        "map": "Icarus2",
+        "moobs": "Great Drakan 100 lvl",
+        "tolerance": 5,
+        "x": 334,
+        "y": 161
       }
     },
     "helper_status": "Not running",

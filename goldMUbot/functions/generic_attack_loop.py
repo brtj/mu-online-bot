@@ -15,7 +15,8 @@ def generic_attack_on_spot(
     main_player_location_name,
     main_player_location_x,
     warp_to_location,
-    map_spot):
+    map_spot,
+    send_message=False):
 
   if map_enabled and map_max > main_player_level >= map_min and (main_player_location_name != map_name or main_player_location_name == "not_available"):
     warp_to(
@@ -33,7 +34,8 @@ def generic_attack_on_spot(
               mouse_on_map_y=map_spot.get("y", 0),
               desired_coord_x=map_spot.get("loc_x", 0),
               desired_coord_y=map_spot.get("loc_y", 0),
-              main_player_location_name=main_player_location_name
+              main_player_location_name=main_player_location_name,
+              send_message=send_message,
           )
       else:
           logger.warning("No map_spot set in state, skipping attack on %s.", map_name)

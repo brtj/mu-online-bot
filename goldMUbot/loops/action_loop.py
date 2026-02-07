@@ -61,7 +61,7 @@ def action_loop(stop_event, interval=1):
 
             main_player_loop(state=state)
             
-            if TYPE_GAME == "two_players":
+            if TYPE_GAME == "two_players_in_party":
                 second_player_loop(state=second_player_state)
 
 

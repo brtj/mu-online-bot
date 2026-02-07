@@ -33,6 +33,9 @@ def wait_for_location_name_change(before_location, before_location_coord_x, time
         if after_name != before_name and after_loc_x != before_loc_x:
             logger.info(f"Warped from {before_name} to {after_name}")
             return after_name
+        elif after_name == "Atlans" and before_name == "Atlans":
+            logger.info(f"Warped within Atlans from {before_name} to {after_name}")
+            return after_name
 
         if time.time() - start >= timeout:
             return None

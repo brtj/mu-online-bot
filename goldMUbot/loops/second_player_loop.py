@@ -12,6 +12,9 @@ from gameactions.send_message_ui import send_message_via_ui
 from gameactions.check_zen import check_inventory_zen
 from gameactions.inventory_actions import jewels_to_bank
 from gameactions.chaos_machine_bc_invite import chaos_machine_bc_invite
+from gameactions.party import check_if_its_in_party
+from functions.host_api import switch_window
+from functions.location_checks import is_at_position
 
 logger = logging.getLogger(__name__)
 
@@ -141,9 +144,11 @@ def second_player_loop(state):
 
             # --- miejsce na akcje do protypowania ---
             # chaos_machine_bc_invite(player_info=second_player_name)
+            # check_if_its_in_party(player_info=second_player_name)
             # time.sleep(1000)
 
             # --- Errory z helperami/okienkami ---
+            switch_window(player_info=second_player_name)
             popups_closer(player_info=second_player_name)
 
             # --- akcje wymagające izolacji od innych uruchamiane z UI ---
@@ -170,12 +175,13 @@ def second_player_loop(state):
                 logger.info("Player after reset, need to adjust character")
                 STATE_SECOND_PLAYER.update_dict("second_player_data", {"stats_added": True})
                 second_player_add_stats(player_info=second_player_name, second_player_reset=second_player_reset)
+                check_if_its_in_party(player_info=second_player_name)
 
             if second_player_level == 1 and run_speedrun and not is_it_speedrun:
                 logger.info("Player after reset, need to set speedrun mode ON")
                 STATE_SECOND_PLAYER.update_dict("second_player_data", {"is_it_speedrun": True, "run_speedrun": False})  
             
-            primary_max = 400
+            primary_max = 50
             primary_min = 1
             if primary_enabled and primary_max >= second_player_level >= primary_min:
                 logger.info("Exping on %s (min=%s max=%s)...", primary_map_name, primary_min, primary_max)
@@ -191,3 +197,72 @@ def second_player_loop(state):
                     mouse_on_map_y=81,
                     delta=delta,
                 )
+
+            if devias_enabled and devias_max >= second_player_level >= devias_min and (second_player_location_name != "Devias" or second_player_location_name == "not_available"):
+                warp_to(
+                    player_info=second_player_name,
+                    desired_location="Devias",
+                    actual_location=second_player_location_name,
+                    actual_location_coord_x=second_player_location_x,
+                )
+
+            if devias_enabled and devias_max >= second_player_level >= devias_min and second_player_location_name == "Devias":
+                logger.info("Exping on %s (min=%s max=%s)...", "Devias", devias_min, devias_max)
+                delta = [(580, 210), (580, 400), (580, 500)]
+                attack_no_helper_on_spot(
+                    player_info=second_player_name,
+                    level_max=devias_max,
+                    location_coord_x=second_player_location_x,
+                    location_coord_y=second_player_location_y,
+                    desired_coord_x=5,
+                    desired_coord_y=179,
+                    mouse_on_map_x=163,
+                    mouse_on_map_y=200,
+                    delta=delta,
+                )
+
+            #atlans1 manual
+            atlans_spot_manual = {'id': 'test', 'loc_x': 23, 'loc_y': 123, 'map': 'Atlans2', 'moobs': 'Vepar 45 lvl', 'tolerance': 9, 'x': 199, 'y': 315}
+            generic_attack_on_spot(
+                atlans_enabled, 
+                "Atlans", # map_name
+                120, # lvl_max
+                80, # lvl_min
+                second_player_name,
+                second_player_level,
+                second_player_location_name,
+                second_player_location_x,
+                "atlans", #warp string (ex atlans2, aida2 etc)
+                atlans_spot_manual, # map_spot data
+                send_message=False
+            )
+
+            #atlans2
+            atlans_spot = (second_player_data.get("map_spots") or {}).get("atlans_map_spots")
+            logger.info(atlans_spot)
+            if atlans_enabled and atlans_max >= second_player_level >= 120 and (second_player_location_name == "Atlans" or second_player_location_name == "not_available"):
+                desired_coord_x=atlans_spot.get("loc_x", 0)
+                desired_coord_y=atlans_spot.get("loc_y", 0)
+                logger.info(desired_coord_x)
+                logger.info(desired_coord_y)
+                if not is_at_position(second_player_location_x, second_player_location_y, desired_coord_x, desired_coord_y, tol=20):
+                    warp_to(
+                        player_info=second_player_name,
+                        desired_location="Atlans2",
+                        actual_location=second_player_location_name,
+                        actual_location_coord_x=second_player_location_x,
+                    )
+
+            generic_attack_on_spot(
+                atlans_enabled, 
+                "Atlans", # map_name
+                400, # lvl_max
+                120, # lvl_min
+                second_player_name,
+                second_player_level,
+                second_player_location_name,
+                second_player_location_x,
+                "atlans2", #warp string (ex atlans2, aida2 etc)
+                atlans_spot,
+                send_message=False
+            )
