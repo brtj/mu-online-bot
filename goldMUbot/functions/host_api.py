@@ -1,5 +1,6 @@
 from functions.requests_functions import post
 from functions import config_loader
+from functions.window_state import window_state
 from logger_config import setup_logging
 from functions.hud_coords import HUD_COORDS, get_hud_xy, get_rect
 
@@ -34,27 +35,33 @@ def send_message(text: str, player_info=""):
 
 def activate_window(player_info=""):
 
-    x, y = get_hud_xy(HUD_COORDS, "safe_spot")
-    post(HOSTAPI_ENDPOINTS["mouse_goto_xy_relative"], { 
-        "title": f"{player_info}",
-        "target_x": x,
-        "target_y": y,
-        "sleep_s": 0.012,
-        "require_inside": False
-    })
-    time.sleep(0.2)
-    post(HIDAPI_ENDPOINTS["mouse_click"], {"button": "left", "action": "click", "hold_time": 0.2})
-    x, y = get_hud_xy(HUD_COORDS, "shortcut_w_box")
-    post(HOSTAPI_ENDPOINTS["mouse_goto_xy_relative"], { 
-        "title": f"{player_info}",
-        "target_x": x,
-        "target_y": y,
-        "require_inside": False
-    })
-    post(HIDAPI_ENDPOINTS["mouse_click"], {"button": "left", "action": "click", "hold_time": 0.2})
-    post(HIDAPI_ENDPOINTS["mouse_click"], {"button": "left", "action": "click", "hold_time": 0.1})
-    time.sleep(0.2)
-    return "Mouse clicked"
+    window_status = window_state(player_info=player_info)
+    logger.info(f"Window active: {window_status}")
+    if not window_status:
+        logger.info("Activating window...")
+
+        x, y = get_hud_xy(HUD_COORDS, "safe_spot")
+        post(HOSTAPI_ENDPOINTS["mouse_goto_xy_relative"], { 
+            "title": f"{player_info}",
+            "target_x": x,
+            "target_y": y,
+            "sleep_s": 0.012,
+            "require_inside": False
+        })
+        time.sleep(0.2)
+        post(HIDAPI_ENDPOINTS["mouse_click"], {"button": "left", "action": "click", "hold_time": 0.2})
+        x, y = get_hud_xy(HUD_COORDS, "shortcut_w_box")
+        post(HOSTAPI_ENDPOINTS["mouse_goto_xy_relative"], { 
+            "title": f"{player_info}",
+            "target_x": x,
+            "target_y": y,
+            "require_inside": False
+        })
+        post(HIDAPI_ENDPOINTS["mouse_click"], {"button": "left", "action": "click", "hold_time": 0.2})
+        post(HIDAPI_ENDPOINTS["mouse_click"], {"button": "left", "action": "click", "hold_time": 0.1})
+        time.sleep(0.2)
+        logger.info("Window has been activated")
+        return "Window activated"
 
 def switch_window(player_info=""):
     x, y = get_hud_xy(HUD_COORDS, "shortcut_w_box")

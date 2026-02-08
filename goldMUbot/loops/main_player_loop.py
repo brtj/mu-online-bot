@@ -228,7 +228,6 @@ def main_player_loop(state):
 
             #atlans2
             atlans_spot = (main_player_data.get("map_spots") or {}).get("atlans_map_spots")
-            logger.info(atlans_spot)
             if atlans_enabled and atlans_max >= main_player_level >= 120 and (main_player_location_name == "Atlans" or main_player_location_name == "not_available"):
                 desired_coord_x=atlans_spot.get("loc_x", 0)
                 desired_coord_y=atlans_spot.get("loc_y", 0)

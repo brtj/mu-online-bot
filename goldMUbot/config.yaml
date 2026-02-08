@@ -26,7 +26,7 @@ hostapi:
     find_and_hover: /screen/find-and-hover
     screen_map: /screen/map
     screen_capture: /screen/capture.png
-
+    window_state: /window/state
 
 playerapi:
   ip: localhost
@@ -48,4 +48,4 @@ secondaccount:
 
 type_game: solo
 
-pause_auto_resume_minutes: 5
+pause_auto_resume_minutes: 45
