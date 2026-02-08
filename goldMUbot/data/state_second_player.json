@@ -1,6 +1,6 @@
 {
   "players": {},
-  "_ts": 1770589581.7741318,
+  "_ts": 1770591982.4738576,
   "paused": false,
   "send_message_via_ui": {
     "message": "~mialem rr teraz atlans",
@@ -9,14 +9,14 @@
   },
   "inventory_interval": 10,
   "snapshot": {
-    "ts": 1770589581.774055,
+    "ts": 1770591977.8792644,
     "state": {
-      "time": "23:26:21",
+      "time": "00:06:17",
       "player": "AleToBot",
       "player_in_party": "to do 2",
-      "level": 387,
+      "level": 52,
       "exp_per_minute": 0,
-      "reset": 1,
+      "reset": 2,
       "rect": {
         "bottom": 642,
         "height": 639,
@@ -25,20 +25,20 @@
         "top": 3,
         "width": 816
       },
-      "location_name": "LaCleon",
-      "location_coord_x": 182,
-      "location_coord_y": 183,
+      "location_name": "Devias",
+      "location_coord_x": 5,
+      "location_coord_y": 179,
       "mouse_position": {
         "ok": true,
-        "x": 515,
-        "y": 196
+        "x": 1380,
+        "y": 303
       },
       "mouse_relative_pos": {
         "cursor": {
-          "x": 515,
-          "y": 196
+          "x": 1380,
+          "y": 303
         },
-        "inside": false,
+        "inside": true,
         "ok": true,
         "window": {
           "bottom": 642,
@@ -46,21 +46,21 @@
           "right": 1617,
           "top": 3
         },
-        "x": -286,
-        "y": 193
+        "x": 579,
+        "y": 300
       },
       "helper_status": "Not running",
-      "health": 4536,
+      "health": 903,
       "connected": true
     }
   },
   "second_player_data": {
-    "time": "23:26:21",
+    "time": "00:06:22",
     "player": "AleToBot",
     "player_in_party": "to do 2",
-    "level": 387,
+    "level": 52,
     "exp_per_minute": 0,
-    "reset": 1,
+    "reset": 2,
     "rect": {
       "bottom": 642,
       "height": 639,
@@ -69,20 +69,20 @@
       "top": 3,
       "width": 816
     },
-    "location_name": "LaCleon",
-    "location_coord_x": 182,
-    "location_coord_y": 183,
+    "location_name": "Devias",
+    "location_coord_x": 5,
+    "location_coord_y": 179,
     "mouse_position": {
       "ok": true,
-      "x": 515,
-      "y": 196
+      "x": 1381,
+      "y": 214
     },
     "mouse_relative_pos": {
       "cursor": {
-        "x": 515,
-        "y": 196
+        "x": 1381,
+        "y": 214
       },
-      "inside": false,
+      "inside": true,
       "ok": true,
       "window": {
         "bottom": 642,
@@ -90,8 +90,8 @@
         "right": 1617,
         "top": 3
       },
-      "x": -286,
-      "y": 193
+      "x": 580,
+      "y": 211
     },
     "map_level_limits": {
       "Lorencia": {
@@ -173,7 +173,8 @@
       }
     },
     "helper_status": "Not running",
-    "health": 4536,
-    "connected": true
+    "health": 901,
+    "connected": true,
+    "stats_added": true
   }
 }

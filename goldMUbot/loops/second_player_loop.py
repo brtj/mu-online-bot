@@ -221,16 +221,16 @@ def second_player_loop():
             atlans_max = 120
             atlans_spot_manual = {'id': 'test', 'loc_x': 23, 'loc_y': 123, 'map': 'Atlans2', 'moobs': 'Vepar 45 lvl', 'tolerance': 9, 'x': 199, 'y': 315}
             generic_attack_on_spot(
-                atlans_enabled, 
-                "Atlans", # map_name
-                atlans_max, # lvl_max
-                atlans_min, # lvl_min
-                second_player_name,
-                second_player_level,
-                second_player_location_name,
-                second_player_location_x,
-                "atlans", #warp string (ex atlans2, aida2 etc)
-                atlans_spot_manual, # map_spot data
+                map_enabled=atlans_enabled, 
+                map_name="Atlans", # map_name
+                map_max=atlans_max, # lvl_max
+                map_min=atlans_min, # lvl_min
+                player_name=second_player_name,
+                player_level=second_player_level,
+                player_location_name=second_player_location_name,
+                player_location_x=second_player_location_x,
+                warp_to_location="atlans", #warp string (ex atlans2, aida2 etc)
+                map_spot=atlans_spot_manual, # map_spot data
                 send_message=False
             )
 
@@ -251,16 +251,16 @@ def second_player_loop():
                     )
 
             generic_attack_on_spot(
-                atlans_enabled, 
-                "Atlans", # map_name
-                210, # lvl_max
-                120, # lvl_min
-                second_player_name,
-                second_player_level,
-                second_player_location_name,
-                second_player_location_x,
-                "atlans2", #warp string (ex atlans2, aida2 etc)
-                atlans_spot,
+                map_enabled=atlans_enabled, 
+                map_name="Atlans", # map_name
+                map_max=210, # lvl_max
+                map_min=120, # lvl_min
+                player_name=second_player_name,
+                player_level=second_player_level,
+                player_location_name=second_player_location_name,
+                player_location_x=second_player_location_x,
+                warp_to_location="atlans2", #warp string (ex atlans2, aida2 etc)
+                map_spot=atlans_spot,
                 send_message=False
             )
 
@@ -299,17 +299,17 @@ def second_player_loop():
                     map_name="Atlans", # map_name
                     map_max=atlans_max, # lvl_max
                     map_min=atlans_min, # lvl_min
-                    main_player_name=second_player_name,
-                    main_player_level=second_player_level,
-                    main_player_location_name=second_player_location_name,
-                    main_player_location_x=second_player_location_x,
+                    player_name=second_player_name,
+                    player_level=second_player_level,
+                    player_location_name=second_player_location_name,
+                    player_location_x=second_player_location_x,
                     warp_to_location="atlans2", #warp string (ex atlans2, aida2 etc)
                     map_spot=atlans_spot,
                     send_message=False
                 )
 
             # --- akcje wymagające izolacji od innych uruchamiane z UI ---
-            send_message_via_ui(player_info=main_player_name)
+            send_message_via_ui(player_info=second_player_name)
 
             # --- akcje wymagające izolacji od innych cykliczne ---
             inv_interval_state = STATE.get("inventory_interval", 60 * 5)  # default 5 minut, można nadpisać z state.json
