@@ -236,10 +236,13 @@ def window_state():
 
     try:
         topmost = bool(win32gui.GetWindowLong(hwnd, win32con.GWL_EXSTYLE) & win32con.WS_EX_TOPMOST)
+        active_hwnd = win32gui.GetForegroundWindow()
+        is_active = active_hwnd == hwnd
         return jsonify(
             ok=True,
             hwnd=int(hwnd),
             topmost=topmost,
+            active=is_active,
             title=win32gui.GetWindowText(hwnd)
         )
     except Exception as e:
