@@ -33,6 +33,11 @@ LOCALAPI_ENDPOINTS = {
 }
 
 TYPE_GAME = CONFIG.get("type_game", "single")
+PAUSE_AUTO_RESUME_MINUTES = CONFIG.get("pause_auto_resume_minutes", 5)
+if isinstance(PAUSE_AUTO_RESUME_MINUTES, (int, float)) and PAUSE_AUTO_RESUME_MINUTES > 0:
+    PAUSE_AUTO_RESUME_SECONDS = PAUSE_AUTO_RESUME_MINUTES * 60
+else:
+    PAUSE_AUTO_RESUME_SECONDS = None
 
 def action_loop(stop_event, interval=1):
     logger.info("Action loop started")
@@ -42,6 +47,7 @@ def action_loop(stop_event, interval=1):
     time.sleep(2)  # dajmy czas na zebranie pierwszych danych
 
     last_check_inventory = 0
+    pause_started_at = None
 
     while not stop_event.is_set():
         try:
@@ -49,15 +55,35 @@ def action_loop(stop_event, interval=1):
             second_player_state = STATE_SECOND_PLAYER.get_all() or {}
             # Pauza - bierz z tego samego odczytu
             if state.get("paused", False):
-                main_player_data = state.get("main_player_data") or {}
-                main_player_location_x = int(main_player_data.get("location_coord_x") or 0)
-                main_player_location_y = int(main_player_data.get("location_coord_y") or 0)
-                mouse_rel = main_player_data.get("mouse_relative_pos") or {}
-                mouse_relative_pos_x = mouse_rel.get("x")
-                mouse_relative_pos_y = mouse_rel.get("y")
-                logger.info(f"PAUSED | Location: ({main_player_location_x},{main_player_location_y}), Mouse Rel Pos: ({mouse_relative_pos_x},{mouse_relative_pos_y})")
-                stop_event.wait(0.5)
-                continue
+                if pause_started_at is None:
+                    pause_started_at = time.monotonic()
+
+                paused_duration = time.monotonic() - pause_started_at
+                if PAUSE_AUTO_RESUME_SECONDS and paused_duration >= PAUSE_AUTO_RESUME_SECONDS:
+                    STATE.set("paused", False)
+                    pause_started_at = None
+                    logger.warning(
+                        "PAUSE TIMEOUT | Auto-resumed after %.1f min",
+                        paused_duration / 60,
+                    )
+                else:
+                    main_player_data = state.get("main_player_data") or {}
+                    main_player_location_x = int(main_player_data.get("location_coord_x") or 0)
+                    main_player_location_y = int(main_player_data.get("location_coord_y") or 0)
+                    mouse_rel = main_player_data.get("mouse_relative_pos") or {}
+                    mouse_relative_pos_x = mouse_rel.get("x")
+                    mouse_relative_pos_y = mouse_rel.get("y")
+                    logger.info(
+                        "PAUSED | Location: (%s,%s), Mouse Rel Pos: (%s,%s)",
+                        main_player_location_x,
+                        main_player_location_y,
+                        mouse_relative_pos_x,
+                        mouse_relative_pos_y,
+                    )
+                    stop_event.wait(0.5)
+                    continue
+            else:
+                pause_started_at = None
 
             main_player_loop(state=state)
             

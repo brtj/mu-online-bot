@@ -47,3 +47,5 @@ secondaccount:
   character_type: Dark_Knight
 
 type_game: solo
+
+pause_auto_resume_minutes: 5
