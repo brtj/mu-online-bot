@@ -4,7 +4,7 @@ from functions import config_loader
 from logger_config import setup_logging
 from functions.host_api import send_message, activate_window
 
-from functions.state_singleton import STATE
+from functions.state_singleton import STATE, STATE_SECOND_PLAYER
 
 setup_logging()
 logger = logging.getLogger(__name__)
@@ -15,20 +15,24 @@ def warp_to(player_info, desired_location, actual_location, actual_location_coor
     logger.info(f"warping from {actual_location} to {desired_location}")
     send_message(f"dobra zwijam sie do {desired_location}", player_info=player_info)
     send_message(f"/warp {desired_location}", player_info=player_info)
-    wait_for_location_name_change(actual_location, actual_location_coord_x, timeout=timeout)
+    wait_for_location_name_change(player_info, actual_location, actual_location_coord_x, timeout=timeout)
     time.sleep(sleept)
 
-def wait_for_location_name_change(before_location, before_location_coord_x, timeout=30, interval=0.5):
+def wait_for_location_name_change(player_info, before_location, before_location_coord_x, timeout=30, interval=0.5):
     start = time.time()
     before_name = before_location
     before_loc_x = before_location_coord_x
 
     while True:
-        state = STATE.get_all()
-        main_player_data = state.get("main_player_data") or {}
+        if player_info == "AleElfisko":
+            state = STATE.get_all()
+            player_data = state.get("main_player_data") or {}
+        elif player_info == "AleToBot":
+            state = STATE_SECOND_PLAYER.get_all()
+            player_data = state.get("second_player_data") or {}
 
-        after_name = main_player_data["location_name"]
-        after_loc_x = main_player_data["location_coord_x"]
+        after_name = player_data["location_name"]
+        after_loc_x = player_data["location_coord_x"]
 
         if after_name != before_name and after_loc_x != before_loc_x:
             logger.info(f"Warped from {before_name} to {after_name}")

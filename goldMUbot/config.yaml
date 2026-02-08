@@ -46,6 +46,6 @@ secondaccount:
   nickname: AleToBot
   character_type: Dark_Knight
 
-type_game: solo
+type_game: two_players_in_party # solo, two_players_in_party, two_players_in_party_follower
 
 pause_auto_resume_minutes: 45

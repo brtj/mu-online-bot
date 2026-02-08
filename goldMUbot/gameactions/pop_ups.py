@@ -89,3 +89,18 @@ def popups_closer(player_info):
         logger.info("need to close popup system menu")
         post(HIDAPI_ENDPOINTS["mouse_click"], payload_click)
         time.sleep(0.1)
+
+    ok_button_helper = {
+        "title": f"{player_info}",
+        "rect": { "x": 0, "y": 0, "w": 800, "h": 650 },
+        "templates": ["ok_button.png"],
+        "thr": 0.90,
+        "nms_radius": 25,
+        "pick": "best",
+        "hover": { "require_inside": False }
+    }
+    ok_button_helper_status = post(HOSTAPI_ENDPOINTS["find_and_hover"], ok_button_helper)
+    if ok_button_helper_status.get("ok") == True:
+        logger.info("need to close popup helper (only runs in field)")
+        post(HIDAPI_ENDPOINTS["mouse_click"], payload_click)
+        time.sleep(0.1)

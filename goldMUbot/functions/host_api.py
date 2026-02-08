@@ -92,7 +92,7 @@ def check_map_on(player_info=""):
         "min_white_ratio": 0.34
     }
     r = post(HOSTAPI_ENDPOINTS["screen_map"], payload)
-    logger.info(f"Check map on state: {r}")
+    # logger.info(f"Check map on state: {r}")
     time.sleep(0.2)
     return r["state"]
 

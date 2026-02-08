@@ -73,12 +73,12 @@ def generate_reset_message(resets: int | None = None):
 
 
 SPOT_MESS = [
-    "Ja tu tylko na chwilke do {level_max} lvlu",
+    "Ja tu tylko na chwilke do {level_max} lvlu i zmykam",
     "Tylko do {level_max} lvlu i ide dalej",
     "Dobije {level_max} lvl i schodze",
     "Do {level_max} lvl posiedze chwile",
     "Tylko wbije {level_max} lvl i uciekam",
-    "Chwilka expa do {level_max} lvl",
+    "Chwilka expa do {level_max} lvl i zmykam",
     "Szybko do {level_max} lvl i znikam",
     "Do {level_max} lvl i oddaje spot",
     "Posiedze do {level_max} lvl ok?",

@@ -180,6 +180,12 @@ HUD_COORDS = [
         "x": 544,
         "y": 450
     },
+    {
+        "id": "speedrun_run_icon",
+        "description": "Speedrun run icon",
+        "x": 298,
+        "y": 39
+    },
 ]
 
 def get_rect(rect_id: str) -> dict:

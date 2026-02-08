@@ -1,7 +1,7 @@
 {
   "players": {},
-  "_ts": 1770541217.8512397,
-  "paused": false,
+  "_ts": 1770589581.773943,
+  "paused": true,
   "send_message_via_ui": {
     "message": "~mialem rr teraz atlans",
     "new_message": false,
@@ -9,12 +9,12 @@
   },
   "inventory_interval": 10,
   "main_player_data": {
-    "time": "10:00:17",
+    "time": "23:26:21",
     "player": "AleElfisko",
     "player_in_party": "to do 2",
-    "level": 356,
-    "exp_per_minute": "422242000",
-    "reset": 148,
+    "level": 400,
+    "exp_per_minute": 0,
+    "reset": 154,
     "rect": {
       "bottom": 643,
       "height": 639,
@@ -24,17 +24,17 @@
       "width": 816
     },
     "location_name": "LaCleon",
-    "location_coord_x": 38,
-    "location_coord_y": 109,
+    "location_coord_x": 179,
+    "location_coord_y": 183,
     "mouse_position": {
       "ok": true,
-      "x": 646,
-      "y": 606
+      "x": 515,
+      "y": 196
     },
     "mouse_relative_pos": {
       "cursor": {
-        "x": 646,
-        "y": 606
+        "x": 515,
+        "y": 196
       },
       "inside": true,
       "ok": true,
@@ -44,13 +44,13 @@
         "right": 813,
         "top": 4
       },
-      "x": 649,
-      "y": 602
+      "x": 518,
+      "y": 192
     },
-    "helper_status": "Running",
-    "health": 94423,
+    "helper_status": "Not running",
+    "health": 112454,
     "connected": true,
-    "zen_ammount": 995927667,
+    "zen_ammount": 1057753077,
     "map_level_limits": {
       "Lorencia": {
         "min": 1,
@@ -74,11 +74,6 @@
       },
       "Aida": {
         "min": 210,
-        "max": 325,
-        "enabled": true
-      },
-      "LaCleon": {
-        "min": 325,
         "max": 400,
         "enabled": true
       },
@@ -86,18 +81,23 @@
         "min": 0,
         "max": 0,
         "enabled": false
+      },
+      "LaCleon": {
+        "min": 0,
+        "max": 0,
+        "enabled": false
       }
     },
     "map_spots": {
       "aida_map_spots": {
-        "id": "aida2_drider1",
-        "loc_x": 22,
-        "loc_y": 147,
+        "id": "aida2_orc2",
+        "loc_x": 57,
+        "loc_y": 160,
         "map": "Aida",
-        "moobs": "Bloody Death Rider 115 lvl",
+        "moobs": "Bloody Orc 114 lvl",
         "tolerance": 9,
-        "x": 196,
-        "y": 267
+        "x": 269,
+        "y": 239
       },
       "atlans_map_spots": {
         "id": "aa5",
@@ -135,14 +135,14 @@
     "run_speedrun": false
   },
   "snapshot": {
-    "ts": 1770541210.0230896,
+    "ts": 1770589581.7738764,
     "state": {
-      "time": "10:00:10",
+      "time": "23:26:21",
       "player": "AleElfisko",
       "player_in_party": "to do 2",
-      "level": 356,
-      "exp_per_minute": "44460600",
-      "reset": 148,
+      "level": 400,
+      "exp_per_minute": 0,
+      "reset": 154,
       "rect": {
         "bottom": 643,
         "height": 639,
@@ -152,19 +152,19 @@
         "width": 816
       },
       "location_name": "LaCleon",
-      "location_coord_x": 38,
-      "location_coord_y": 108,
+      "location_coord_x": 179,
+      "location_coord_y": 183,
       "mouse_position": {
         "ok": true,
-        "x": 1919,
-        "y": 727
+        "x": 515,
+        "y": 196
       },
       "mouse_relative_pos": {
         "cursor": {
-          "x": 1919,
-          "y": 727
+          "x": 515,
+          "y": 196
         },
-        "inside": false,
+        "inside": true,
         "ok": true,
         "window": {
           "bottom": 643,
@@ -172,11 +172,11 @@
           "right": 813,
           "top": 4
         },
-        "x": 1922,
-        "y": 723
+        "x": 518,
+        "y": 192
       },
-      "helper_status": "Running",
-      "health": 0,
+      "helper_status": "Not running",
+      "health": 112454,
       "connected": true
     }
   }

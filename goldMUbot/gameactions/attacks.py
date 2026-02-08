@@ -8,9 +8,10 @@ from gameactions.random_messages import generate_mu_party_message, generate_spot
 from logger_config import setup_logging
 
 from functions import config_loader
-from functions.state_singleton import STATE
+from functions.state_singleton import STATE, STATE_SECOND_PLAYER
 from functions.hud_coords import HUD_COORDS, get_hud_xy, get_rect
 from functions.requests_functions import post
+from functions.helper_request import check_helper_state
 
 setup_logging()
 logger = logging.getLogger(__name__)
@@ -133,18 +134,27 @@ def attack_no_helper_on_spot(player_info, location_coord_x, location_coord_y, de
     go_to_point_and_wait(player_info=player_info, mouse_x=mouse_on_map_x, mouse_y=mouse_on_map_y, target_loc_x=desired_coord_x, target_loc_y=desired_coord_y, print_txt=print_txt)
 
 
-def attack_with_helper_on_spot(player_info, mouse_on_map_x, mouse_on_map_y, desired_coord_x, desired_coord_y, main_player_location_name,tolerance=8, timeout=80, print_txt="helper attack", send_message=False):
+def attack_with_helper_on_spot(player_info, mouse_on_map_x, mouse_on_map_y, desired_coord_x, desired_coord_y, player_location_name, tolerance=8, timeout=80, print_txt="helper attack", send_message=False):
+  if player_info == "AleElfisko":
+    state = STATE.get_all()
+    player_data = state.get("main_player_data") or {}
+  elif player_info == "AleToBot":
+    state = STATE_SECOND_PLAYER.get_all()
+    player_data = state.get("second_player_data") or {}
 
-  state = STATE.get_all()
-  main_player_data = state.get("main_player_data") or {}
-
-  if is_at_position(main_player_data["location_coord_x"], main_player_data["location_coord_y"], desired_coord_x, desired_coord_y):
-    if main_player_data["helper_status"] != "Running":
+  if is_at_position(player_data["location_coord_x"], player_data["location_coord_y"], desired_coord_x, desired_coord_y):
+    check_helper_status = check_helper_state(player_info=player_info)
+    if check_helper_status == "Not running":
       logger.info("I need to turn on helper...")
       go_to_point_and_wait(player_info=player_info, mouse_x=mouse_on_map_x, mouse_y=mouse_on_map_y, target_loc_x=desired_coord_x, target_loc_y=desired_coord_y, timeout=timeout, tol=tolerance, print_txt=print_txt)
-      click_on_helper(player_info=player_info)
+      
+      check_helper_status = check_helper_state(player_info=player_info)
+      if check_helper_status == "Not running":
+        click_on_helper(player_info=player_info)
+        time.sleep(0.4)
+
       if send_message:
-        message = generate_mu_party_message(main_player_location_name, desired_coord_x, desired_coord_y)
+        message = generate_mu_party_message(player_location_name, desired_coord_x, desired_coord_y)
         send_message(f"{message}", player_info=player_info)
     else:
       logger.debug("Helper is running")

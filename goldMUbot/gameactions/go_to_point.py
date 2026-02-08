@@ -5,7 +5,7 @@ from functions import config_loader
 from functions.location_checks import wait_until_at_position, get_location_state, is_at_position
 from gameactions.helper_attack import click_on_helper_to_turn_off
 
-from functions.state_singleton import STATE
+from functions.helper_request import check_helper_state
 
 import time
 import logging
@@ -41,10 +41,8 @@ def go_to_point_and_wait(mouse_x, mouse_y, target_loc_x, target_loc_y, print_txt
     press_key_payload = {"keycode": 30, "press_time": 1} #press number 1
     press_key(payload=press_key_payload)
 
-    state = STATE.get_all()
-    main_player_data = state.get("main_player_data") or {}
-
-    if main_player_data["helper_status"] == "Running":
+    check_helper_status = check_helper_state(player_info=player_info)
+    if check_helper_status == "Running":
         logger.info("Helper is Running, need to turn it off")
         click_on_helper_to_turn_off(player_info=player_info)
 

@@ -59,7 +59,7 @@ AIDA_LOCATIONS = [
         "y": 239,
         "loc_x": 57,
         "loc_y": 160,
-        "tolerance": 9,
+        "tolerance": 12,
         "moobs": "Bloody Orc 114 lvl"
     },
     {
@@ -121,6 +121,26 @@ AIDA_LOCATIONS = [
         "loc_y": 205,
         "tolerance": 9,
         "moobs": "Bloody Death Rider 115 lvl"
+    },
+    {
+        "id": "aida2_gol1",
+        "map": "Aida",
+        "x": 478,
+        "y": 339,
+        "loc_x": 160,
+        "loc_y": 111,
+        "tolerance": 9,
+        "moobs": "Blue Golem 84 lvl"
+    },
+    {
+        "id": "aida2_wch1",
+        "map": "Aida",
+        "x": 346,
+        "y": 211,
+        "loc_x": 95,
+        "loc_y": 174,
+        "tolerance": 9,
+        "moobs": "Witch Queen 94 lvl"
     },
 ]
 

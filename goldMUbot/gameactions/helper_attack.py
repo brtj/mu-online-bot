@@ -1,5 +1,6 @@
 import logging
 import time
+from functions.helper_request import check_helper_state
 from logger_config import setup_logging
 from functions.host_api import activate_window
 from functions import requests_functions, hud_coords
@@ -38,12 +39,8 @@ logger = logging.getLogger(__name__)
 def click_on_helper(player_info):
     activate_window(player_info=player_info)
 
-    post(LOCALAPI_ENDPOINTS["run_scraper_on_demand"], {})
-    state = STATE.get_all()
-    main_player_data = state.get("main_player_data") or {}
-    helper_status = main_player_data["helper_status"]
-
-    if helper_status != "Running":
+    check_helper_status = check_helper_state(player_info=player_info)
+    if check_helper_status != "Running":
         logger.info("Helper is not Running, need to turn it on")
         x, y = get_hud_xy(HUD_COORDS, "helper_icon")
         post(HOSTAPI_ENDPOINTS["mouse_goto_xy_relative"], {"title": f"{player_info}", "target_x": x, "target_y": y, "require_inside": False})

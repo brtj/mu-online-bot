@@ -1,5 +1,5 @@
 import logging, time
-from functions.state_singleton import STATE_SECOND_PLAYER
+from functions.state_singleton import STATE, STATE_SECOND_PLAYER
 from functions import config_loader
 from functions.generic_attack_loop import generic_attack_on_spot
 
@@ -15,6 +15,7 @@ from gameactions.chaos_machine_bc_invite import chaos_machine_bc_invite
 from gameactions.party import check_if_its_in_party
 from functions.host_api import switch_window
 from functions.location_checks import is_at_position
+from gameactions.helper_attack import click_on_helper
 
 logger = logging.getLogger(__name__)
 
@@ -42,10 +43,14 @@ LOCALAPI_ENDPOINTS = {
     name: f"{LOCALAPI_BASE_URL}{path}"
     for name, path in LOCALAPI["endpoints"].items()
 }
-
-def second_player_loop(state):
+LAST_CHECK_INVENTORY = 0
+            
+def second_player_loop():
             last_log_sig = None  # żeby nie spamować logów
-            last_check_inventory = 0
+            global LAST_CHECK_INVENTORY
+
+            main_player_data = STATE.get("main_player_data") or {}
+            main_player_name = CONFIG["mainplayer"]["nickname"]
 
             second_player_data = STATE_SECOND_PLAYER.get("second_player_data") or {}
             second_player_name = CONFIG["secondaccount"]["nickname"]
@@ -148,19 +153,7 @@ def second_player_loop(state):
             # time.sleep(1000)
 
             # --- Errory z helperami/okienkami ---
-            switch_window(player_info=second_player_name)
             popups_closer(player_info=second_player_name)
-
-            # --- akcje wymagające izolacji od innych uruchamiane z UI ---
-            send_message_via_ui(player_info=second_player_name)
-
-            # --- akcje wymagające izolacji od innych cykliczne ---
-            inv_interval_state = STATE_SECOND_PLAYER.get("inventory_interval", 60 * 5)  # default 5 minut, można nadpisać z state.json
-            INVENTORY_INTERVAL = 60 * inv_interval_state
-            now = time.time()
-            if now - last_check_inventory >= INVENTORY_INTERVAL:
-                check_inventory_zen(player_info=second_player_name)
-                last_check_inventory = now
 
             # --- Twoja logika akcji ---
 
@@ -198,6 +191,8 @@ def second_player_loop(state):
                     delta=delta,
                 )
 
+            devias_min = 50
+            devias_max = 80
             if devias_enabled and devias_max >= second_player_level >= devias_min and (second_player_location_name != "Devias" or second_player_location_name == "not_available"):
                 warp_to(
                     player_info=second_player_name,
@@ -222,12 +217,14 @@ def second_player_loop(state):
                 )
 
             #atlans1 manual
+            atlans_min = 80
+            atlans_max = 120
             atlans_spot_manual = {'id': 'test', 'loc_x': 23, 'loc_y': 123, 'map': 'Atlans2', 'moobs': 'Vepar 45 lvl', 'tolerance': 9, 'x': 199, 'y': 315}
             generic_attack_on_spot(
                 atlans_enabled, 
                 "Atlans", # map_name
-                120, # lvl_max
-                80, # lvl_min
+                atlans_max, # lvl_max
+                atlans_min, # lvl_min
                 second_player_name,
                 second_player_level,
                 second_player_location_name,
@@ -256,7 +253,7 @@ def second_player_loop(state):
             generic_attack_on_spot(
                 atlans_enabled, 
                 "Atlans", # map_name
-                400, # lvl_max
+                210, # lvl_max
                 120, # lvl_min
                 second_player_name,
                 second_player_level,
@@ -266,3 +263,58 @@ def second_player_loop(state):
                 atlans_spot,
                 send_message=False
             )
+
+            player_level = main_player_data.get("level", 0)
+            player_location_name = main_player_data.get("location_name", "not_available")
+            logger.info("Main player level: %s, location: %s", player_level, player_location_name)
+            if player_level >= 210 and player_location_name == "Aida" and second_player_level >= 210:
+
+                player_spot = (main_player_data.get("map_spots") or {}).get("aida_map_spots")
+                aida_min = 210
+                aida_max = 400
+                click_on_helper("AleElfisko")
+                generic_attack_on_spot(
+                    map_enabled=True, 
+                    map_name="Aida", # map_name
+                    map_max=aida_max, # lvl_max
+                    map_min=aida_min, # lvl_min
+                    player_name=second_player_name,
+                    player_level=second_player_level,
+                    player_location_name=second_player_location_name,
+                    player_location_x=second_player_location_x,
+                    warp_to_location="aida2", 
+                    map_spot=player_spot,
+                    send_message=False
+                )
+            else:
+                logger.info("Im going to Atlans2 safe spot to wait for main player to reach requirements for Aida")
+                #atlans2 as a workaround safe spot while waiting for main player to reach requirements for Aida
+                atlans_spot = (second_player_data.get("map_spots") or {}).get("atlans_map_spots")
+                logger.info(atlans_spot)
+                atlans_min = 120
+                atlans_max = 400
+
+                generic_attack_on_spot(
+                    map_enabled=atlans_enabled, 
+                    map_name="Atlans", # map_name
+                    map_max=atlans_max, # lvl_max
+                    map_min=atlans_min, # lvl_min
+                    main_player_name=second_player_name,
+                    main_player_level=second_player_level,
+                    main_player_location_name=second_player_location_name,
+                    main_player_location_x=second_player_location_x,
+                    warp_to_location="atlans2", #warp string (ex atlans2, aida2 etc)
+                    map_spot=atlans_spot,
+                    send_message=False
+                )
+
+            # --- akcje wymagające izolacji od innych uruchamiane z UI ---
+            send_message_via_ui(player_info=main_player_name)
+
+            # --- akcje wymagające izolacji od innych cykliczne ---
+            inv_interval_state = STATE.get("inventory_interval", 60 * 5)  # default 5 minut, można nadpisać z state.json
+            INVENTORY_INTERVAL = 60 * inv_interval_state
+            now = time.time()
+            if now - LAST_CHECK_INVENTORY >= INVENTORY_INTERVAL:
+                check_inventory_zen(player_info=main_player_name)
+                LAST_CHECK_INVENTORY = now

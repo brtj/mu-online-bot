@@ -79,7 +79,7 @@ def start_threads():
     )
     t.start()
     logger.info("Scraper for main player thread started")
-    if TYPE_GAME == "two_players":
+    if TYPE_GAME in {"two_players", "two_players_in_party", "two_players_in_party_follower"}:
         t2 = threading.Thread(
             target=second_player_scraper_loop,
             kwargs={
