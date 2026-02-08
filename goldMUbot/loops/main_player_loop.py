@@ -149,7 +149,6 @@ def main_player_loop(state):
             # time.sleep(1000)
 
             # --- Errory z helperami/okienkami ---
-            switch_window(player_info=main_player_name)
             popups_closer(player_info=main_player_name)
 
             # --- Twoja logika akcji ---

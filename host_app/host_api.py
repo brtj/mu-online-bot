@@ -153,6 +153,27 @@ def set_topmost(hwnd: int, enabled: bool = True):
         win32con.SWP_NOMOVE | win32con.SWP_NOSIZE | win32con.SWP_SHOWWINDOW
     )
 
+
+def show_window_topmost(partial_title: str, keep_topmost: bool = False):
+    """Bring window matching partial title above all others."""
+    partial_title = (partial_title or "").strip()
+    if not partial_title:
+        raise ValueError("Missing 'partial_title'")
+
+    hwnd, err = find_window_by_title_substring(partial_title)
+    if err:
+        raise RuntimeError(err)
+
+    # make sure window is restored and focused before toggling topmost
+    force_foreground_strong(hwnd)
+    set_topmost(hwnd, True)
+
+    if not keep_topmost:
+        time.sleep(0.05)
+        set_topmost(hwnd, False)
+
+    return hwnd
+
 def move_window_by_title(partial_title: str, x: int, y: int, w: int, h: int):
     hwnd, err = find_window_by_title_substring(partial_title)
     if err:
@@ -200,6 +221,27 @@ def activate_topmost():
         time.sleep(0.05)
         set_topmost(hwnd, topmost)
         return jsonify(ok=True, hwnd=int(hwnd), topmost=topmost, title=win32gui.GetWindowText(hwnd))
+    except Exception as e:
+        return jsonify(ok=False, error=str(e)), 500
+
+
+@app.post("/window/state")
+def window_state():
+    data = request.get_json(force=True, silent=True) or {}
+    title = data.get("title", "")
+
+    hwnd, err = find_window_by_title_substring(title)
+    if err:
+        return jsonify(ok=False, error=err), 400
+
+    try:
+        topmost = bool(win32gui.GetWindowLong(hwnd, win32con.GWL_EXSTYLE) & win32con.WS_EX_TOPMOST)
+        return jsonify(
+            ok=True,
+            hwnd=int(hwnd),
+            topmost=topmost,
+            title=win32gui.GetWindowText(hwnd)
+        )
     except Exception as e:
         return jsonify(ok=False, error=str(e)), 500
 
