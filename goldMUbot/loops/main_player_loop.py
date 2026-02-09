@@ -51,7 +51,7 @@ def main_player_loop(state):
 
             main_player_data = state.get("main_player_data") or {}
             main_player_name = CONFIG["mainplayer"]["nickname"]
-            type_game = CONFIG["mainplayer"]["type_game"]
+            type_game = CONFIG["type_game"]
 
             # map level limits control (from state.json)
             map_level_limits = main_player_data.get("map_level_limits", {}) or {}
@@ -181,7 +181,7 @@ def main_player_loop(state):
             
             if primary_enabled and primary_max >= main_player_level >= primary_min:
                 logger.info("Exping on %s (min=%s max=%s)...", primary_map_name, primary_min, primary_max)
-                delta = [(620, 270), (620, 365)]
+                delta = [(620, 250), (620, 365)]
                 attack_no_helper_on_spot(
                     player_info=main_player_name,
                     level_max=primary_max,
