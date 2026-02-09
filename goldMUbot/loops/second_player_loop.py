@@ -237,7 +237,9 @@ def second_player_loop():
             #atlans2
             atlans_spot = (second_player_data.get("map_spots") or {}).get("atlans_map_spots")
             logger.info(atlans_spot)
-            if atlans_enabled and atlans_max >= second_player_level >= 120 and (second_player_location_name == "Atlans" or second_player_location_name == "not_available"):
+            atlans_min = 120
+            atlans_max = 210
+            if atlans_enabled and atlans_max >= second_player_level >= atlans_min and (second_player_location_name == "Atlans" or second_player_location_name == "not_available"):
                 desired_coord_x=atlans_spot.get("loc_x", 0)
                 desired_coord_y=atlans_spot.get("loc_y", 0)
                 logger.info(desired_coord_x)
@@ -253,7 +255,7 @@ def second_player_loop():
             generic_attack_on_spot(
                 map_enabled=atlans_enabled, 
                 map_name="Atlans", # map_name
-                map_max=210, # lvl_max
+                map_max=atlans_max, # lvl_max
                 map_min=120, # lvl_min
                 player_name=second_player_name,
                 player_level=second_player_level,

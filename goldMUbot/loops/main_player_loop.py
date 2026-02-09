@@ -1,5 +1,5 @@
 import logging, time
-from functions.state_singleton import STATE
+from functions.state_singleton import STATE, STATE_SECOND_PLAYER
 from functions import config_loader
 from functions.generic_attack_loop import generic_attack_on_spot
 
@@ -51,6 +51,7 @@ def main_player_loop(state):
 
             main_player_data = state.get("main_player_data") or {}
             main_player_name = CONFIG["mainplayer"]["nickname"]
+            type_game = CONFIG["mainplayer"]["type_game"]
 
             # map level limits control (from state.json)
             map_level_limits = main_player_data.get("map_level_limits", {}) or {}
@@ -158,7 +159,16 @@ def main_player_loop(state):
                 STATE.update_dict("main_player_data", {"stats_added": False, "is_it_speedrun": False, "run_speedrun": False})
                 jewels_to_bank(player_info=main_player_name)
                 reset_count = main_player_reset + 1
-                elf_reset(player_info=main_player_name, reset_count=reset_count)
+                if type_game == "solo":
+                    elf_reset(player_info=main_player_name, reset_count=reset_count)
+                elif type_game == "two_players_in_party":
+                    second_player_data = STATE_SECOND_PLAYER.get("second_player_data") or {}
+                    second_player_level = int(second_player_data.get("level") or 0)
+                    if 400 > second_player_level > 340:
+                        logger.info("Doing nothing, waiting for second player to reach reset level...")
+                    else:
+                        elf_reset(player_info=main_player_name, reset_count=reset_count)
+                    
 
             if main_player_level == 1 and not stats_added:
                 logger.info("Player after reset, need to adjust character")
