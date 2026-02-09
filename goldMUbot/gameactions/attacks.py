@@ -148,6 +148,8 @@ def round_attack(player_info, deltas, step_delay=0.005, pause_range=(0.1, 0.4), 
             
             current_level = player_data["level"]
         logger.info(f"Round attack, current level: {current_level}")
+        if current_level > 80:
+           click_on_helper(player_info)
 
 
 def attack_no_helper_on_spot(player_info, location_coord_x, location_coord_y, desired_coord_x, desired_coord_y, mouse_on_map_x, mouse_on_map_y, delta, level_max=100, print_txt="no helper attack", ):
