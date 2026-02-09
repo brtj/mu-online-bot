@@ -17,10 +17,12 @@ def main_player_add_stats(player_info="", main_player_reset=0):
 def second_player_add_stats(player_info="", second_player_reset=0):
     activate_window(player_info=player_info)
 
+    # atleast 3-5 resets put on vitality to survive aida2 atleast 2000 points
+
     sleept = 0.2
     if second_player_reset <= 161:
         send_message("/addene 200", player_info=player_info); time.sleep(sleept)
-        send_message("/addstr 1250", player_info=player_info); time.sleep(sleept)
+        send_message("/addstr 1650", player_info=player_info); time.sleep(sleept)
         send_message("/addagi 600", player_info=player_info); time.sleep(sleept)
-        send_message("/addvit 200", player_info=player_info); time.sleep(sleept)
+        send_message("/addvit 1700", player_info=player_info); time.sleep(sleept)
     send_message("/re auto", player_info=player_info)
