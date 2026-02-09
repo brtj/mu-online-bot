@@ -157,9 +157,9 @@ def main_player_loop(state):
             if main_player_level == 400:
                 logger.info("Need to do reset")
                 STATE.update_dict("main_player_data", {"stats_added": False, "is_it_speedrun": False, "run_speedrun": False})
-                jewels_to_bank(player_info=main_player_name)
                 reset_count = main_player_reset + 1
                 if type_game == "solo":
+                    jewels_to_bank(player_info=main_player_name)
                     elf_reset(player_info=main_player_name, reset_count=reset_count)
                 elif type_game == "two_players_in_party":
                     second_player_data = STATE_SECOND_PLAYER.get("second_player_data") or {}
@@ -167,6 +167,7 @@ def main_player_loop(state):
                     if 400 > second_player_level > 340:
                         logger.info("Doing nothing, waiting for second player to reach reset level...")
                     else:
+                        jewels_to_bank(player_info=main_player_name)
                         elf_reset(player_info=main_player_name, reset_count=reset_count)
                     
 
