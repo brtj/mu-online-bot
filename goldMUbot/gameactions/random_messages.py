@@ -107,3 +107,32 @@ SPOT_MESS = [
 
 def generate_spot_message(level_max: int):
     return random.choice(SPOT_MESS).format(level_max=level_max)[:50]
+
+
+WARP_MESS = [
+    "Dobra zwijam się do {desired_location}",
+    "Lecę już do {desired_location}",
+    "Zbieram manatki, kierunek {desired_location}",
+    "Zmieniam mapę na {desired_location}",
+    "Przenoszę się do {desired_location}",
+    "Czas na {desired_location}, nara",
+    "Idę ogarnąć {desired_location}",
+    "Kieruję się do {desired_location}",
+    "Skaczę teraz na {desired_location}",
+    "Teleport na {desired_location}",
+    "Spotykamy się w {desired_location}",
+    "Uciekam na {desired_location}",
+    "Czas sprawdzić {desired_location}",
+    "Znikam stąd, lecę {desired_location}",
+    "Przeprowadzka do {desired_location}",
+    "Szybki wypad do {desired_location}",
+    "Wracam na {desired_location}",
+    "Pora odwiedzić {desired_location}",
+    "Przerzucam się na {desired_location}",
+    "Idę farmić w {desired_location}",
+    "Ląduję zaraz w {desired_location}",
+]
+
+
+def generate_warp_message(desired_location: int):
+    return random.choice(WARP_MESS).format(desired_location=desired_location)[:50]
