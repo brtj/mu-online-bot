@@ -1,6 +1,6 @@
 {
   "players": {},
-  "_ts": 1770591980.4903514,
+  "_ts": 1770799175.415838,
   "paused": true,
   "send_message_via_ui": {
     "message": "~mialem rr teraz atlans",
@@ -9,48 +9,48 @@
   },
   "inventory_interval": 10,
   "main_player_data": {
-    "time": "00:06:20",
+    "time": "09:39:35",
     "player": "AleElfisko",
     "player_in_party": "to do 2",
-    "level": 156,
-    "exp_per_minute": "83082600",
-    "reset": 155,
+    "level": 1,
+    "exp_per_minute": 0,
+    "reset": 174,
     "rect": {
-      "bottom": 643,
+      "bottom": 642,
       "height": 639,
-      "left": -3,
-      "right": 813,
-      "top": 4,
+      "left": -4,
+      "right": 812,
+      "top": 3,
       "width": 816
     },
-    "location_name": "Atlans",
-    "location_coord_x": 182,
-    "location_coord_y": 91,
+    "location_name": "Noria",
+    "location_coord_x": 173,
+    "location_coord_y": 114,
     "mouse_position": {
       "ok": true,
-      "x": 1381,
-      "y": 214
+      "x": 1282,
+      "y": 440
     },
     "mouse_relative_pos": {
       "cursor": {
-        "x": 1381,
-        "y": 214
+        "x": 1282,
+        "y": 440
       },
       "inside": false,
       "ok": true,
       "window": {
-        "bottom": 643,
-        "left": -3,
-        "right": 813,
-        "top": 4
+        "bottom": 642,
+        "left": -4,
+        "right": 812,
+        "top": 3
       },
-      "x": 1384,
-      "y": 210
+      "x": 1286,
+      "y": 437
     },
-    "helper_status": "Running",
-    "health": 94253,
+    "helper_status": "Not running",
+    "health": 94075,
     "connected": true,
-    "zen_ammount": 1052503107,
+    "zen_ammount": 1122156667,
     "map_level_limits": {
       "Lorencia": {
         "min": 1,
@@ -90,14 +90,14 @@
     },
     "map_spots": {
       "aida_map_spots": {
-        "id": "aida2_orc2",
-        "loc_x": 57,
-        "loc_y": 160,
+        "id": "aida2_drider1",
+        "loc_x": 22,
+        "loc_y": 147,
         "map": "Aida",
-        "moobs": "Bloody Orc 114 lvl",
+        "moobs": "Bloody Death Rider 115 lvl",
         "tolerance": 9,
-        "x": 269,
-        "y": 239
+        "x": 196,
+        "y": 267
       },
       "atlans_map_spots": {
         "id": "aa5",
@@ -130,59 +130,63 @@
         "y": 161
       }
     },
-    "stats_added": true,
+    "stats_added": false,
     "is_it_speedrun": false,
     "run_speedrun": false,
     "reset_history": [
       {
         "date": "2026-02-09",
         "reset": 155
+      },
+      {
+        "date": "2026-02-11",
+        "reset": 170
       }
     ]
   },
   "snapshot": {
-    "ts": 1770591980.4902923,
+    "ts": 1770799170.7363803,
     "state": {
-      "time": "00:06:20",
+      "time": "09:39:30",
       "player": "AleElfisko",
       "player_in_party": "to do 2",
-      "level": 156,
-      "exp_per_minute": "83082600",
-      "reset": 155,
+      "level": 1,
+      "exp_per_minute": 0,
+      "reset": 174,
       "rect": {
-        "bottom": 643,
+        "bottom": 642,
         "height": 639,
-        "left": -3,
-        "right": 813,
-        "top": 4,
+        "left": -4,
+        "right": 812,
+        "top": 3,
         "width": 816
       },
-      "location_name": "Atlans",
-      "location_coord_x": 182,
-      "location_coord_y": 91,
+      "location_name": "Noria",
+      "location_coord_x": 173,
+      "location_coord_y": 114,
       "mouse_position": {
         "ok": true,
-        "x": 1381,
-        "y": 214
+        "x": 1246,
+        "y": 511
       },
       "mouse_relative_pos": {
         "cursor": {
-          "x": 1381,
-          "y": 214
+          "x": 1246,
+          "y": 511
         },
         "inside": false,
         "ok": true,
         "window": {
-          "bottom": 643,
-          "left": -3,
-          "right": 813,
-          "top": 4
+          "bottom": 642,
+          "left": -4,
+          "right": 812,
+          "top": 3
         },
-        "x": 1384,
-        "y": 210
+        "x": 1250,
+        "y": 508
       },
-      "helper_status": "Running",
-      "health": 94253,
+      "helper_status": "Not running",
+      "health": 94075,
       "connected": true
     }
   }
