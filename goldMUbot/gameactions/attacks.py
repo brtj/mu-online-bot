@@ -60,8 +60,8 @@ def round_attack(player_info, deltas, step_delay=0.005, pause_range=(0.1, 0.4), 
         press_key(payload=press_key_payload)
         time.sleep(0.3)
 
-    spot_message = generate_spot_message(level_max)
-    send_message(f"{spot_message}", player_info=player_info)
+    # spot_message = generate_spot_message(level_max)
+    # send_message(f"{spot_message}", player_info=player_info)
 
     delta360 = [(400, 100), (250, 300), (580, 300), (400, 400)]
     payload_click360 = {"button": "right", "action": "click", "hold_time": 1}
