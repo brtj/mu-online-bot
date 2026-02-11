@@ -14,7 +14,7 @@ def elf_reset(player_info="", reset_count=0):
   activate_window(player_info=player_info)
   logger.info("reset done")
   reset_message = generate_reset_message(reset_count)
-  send_message(player_info=player_info, text=f"/post {reset_message}")
+  # send_message(player_info=player_info, text=f"/post {reset_message}")
   send_message(player_info=player_info, text="/reset")
   time.sleep(4) #sleep to change map
 

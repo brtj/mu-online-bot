@@ -15,7 +15,7 @@ def warp_to(player_info, desired_location, actual_location, actual_location_coor
     activate_window(player_info=player_info);time.sleep(0.2)
     logger.info(f"warping from {actual_location} to {desired_location}")
     warp_message = generate_warp_message(desired_location)
-    send_message(warp_message, player_info=player_info)
+    # send_message(warp_message, player_info=player_info)
     send_message(f"/warp {desired_location}", player_info=player_info)
     wait_for_location_name_change(player_info, actual_location, actual_location_coord_x, timeout=timeout)
     time.sleep(sleept)
