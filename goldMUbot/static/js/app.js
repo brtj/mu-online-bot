@@ -455,6 +455,10 @@ async function wireActions() {
   const previewBtn = document.getElementById('btnRefreshScreen');
   const previewImg = document.getElementById('screenPreview');
   const previewStatus = document.getElementById('screenPreviewStatus');
+  const timeoutInput = document.getElementById('pauseTimeoutInput');
+  const timeoutBtn = document.getElementById('btnSavePauseTimeout');
+  const timeoutStatus = document.getElementById('pauseTimeoutStatus');
+  const timeoutSummary = document.getElementById('pauseTimeoutSummary');
   if (!btn || !label) return;
   let current = null;
 
@@ -470,6 +474,36 @@ async function wireActions() {
       btn.textContent = current ? 'START' : 'PAUSE';
     } catch (e) {
       console.error('refreshPause failed', e);
+    }
+  }
+
+  function renderPauseTimeoutState(data) {
+    if (!timeoutInput && !timeoutSummary && !timeoutStatus) return;
+    const minutesValue = Number(data?.minutes ?? 0);
+    const minutes = Number.isFinite(minutesValue) ? minutesValue : 0;
+    const enabled = data?.enabled === true && minutes > 0;
+    if (timeoutInput && Number.isFinite(minutesValue)) timeoutInput.value = minutes;
+    if (timeoutSummary) {
+      timeoutSummary.textContent = enabled ? `Auto-resume after ${minutes} min` : 'Auto-resume disabled';
+      timeoutSummary.classList.remove('bg-secondary','bg-success');
+      timeoutSummary.classList.add(enabled ? 'bg-success' : 'bg-secondary');
+    }
+    if (timeoutStatus) {
+      timeoutStatus.textContent = enabled
+        ? `Pauses longer than ${minutes} minute(s) auto-resume.`
+        : 'Auto-resume disabled. Set minutes > 0 to enable.';
+    }
+  }
+
+  async function refreshPauseTimeout() {
+    if (!timeoutInput && !timeoutSummary && !timeoutStatus) return;
+    try {
+      const res = await fetch('/api/pause-timeout', { cache: 'no-store' });
+      if (!res.ok) throw new Error('request failed');
+      const data = await res.json();
+      renderPauseTimeoutState(data);
+    } catch (err) {
+      if (timeoutStatus) timeoutStatus.textContent = `Error: ${err.message}`;
     }
   }
 
@@ -506,6 +540,36 @@ async function wireActions() {
         // Optionally show a success message
       } catch (e) {
         console.error('Send message error', e);
+      }
+    });
+  }
+
+  if (timeoutBtn && timeoutInput) {
+    timeoutBtn.addEventListener('click', async () => {
+      const raw = String(timeoutInput.value ?? '').trim();
+      const parsed = raw === '' ? 0 : Number(raw);
+      if (!Number.isFinite(parsed) || parsed < 0) {
+        if (timeoutStatus) timeoutStatus.textContent = 'Enter a value greater or equal to 0.';
+        return;
+      }
+      const previousLabel = timeoutBtn.textContent;
+      timeoutBtn.disabled = true;
+      timeoutBtn.textContent = 'Saving...';
+      try {
+        const res = await fetch('/api/pause-timeout', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ minutes: parsed })
+        });
+        if (!res.ok) throw new Error('Save failed');
+        const data = await res.json();
+        renderPauseTimeoutState(data);
+        if (timeoutStatus) timeoutStatus.textContent = data.enabled ? 'Saved. Auto-resume enabled.' : 'Saved. Auto-resume disabled.';
+      } catch (error) {
+        if (timeoutStatus) timeoutStatus.textContent = `Error: ${error.message}`;
+      } finally {
+        timeoutBtn.disabled = false;
+        timeoutBtn.textContent = previousLabel;
       }
     });
   }

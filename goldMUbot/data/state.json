@@ -1,6 +1,6 @@
 {
   "players": {},
-  "_ts": 1770799175.415838,
+  "_ts": 1770825423.395006,
   "paused": true,
   "send_message_via_ui": {
     "message": "~mialem rr teraz atlans",
@@ -9,12 +9,12 @@
   },
   "inventory_interval": 10,
   "main_player_data": {
-    "time": "09:39:35",
+    "time": "16:57:03",
     "player": "AleElfisko",
     "player_in_party": "to do 2",
-    "level": 1,
-    "exp_per_minute": 0,
-    "reset": 174,
+    "level": 386,
+    "exp_per_minute": "29236400",
+    "reset": 176,
     "rect": {
       "bottom": 642,
       "height": 639,
@@ -23,20 +23,20 @@
       "top": 3,
       "width": 816
     },
-    "location_name": "Noria",
-    "location_coord_x": 173,
-    "location_coord_y": 114,
+    "location_name": "Aida",
+    "location_coord_x": 22,
+    "location_coord_y": 145,
     "mouse_position": {
       "ok": true,
-      "x": 1282,
-      "y": 440
+      "x": 5,
+      "y": 210
     },
     "mouse_relative_pos": {
       "cursor": {
-        "x": 1282,
-        "y": 440
+        "x": 5,
+        "y": 210
       },
-      "inside": false,
+      "inside": true,
       "ok": true,
       "window": {
         "bottom": 642,
@@ -44,11 +44,11 @@
         "right": 812,
         "top": 3
       },
-      "x": 1286,
-      "y": 437
+      "x": 9,
+      "y": 207
     },
-    "helper_status": "Not running",
-    "health": 94075,
+    "helper_status": "Running",
+    "health": 103423,
     "connected": true,
     "zen_ammount": 1122156667,
     "map_level_limits": {
@@ -145,14 +145,14 @@
     ]
   },
   "snapshot": {
-    "ts": 1770799170.7363803,
+    "ts": 1770825423.3949482,
     "state": {
-      "time": "09:39:30",
+      "time": "16:57:03",
       "player": "AleElfisko",
       "player_in_party": "to do 2",
-      "level": 1,
-      "exp_per_minute": 0,
-      "reset": 174,
+      "level": 386,
+      "exp_per_minute": "29236400",
+      "reset": 176,
       "rect": {
         "bottom": 642,
         "height": 639,
@@ -161,20 +161,20 @@
         "top": 3,
         "width": 816
       },
-      "location_name": "Noria",
-      "location_coord_x": 173,
-      "location_coord_y": 114,
+      "location_name": "Aida",
+      "location_coord_x": 22,
+      "location_coord_y": 145,
       "mouse_position": {
         "ok": true,
-        "x": 1246,
-        "y": 511
+        "x": 5,
+        "y": 210
       },
       "mouse_relative_pos": {
         "cursor": {
-          "x": 1246,
-          "y": 511
+          "x": 5,
+          "y": 210
         },
-        "inside": false,
+        "inside": true,
         "ok": true,
         "window": {
           "bottom": 642,
@@ -182,12 +182,13 @@
           "right": 812,
           "top": 3
         },
-        "x": 1250,
-        "y": 508
+        "x": 9,
+        "y": 207
       },
-      "helper_status": "Not running",
-      "health": 94075,
+      "helper_status": "Running",
+      "health": 103423,
       "connected": true
     }
-  }
+  },
+  "pause_auto_resume_minutes": 15.0
 }

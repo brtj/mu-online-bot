@@ -1,6 +1,6 @@
 {
   "players": {},
-  "_ts": 1770591982.4738576,
+  "_ts": 1770825423.4629111,
   "paused": false,
   "send_message_via_ui": {
     "message": "~mialem rr teraz atlans",
@@ -9,89 +9,89 @@
   },
   "inventory_interval": 10,
   "snapshot": {
-    "ts": 1770591977.8792644,
+    "ts": 1770825423.462859,
     "state": {
-      "time": "00:06:17",
+      "time": "16:57:03",
       "player": "AleToBot",
       "player_in_party": "to do 2",
-      "level": 52,
-      "exp_per_minute": 0,
-      "reset": 2,
+      "level": 379,
+      "exp_per_minute": "30369600",
+      "reset": 22,
       "rect": {
-        "bottom": 642,
+        "bottom": 644,
         "height": 639,
-        "left": 801,
-        "right": 1617,
-        "top": 3,
+        "left": 798,
+        "right": 1614,
+        "top": 5,
         "width": 816
       },
-      "location_name": "Devias",
-      "location_coord_x": 5,
-      "location_coord_y": 179,
+      "location_name": "Aida",
+      "location_coord_x": 23,
+      "location_coord_y": 144,
       "mouse_position": {
         "ok": true,
-        "x": 1380,
-        "y": 303
+        "x": 5,
+        "y": 210
       },
       "mouse_relative_pos": {
         "cursor": {
-          "x": 1380,
-          "y": 303
+          "x": 5,
+          "y": 210
         },
-        "inside": true,
+        "inside": false,
         "ok": true,
         "window": {
-          "bottom": 642,
-          "left": 801,
-          "right": 1617,
-          "top": 3
+          "bottom": 644,
+          "left": 798,
+          "right": 1614,
+          "top": 5
         },
-        "x": 579,
-        "y": 300
+        "x": -793,
+        "y": 205
       },
-      "helper_status": "Not running",
-      "health": 903,
+      "helper_status": "Running",
+      "health": 16564,
       "connected": true
     }
   },
   "second_player_data": {
-    "time": "00:06:22",
+    "time": "16:57:03",
     "player": "AleToBot",
     "player_in_party": "to do 2",
-    "level": 52,
-    "exp_per_minute": 0,
-    "reset": 2,
+    "level": 379,
+    "exp_per_minute": "30369600",
+    "reset": 22,
     "rect": {
-      "bottom": 642,
+      "bottom": 644,
       "height": 639,
-      "left": 801,
-      "right": 1617,
-      "top": 3,
+      "left": 798,
+      "right": 1614,
+      "top": 5,
       "width": 816
     },
-    "location_name": "Devias",
-    "location_coord_x": 5,
-    "location_coord_y": 179,
+    "location_name": "Aida",
+    "location_coord_x": 23,
+    "location_coord_y": 144,
     "mouse_position": {
       "ok": true,
-      "x": 1381,
-      "y": 214
+      "x": 5,
+      "y": 210
     },
     "mouse_relative_pos": {
       "cursor": {
-        "x": 1381,
-        "y": 214
+        "x": 5,
+        "y": 210
       },
-      "inside": true,
+      "inside": false,
       "ok": true,
       "window": {
-        "bottom": 642,
-        "left": 801,
-        "right": 1617,
-        "top": 3
+        "bottom": 644,
+        "left": 798,
+        "right": 1614,
+        "top": 5
       },
-      "x": 580,
-      "y": 211
+      "x": -793,
+      "y": 205
     },
     "map_level_limits": {
       "Lorencia": {
@@ -172,8 +172,8 @@
         "y": 161
       }
     },
-    "helper_status": "Not running",
-    "health": 901,
+    "helper_status": "Running",
+    "health": 16564,
     "connected": true,
     "stats_added": true
   }

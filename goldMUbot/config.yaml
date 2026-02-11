@@ -48,4 +48,4 @@ secondaccount:
 
 type_game: two_players_in_party # solo, two_players_in_party, two_players_in_party_follower
 
-pause_auto_resume_minutes: 45
+pause_auto_resume_minutes: 30
