@@ -78,6 +78,11 @@ def second_player_loop():
             aida_min = int(aida_cfg.get("min") or 0)
             aida_max = int(aida_cfg.get("max") or 0)
 
+            karutan2_cfg = map_level_limits.get("Karutan2") or {}
+            karutan2_enabled = ("enabled" in karutan2_cfg) and bool(karutan2_cfg.get("enabled"))
+            karutan2_min = int(karutan2_cfg.get("min") or 0)
+            karutan2_max = int(karutan2_cfg.get("max") or 0)
+
             lacleon_cfg = map_level_limits.get("LaCleon") or {}
             lacleon_enabled = ("enabled" in lacleon_cfg) and bool(lacleon_cfg.get("enabled"))
             lacleon_min = int(lacleon_cfg.get("min") or 0)
@@ -266,49 +271,114 @@ def second_player_loop():
                 send_message=False
             )
 
-            player_level = main_player_data.get("level", 0)
-            player_location_name = main_player_data.get("location_name", "not_available")
-            logger.info("Main player level: %s, location: %s", player_level, player_location_name)
-            if player_level >= 210 and player_location_name == "Aida" and second_player_level >= 210:
+            # icarus2 -----------------------------------------
+            icarus2_spot = (main_player_data.get("map_spots") or {}).get("icarus2_map_spots")
+            generic_attack_on_spot(
+                map_enabled=icarus2_enabled, 
+                map_name="Icarus", # map_name
+                map_max=icarus2_max, # lvl_max
+                map_min=icarus2_min, # lvl_min
+                player_name=second_player_name,
+                player_level=second_player_level,
+                player_location_name=second_player_location_name,
+                player_location_x=second_player_location_x,
+                warp_to_location="Icarus2", #warp string (ex atlans2, aida2 etc)
+                map_spot=icarus2_spot, # map_spot data
+                send_message=False
+            )
 
-                player_spot = (main_player_data.get("map_spots") or {}).get("aida_map_spots")
-                aida_min = 210
-                aida_max = 400
-                click_on_helper("AleElfisko")
-                generic_attack_on_spot(
-                    map_enabled=True, 
-                    map_name="Aida", # map_name
-                    map_max=aida_max, # lvl_max
-                    map_min=aida_min, # lvl_min
-                    player_name=second_player_name,
-                    player_level=second_player_level,
-                    player_location_name=second_player_location_name,
-                    player_location_x=second_player_location_x,
-                    warp_to_location="aida2", 
-                    map_spot=player_spot,
-                    send_message=False
-                )
-            else:
-                logger.info("Im going to Atlans2 safe spot to wait for main player to reach requirements for Aida")
-                #atlans2 as a workaround safe spot while waiting for main player to reach requirements for Aida
-                atlans_spot = (second_player_data.get("map_spots") or {}).get("atlans_map_spots")
-                logger.info(atlans_spot)
-                atlans_min = 120
-                atlans_max = 400
+            # aida2 -----------------------------------------
+            aida_spot = (main_player_data.get("map_spots") or {}).get("aida_map_spots")
+            generic_attack_on_spot(
+                map_enabled=aida_enabled, 
+                map_name="Aida", # map_name
+                map_max=aida_max, # lvl_max
+                map_min=aida_min, # lvl_min
+                player_name=second_player_name,
+                player_level=second_player_level,
+                player_location_name=second_player_location_name,
+                player_location_x=second_player_location_x,
+                warp_to_location="Aida2", #warp string (ex atlans2, aida2 etc)
+                map_spot=aida_spot, # map_spot data
+                send_message=False
+            )
 
-                generic_attack_on_spot(
-                    map_enabled=atlans_enabled, 
-                    map_name="Atlans", # map_name
-                    map_max=atlans_max, # lvl_max
-                    map_min=atlans_min, # lvl_min
-                    player_name=second_player_name,
-                    player_level=second_player_level,
-                    player_location_name=second_player_location_name,
-                    player_location_x=second_player_location_x,
-                    warp_to_location="atlans2", #warp string (ex atlans2, aida2 etc)
-                    map_spot=atlans_spot,
-                    send_message=False
-                )
+            # karutan2 -----------------------------------------
+            karutan2_spot = (main_player_data.get("map_spots") or {}).get("karutan2_map_spots")
+            generic_attack_on_spot(
+                map_enabled=karutan2_enabled, 
+                map_name="Karutan", # map_name
+                map_max=karutan2_max, # lvl_max
+                map_min=karutan2_min, # lvl_min
+                player_name=second_player_name,
+                player_level=second_player_level,
+                player_location_name=second_player_location_name,
+                player_location_x=second_player_location_x,
+                warp_to_location="karutan2", #warp string (ex atlans2, aida2 etc)
+                map_spot=karutan2_spot, # map_spot data
+                send_message=False
+            )
+
+
+            # raklion ------------------------------------------
+            lacleon_spot = (main_player_data.get("map_spots") or {}).get("lacleon_map_spots")
+            generic_attack_on_spot(
+                map_enabled=lacleon_enabled, 
+                map_name="LaCleon", # map_name
+                map_max=lacleon_max, # lvl_max
+                map_min=lacleon_min, # lvl_min
+                player_name=second_player_name,
+                player_level=second_player_level,
+                player_location_name=second_player_location_name,
+                player_location_x=second_player_location_x,
+                warp_to_location="raklion", #warp string (ex atlans2, aida2 etc)
+                map_spot=lacleon_spot, # map_spot data
+                send_message=False
+            )
+
+            # player_level = main_player_data.get("level", 0)
+            # player_location_name = main_player_data.get("location_name", "not_available")
+            # logger.info("Main player level: %s, location: %s", player_level, player_location_name)
+            # if player_level >= 210 and player_location_name == "Aida" and second_player_level >= 210:
+
+            #     player_spot = (main_player_data.get("map_spots") or {}).get("aida_map_spots")
+            #     aida_min = 210
+            #     aida_max = 400
+            #     click_on_helper("AleElfisko")
+            #     generic_attack_on_spot(
+            #         map_enabled=True, 
+            #         map_name="Aida", # map_name
+            #         map_max=aida_max, # lvl_max
+            #         map_min=aida_min, # lvl_min
+            #         player_name=second_player_name,
+            #         player_level=second_player_level,
+            #         player_location_name=second_player_location_name,
+            #         player_location_x=second_player_location_x,
+            #         warp_to_location="aida2", 
+            #         map_spot=player_spot,
+            #         send_message=False
+            #     )
+            # else:
+            #     logger.info("Im going to Atlans2 safe spot to wait for main player to reach requirements for Aida")
+            #     #atlans2 as a workaround safe spot while waiting for main player to reach requirements for Aida
+            #     atlans_spot = (second_player_data.get("map_spots") or {}).get("atlans_map_spots")
+            #     logger.info(atlans_spot)
+            #     atlans_min = 120
+            #     atlans_max = 400
+
+            #     generic_attack_on_spot(
+            #         map_enabled=atlans_enabled, 
+            #         map_name="Atlans", # map_name
+            #         map_max=atlans_max, # lvl_max
+            #         map_min=atlans_min, # lvl_min
+            #         player_name=second_player_name,
+            #         player_level=second_player_level,
+            #         player_location_name=second_player_location_name,
+            #         player_location_x=second_player_location_x,
+            #         warp_to_location="atlans2", #warp string (ex atlans2, aida2 etc)
+            #         map_spot=atlans_spot,
+            #         send_message=False
+            #     )
 
             # --- akcje wymagające izolacji od innych uruchamiane z UI ---
             send_message_via_ui(player_info=second_player_name)
