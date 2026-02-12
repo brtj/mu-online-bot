@@ -278,3 +278,83 @@ def attack_with_helper_on_spot(
             print_txt=print_txt,
             attack_after_reach=True,
         )
+
+
+def primary_attack_no_helper_till_80lvl(
+        primary_enabled, 
+        primary_map_name,
+        primary_min,
+        primary_max,
+        main_player_level,
+        main_player_name,
+        main_player_location_x,
+        main_player_location_y,
+        main_player_location_name,
+        devias_enabled,
+        devias_min,
+        devias_max,
+):
+
+    if primary_enabled and primary_max >= main_player_level >= primary_min:
+        logger.info(
+            "Exping on %s (min=%s max=%s)...",
+            primary_map_name,
+            primary_min,
+            primary_max,
+        )
+        delta = [(590, 200), (620, 250), (620, 365)]
+        attack_no_helper_on_spot(
+            player_info=main_player_name,
+            level_max=primary_max,
+            location_coord_x=main_player_location_x,
+            location_coord_y=main_player_location_y,
+            desired_coord_x=237,
+            desired_coord_y=152,
+            mouse_on_map_x=614,
+            mouse_on_map_y=257,
+            delta=delta,
+        )
+
+    if (
+        devias_enabled
+        and devias_max >= main_player_level >= devias_min
+        and (
+            main_player_location_name != "Devias"
+            or main_player_location_name == "not_available"
+        )
+    ):
+        warp_to(
+            player_info=main_player_name,
+            desired_location="Devias",
+            actual_location=main_player_location_name,
+            actual_location_coord_x=main_player_location_x,
+        )
+
+    devias_spot_manual = {
+        "id": "d1",
+        "loc_x": 5,
+        "loc_y": 179,
+        "map": "Devias",
+        "moobs": "Queen and Yeti lvl",
+        "tolerance": 9,
+        "x": 163,
+        "y": 200,
+    }
+    if (
+        devias_enabled
+        and devias_max >= main_player_level >= devias_min
+        and main_player_location_name == "Devias"
+    ):
+        logger.info("Exping on %s (min=%s max=%s)...", "Devias", devias_min, devias_max)
+        delta = [(580, 210), (580, 350), (580, 500)]
+        attack_no_helper_on_spot(
+            player_info=main_player_name,
+            level_max=devias_max,
+            location_coord_x=main_player_location_x,
+            location_coord_y=main_player_location_y,
+            desired_coord_x=5,
+            desired_coord_y=179,
+            mouse_on_map_x=163,
+            mouse_on_map_y=200,
+            delta=delta,
+        )
