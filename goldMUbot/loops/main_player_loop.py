@@ -60,8 +60,8 @@ def main_player_loop(state):
 
     atlans_cfg = map_level_limits.get("Atlans") or {}
     atlans_enabled = ("enabled" in atlans_cfg) and bool(atlans_cfg.get("enabled"))
-    atlans_min = int(atlans_cfg.get("min") or 0)
-    atlans_max = int(atlans_cfg.get("max") or 0)
+    atlans2_min = int(atlans_cfg.get("min") or 0)
+    atlans2_max = int(atlans_cfg.get("max") or 0)
 
     icarus2_cfg = map_level_limits.get("Icarus2") or {}
     icarus2_enabled = ("enabled" in icarus2_cfg) and bool(icarus2_cfg.get("enabled"))
@@ -197,7 +197,7 @@ def main_player_loop(state):
             primary_min,
             primary_max,
         )
-        delta = [(620, 250), (620, 365)]
+        delta = [(590, 200), (620, 250), (620, 365)]
         attack_no_helper_on_spot(
             player_info=main_player_name,
             level_max=primary_max,
@@ -241,7 +241,7 @@ def main_player_loop(state):
         and main_player_location_name == "Devias"
     ):
         logger.info("Exping on %s (min=%s max=%s)...", "Devias", devias_min, devias_max)
-        delta = [(580, 210), (580, 400), (580, 500)]
+        delta = [(580, 210), (580, 350), (580, 500)]
         attack_no_helper_on_spot(
             player_info=main_player_name,
             level_max=devias_max,
@@ -278,47 +278,23 @@ def main_player_loop(state):
         map_spot=atlans_spot_manual,  # map_spot data
         send_message=False,
     )
+    # atlans1 ends ------------------------------------
 
     # atlans2 -----------------------------------------
-    atlans_spot = (main_player_data.get("map_spots") or {}).get("atlans_map_spots")
-    atlans_min = 120  # hardcoded lvl_min due to teleport case
-    if (
-        atlans_enabled
-        and atlans_max >= main_player_level >= atlans_min
-        and (
-            main_player_location_name == "Atlans"
-            or main_player_location_name == "not_available"
-        )
-    ):
-        desired_coord_x = atlans_spot.get("loc_x", 0)
-        desired_coord_y = atlans_spot.get("loc_y", 0)
-        logger.info(desired_coord_x)
-        logger.info(desired_coord_y)
-        if not is_at_position(
-            main_player_location_x,
-            main_player_location_y,
-            desired_coord_x,
-            desired_coord_y,
-            tol=20,
-        ):
-            warp_to(
-                player_info=main_player_name,
-                desired_location="Atlans2",
-                actual_location=main_player_location_name,
-                actual_location_coord_x=main_player_location_x,
-            )
+    atlans2_spot = (main_player_data.get("map_spots") or {}).get("atlans_map_spots")
+    atlans2_min = 120  # hardcoded lvl_min due to teleport case
 
     generic_attack_on_spot(
         map_enabled=atlans_enabled,
         map_name="Atlans",  # map_name
-        map_max=atlans_max,  # lvl_max
-        map_min=atlans_min,  # lvl_min due to teleport case
+        map_max=atlans2_max,  # lvl_max
+        map_min=atlans2_min,  # lvl_min due to teleport case
         player_name=main_player_name,
         player_level=main_player_level,
         player_location_name=main_player_location_name,
         player_location_x=main_player_location_x,
         warp_to_location="atlans2",  # warp string (ex atlans2, aida2 etc)
-        map_spot=atlans_spot,
+        map_spot=atlans2_spot,
         send_message=False,
     )
     # atlans2 ends ------------------------------------

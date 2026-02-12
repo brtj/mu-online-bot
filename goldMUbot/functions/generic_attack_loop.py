@@ -1,4 +1,4 @@
-import logging
+import logging, time
 from functions.state_singleton import STATE, STATE_SECOND_PLAYER
 from gameactions.attacks import attack_with_helper_on_spot
 from gameactions.warp_to import warp_to
@@ -47,7 +47,7 @@ def generic_attack_on_spot(
                 desired_location=warp_to_location,
                 actual_location=player_location_name,
                 actual_location_coord_x=player_location_x,
-            )
+            );time.sleep(3)
 
     if player_name == "AleElfisko":
         state = STATE.get_all()
