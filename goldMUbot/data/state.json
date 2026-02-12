@@ -1,6 +1,6 @@
 {
   "players": {},
-  "_ts": 1770909186.1995244,
+  "_ts": 1770909332.613229,
   "paused": false,
   "send_message_via_ui": {
     "message": "~mialem rr teraz atlans",
@@ -9,11 +9,11 @@
   },
   "inventory_interval": 10,
   "main_player_data": {
-    "time": "16:13:06",
+    "time": "16:15:32",
     "player": "AleElfisko",
     "player_in_party": "to do 2",
-    "level": 373,
-    "exp_per_minute": "32312200",
+    "level": 375,
+    "exp_per_minute": "31300200",
     "reset": 185,
     "rect": {
       "bottom": 651,
@@ -24,8 +24,8 @@
       "width": 816
     },
     "location_name": "Karutan",
-    "location_coord_x": 220,
-    "location_coord_y": 59,
+    "location_coord_x": 218,
+    "location_coord_y": 60,
     "mouse_position": {
       "ok": true,
       "x": 654,
@@ -48,9 +48,9 @@
       "y": 602
     },
     "helper_status": "Running",
-    "health": 103366,
+    "health": 94424,
     "connected": true,
-    "zen_ammount": 1069377466,
+    "zen_ammount": 1069369986,
     "map_level_limits": {
       "Lorencia": {
         "min": 1,
@@ -160,13 +160,13 @@
     ]
   },
   "snapshot": {
-    "ts": 1770909177.8756332,
+    "ts": 1770909332.6131752,
     "state": {
-      "time": "16:12:57",
+      "time": "16:15:32",
       "player": "AleElfisko",
       "player_in_party": "to do 2",
-      "level": 373,
-      "exp_per_minute": "33237400",
+      "level": 375,
+      "exp_per_minute": "31300200",
       "reset": 185,
       "rect": {
         "bottom": 651,
@@ -201,7 +201,7 @@
         "y": 602
       },
       "helper_status": "Running",
-      "health": 103362,
+      "health": 94424,
       "connected": true
     }
   },

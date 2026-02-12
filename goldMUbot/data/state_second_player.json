@@ -1,6 +1,6 @@
 {
   "players": {},
-  "_ts": 1770909186.655329,
+  "_ts": 1770909332.648424,
   "paused": false,
   "send_message_via_ui": {
     "message": "~mialem rr teraz atlans",
@@ -9,13 +9,13 @@
   },
   "inventory_interval": 10,
   "snapshot": {
-    "ts": 1770909178.2599473,
+    "ts": 1770909332.6483727,
     "state": {
-      "time": "16:12:58",
+      "time": "16:15:32",
       "player": "AleToBot",
       "player_in_party": "to do 2",
-      "level": 358,
-      "exp_per_minute": "33080000",
+      "level": 360,
+      "exp_per_minute": "32015800",
       "reset": 31,
       "rect": {
         "bottom": 652,
@@ -50,16 +50,16 @@
         "y": 601
       },
       "helper_status": "Running",
-      "health": 16326,
+      "health": 15450,
       "connected": true
     }
   },
   "second_player_data": {
-    "time": "16:13:06",
+    "time": "16:15:32",
     "player": "AleToBot",
     "player_in_party": "to do 2",
-    "level": 358,
-    "exp_per_minute": "32124000",
+    "level": 360,
+    "exp_per_minute": "32015800",
     "reset": 31,
     "rect": {
       "bottom": 652,
@@ -70,7 +70,7 @@
       "width": 816
     },
     "location_name": "Karutan",
-    "location_coord_x": 221,
+    "location_coord_x": 220,
     "location_coord_y": 59,
     "mouse_position": {
       "ok": true,
@@ -188,7 +188,7 @@
       }
     },
     "helper_status": "Running",
-    "health": 16686,
+    "health": 15450,
     "connected": true,
     "stats_added": true,
     "is_it_speedrun": false,

@@ -350,9 +350,6 @@ def main_player_loop(state):
         second_player_data = STATE_SECOND_PLAYER.get("second_player_data") or {}
         second_player_level = int(second_player_data.get("level") or 0)
         if aida_max > second_player_level > aida_min:
-            logger.info(
-                "Staying on Aida2 spot... waiting for second player to reach level..."
-            )
             generic_attack_on_spot(
                 map_enabled=aida_enabled,
                 map_name="Aida",  # map_name
@@ -387,9 +384,6 @@ def main_player_loop(state):
         second_player_data = STATE_SECOND_PLAYER.get("second_player_data") or {}
         second_player_level = int(second_player_data.get("level") or 0)
         if karutan2_max > second_player_level > karutan2_min:
-            logger.info(
-                "Staying on Karutan2 spot... waiting for second player to reach level..."
-            )
             generic_attack_on_spot(
                 map_enabled=karutan2_enabled,
                 map_name="Karutan",  # map_name
