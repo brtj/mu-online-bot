@@ -1,6 +1,6 @@
 {
   "players": {},
-  "_ts": 1770907519.9259152,
+  "_ts": 1770909186.1995244,
   "paused": false,
   "send_message_via_ui": {
     "message": "~mialem rr teraz atlans",
@@ -9,11 +9,11 @@
   },
   "inventory_interval": 10,
   "main_player_data": {
-    "time": "15:45:19",
+    "time": "16:13:06",
     "player": "AleElfisko",
     "player_in_party": "to do 2",
-    "level": 352,
-    "exp_per_minute": 0,
+    "level": 373,
+    "exp_per_minute": "32312200",
     "reset": 185,
     "rect": {
       "bottom": 651,
@@ -23,18 +23,18 @@
       "top": 12,
       "width": 816
     },
-    "location_name": "Aida",
-    "location_coord_x": 150,
-    "location_coord_y": 119,
+    "location_name": "Karutan",
+    "location_coord_x": 220,
+    "location_coord_y": 59,
     "mouse_position": {
       "ok": true,
-      "x": 201,
-      "y": 280
+      "x": 654,
+      "y": 614
     },
     "mouse_relative_pos": {
       "cursor": {
-        "x": 201,
-        "y": 280
+        "x": 654,
+        "y": 614
       },
       "inside": true,
       "ok": true,
@@ -44,13 +44,13 @@
         "right": 821,
         "top": 12
       },
-      "x": 196,
-      "y": 268
+      "x": 649,
+      "y": 602
     },
-    "helper_status": "Not running",
-    "health": 94397,
+    "helper_status": "Running",
+    "health": 103366,
     "connected": true,
-    "zen_ammount": 1123187387,
+    "zen_ammount": 1069377466,
     "map_level_limits": {
       "Lorencia": {
         "min": 1,
@@ -133,6 +133,16 @@
         "tolerance": 5,
         "x": 334,
         "y": 161
+      },
+      "karutan2_map_spots": {
+        "id": "karutan2_k3",
+        "loc_x": 218,
+        "loc_y": 59,
+        "map": "Karutan2",
+        "moobs": "Narcondra 120 lvl",
+        "tolerance": 7,
+        "x": 596,
+        "y": 444
       }
     },
     "stats_added": true,
@@ -150,13 +160,13 @@
     ]
   },
   "snapshot": {
-    "ts": 1770907510.8098452,
+    "ts": 1770909177.8756332,
     "state": {
-      "time": "15:45:10",
+      "time": "16:12:57",
       "player": "AleElfisko",
       "player_in_party": "to do 2",
-      "level": 352,
-      "exp_per_minute": 0,
+      "level": 373,
+      "exp_per_minute": "33237400",
       "reset": 185,
       "rect": {
         "bottom": 651,
@@ -166,18 +176,18 @@
         "top": 12,
         "width": 816
       },
-      "location_name": "Aida",
-      "location_coord_x": 163,
-      "location_coord_y": 150,
+      "location_name": "Karutan",
+      "location_coord_x": 218,
+      "location_coord_y": 60,
       "mouse_position": {
         "ok": true,
-        "x": 201,
-        "y": 280
+        "x": 654,
+        "y": 614
       },
       "mouse_relative_pos": {
         "cursor": {
-          "x": 201,
-          "y": 280
+          "x": 654,
+          "y": 614
         },
         "inside": true,
         "ok": true,
@@ -187,11 +197,11 @@
           "right": 821,
           "top": 12
         },
-        "x": 196,
-        "y": 268
+        "x": 649,
+        "y": 602
       },
-      "helper_status": "Not running",
-      "health": 94397,
+      "helper_status": "Running",
+      "health": 103362,
       "connected": true
     }
   },

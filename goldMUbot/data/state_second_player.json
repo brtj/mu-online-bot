@@ -1,6 +1,6 @@
 {
   "players": {},
-  "_ts": 1770907519.8690655,
+  "_ts": 1770909186.655329,
   "paused": false,
   "send_message_via_ui": {
     "message": "~mialem rr teraz atlans",
@@ -9,13 +9,13 @@
   },
   "inventory_interval": 10,
   "snapshot": {
-    "ts": 1770907510.7594965,
+    "ts": 1770909178.2599473,
     "state": {
-      "time": "15:45:10",
+      "time": "16:12:58",
       "player": "AleToBot",
       "player_in_party": "to do 2",
-      "level": 328,
-      "exp_per_minute": 0,
+      "level": 358,
+      "exp_per_minute": "33080000",
       "reset": 31,
       "rect": {
         "bottom": 652,
@@ -26,17 +26,17 @@
         "width": 816
       },
       "location_name": "Karutan",
-      "location_coord_x": 126,
-      "location_coord_y": 124,
+      "location_coord_x": 220,
+      "location_coord_y": 59,
       "mouse_position": {
         "ok": true,
-        "x": 201,
-        "y": 280
+        "x": 654,
+        "y": 614
       },
       "mouse_relative_pos": {
         "cursor": {
-          "x": 201,
-          "y": 280
+          "x": 654,
+          "y": 614
         },
         "inside": false,
         "ok": true,
@@ -46,20 +46,20 @@
           "right": 1628,
           "top": 13
         },
-        "x": -611,
-        "y": 267
+        "x": -158,
+        "y": 601
       },
-      "helper_status": "Not running",
-      "health": 15080,
+      "helper_status": "Running",
+      "health": 16326,
       "connected": true
     }
   },
   "second_player_data": {
-    "time": "15:45:19",
+    "time": "16:13:06",
     "player": "AleToBot",
     "player_in_party": "to do 2",
-    "level": 328,
-    "exp_per_minute": 0,
+    "level": 358,
+    "exp_per_minute": "32124000",
     "reset": 31,
     "rect": {
       "bottom": 652,
@@ -70,17 +70,17 @@
       "width": 816
     },
     "location_name": "Karutan",
-    "location_coord_x": 126,
-    "location_coord_y": 124,
+    "location_coord_x": 221,
+    "location_coord_y": 59,
     "mouse_position": {
       "ok": true,
-      "x": 201,
-      "y": 280
+      "x": 654,
+      "y": 614
     },
     "mouse_relative_pos": {
       "cursor": {
-        "x": 201,
-        "y": 280
+        "x": 654,
+        "y": 614
       },
       "inside": false,
       "ok": true,
@@ -90,8 +90,8 @@
         "right": 1628,
         "top": 13
       },
-      "x": -611,
-      "y": 267
+      "x": -158,
+      "y": 601
     },
     "map_level_limits": {
       "Lorencia": {
@@ -187,8 +187,8 @@
         "y": 444
       }
     },
-    "helper_status": "Not running",
-    "health": 15080,
+    "helper_status": "Running",
+    "health": 16686,
     "connected": true,
     "stats_added": true,
     "is_it_speedrun": false,

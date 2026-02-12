@@ -8,6 +8,7 @@ CONFIG = config_loader.load_config()
 DEFAULT_PAUSE_TIMEOUT_MINUTES = CONFIG.get("pause_auto_resume_minutes", 5)
 PAUSE_TIMEOUT_STATE_KEY = "pause_auto_resume_minutes"
 
+
 def _as_float_minutes(value, allow_zero=True):
     if isinstance(value, (int, float)):
         minutes = float(value)
@@ -22,6 +23,7 @@ def _as_float_minutes(value, allow_zero=True):
         return None
     return minutes
 
+
 def _current_pause_timeout_minutes():
     stored = _as_float_minutes(STATE.get(PAUSE_TIMEOUT_STATE_KEY))
     if stored is not None:
@@ -31,6 +33,7 @@ def _current_pause_timeout_minutes():
         return fallback
     return 0.0
 
+
 @state_bp.get("/api/state")
 def api_state():
     snap = STATE.get_snapshot()
@@ -38,9 +41,11 @@ def api_state():
         snap = STATE.get("snapshot", {})
     return jsonify(snap or {})
 
+
 @state_bp.get("/api/main_player_data")
 def api_main_player_data():
     return jsonify(STATE.get("main_player_data", {}) or {})
+
 
 @state_bp.get("/api/pause")
 def api_pause_status():
@@ -49,6 +54,7 @@ def api_pause_status():
     """
     paused = STATE.get("paused", False)
     return jsonify({"paused": bool(paused)})
+
 
 @state_bp.post("/api/pause")
 def api_pause_set():
@@ -65,16 +71,20 @@ def api_pause_set():
 
     return jsonify({"paused": paused})
 
+
 @state_bp.get("/api/pause-timeout")
 def api_pause_timeout_get():
     minutes = round(_current_pause_timeout_minutes(), 2)
     enabled = minutes > 0
     seconds = minutes * 60 if enabled else 0
-    return jsonify({
-        "minutes": minutes,
-        "seconds": seconds,
-        "enabled": enabled,
-    })
+    return jsonify(
+        {
+            "minutes": minutes,
+            "seconds": seconds,
+            "enabled": enabled,
+        }
+    )
+
 
 @state_bp.post("/api/pause-timeout")
 def api_pause_timeout_set():
@@ -92,8 +102,10 @@ def api_pause_timeout_set():
 
     enabled = stored_value > 0
     seconds = stored_value * 60 if enabled else 0
-    return jsonify({
-        "minutes": stored_value,
-        "seconds": seconds,
-        "enabled": enabled,
-    })
+    return jsonify(
+        {
+            "minutes": stored_value,
+            "seconds": seconds,
+            "enabled": enabled,
+        }
+    )

@@ -2,7 +2,11 @@ from functions.host_api import activate_window, check_map_on
 from functions.requests_functions import post
 from functions.host_api import press_key
 from functions import config_loader
-from functions.location_checks import wait_until_at_position, get_location_state, is_at_position
+from functions.location_checks import (
+    wait_until_at_position,
+    get_location_state,
+    is_at_position,
+)
 from gameactions.helper_attack import click_on_helper, click_on_helper_to_turn_off
 
 from functions.helper_request import check_helper_state
@@ -18,19 +22,29 @@ CONFIG = config_loader.load_config()
 HOSTAPI = CONFIG["hostapi"]
 HOSTAPI_BASE_URL = f"http://{HOSTAPI['ip']}:{HOSTAPI['port']}"
 HOSTAPI_ENDPOINTS = {
-    name: f"{HOSTAPI_BASE_URL}{path}"
-    for name, path in HOSTAPI["endpoints"].items()
+    name: f"{HOSTAPI_BASE_URL}{path}" for name, path in HOSTAPI["endpoints"].items()
 }
 
 HIDAPI = CONFIG["hidapi"]
 HIDAPI_BASE_URL = f"http://{HIDAPI['ip']}:{HIDAPI['port']}"
 HIDAPI_ENDPOINTS = {
-    name: f"{HIDAPI_BASE_URL}{path}"
-    for name, path in HIDAPI["endpoints"].items()
+    name: f"{HIDAPI_BASE_URL}{path}" for name, path in HIDAPI["endpoints"].items()
 }
 
 
-def go_to_point_and_wait(mouse_x, mouse_y, target_loc_x, target_loc_y, print_txt="...", player_info="", tol=10, timeout=80, click_interval=3, poll_interval=2, attack_after_reach=False):
+def go_to_point_and_wait(
+    mouse_x,
+    mouse_y,
+    target_loc_x,
+    target_loc_y,
+    print_txt="...",
+    player_info="",
+    tol=10,
+    timeout=80,
+    click_interval=3,
+    poll_interval=2,
+    attack_after_reach=False,
+):
     logger.info(
         f"go_to_point → mouse=({mouse_x},{mouse_y}) "
         f"target_loc=({target_loc_x},{target_loc_y}) {print_txt}"
@@ -38,7 +52,7 @@ def go_to_point_and_wait(mouse_x, mouse_y, target_loc_x, target_loc_y, print_txt
 
     activate_window(player_info=player_info)
 
-    press_key_payload = {"keycode": 30, "press_time": 1} #press number 1
+    press_key_payload = {"keycode": 30, "press_time": 1}  # press number 1
     press_key(payload=press_key_payload)
 
     check_helper_status = check_helper_state(player_info=player_info)
@@ -50,7 +64,7 @@ def go_to_point_and_wait(mouse_x, mouse_y, target_loc_x, target_loc_y, print_txt
 
     if check_map_on(player_info=player_info) == "MAP OFF":
         logger.info("Map is OFF need to turn it ON")
-        press_key_payload = {"keycode": 43, "press_time": 1} #press tab
+        press_key_payload = {"keycode": 43, "press_time": 1}  # press tab
         press_key(payload=press_key_payload)
         time.sleep(0.3)
 
@@ -62,26 +76,28 @@ def go_to_point_and_wait(mouse_x, mouse_y, target_loc_x, target_loc_y, print_txt
 
         if check_map_on(player_info=player_info) == "MAP OFF":
             logger.info("Map is OFF need to turn it ON")
-            press_key_payload = {"keycode": 43, "press_time": 1} #press tab
+            press_key_payload = {"keycode": 43, "press_time": 1}  # press tab
             press_key(payload=press_key_payload)
             time.sleep(0.3)
 
         # 1️⃣ NAJAZD
-        post(HOSTAPI_ENDPOINTS["mouse_goto_xy_relative"], { 
-            "title": f"{player_info}",
-            "target_x": mouse_x,
-            "target_y": mouse_y,
-            "require_inside": False
-        })
+        post(
+            HOSTAPI_ENDPOINTS["mouse_goto_xy_relative"],
+            {
+                "title": f"{player_info}",
+                "target_x": mouse_x,
+                "target_y": mouse_y,
+                "require_inside": False,
+            },
+        )
 
         time.sleep(0.25)
 
         # 2️⃣ KLIK
-        post(HIDAPI_ENDPOINTS["mouse_click"], {
-            "button": "left",
-            "action": "click",
-            "hold_time": 0.30
-        })
+        post(
+            HIDAPI_ENDPOINTS["mouse_click"],
+            {"button": "left", "action": "click", "hold_time": 0.30},
+        )
 
         logger.info(f"go_to_point: click attempt #{attempt}")
 
@@ -101,6 +117,7 @@ def go_to_point_and_wait(mouse_x, mouse_y, target_loc_x, target_loc_y, print_txt
                 f"({target_loc_x},{target_loc_y}) after {attempt} clicks"
             )
             if attack_after_reach:
+                time.sleep(2.25)
                 click_on_helper(player_info=player_info)
             break
 
@@ -116,21 +133,18 @@ def go_to_point_and_wait(mouse_x, mouse_y, target_loc_x, target_loc_y, print_txt
 
     # MAP OFF
     if check_map_on(player_info=player_info) == "MAP ON":
-        press_key_payload = {"keycode": 43, "press_time": 1} #press tab
+        press_key_payload = {"keycode": 43, "press_time": 1}  # press tab
         press_key(payload=press_key_payload)
         time.sleep(0.3)
 
     # FINAL STATE
     st = get_location_state(player_info=player_info)
-    ok = (
-        st.get("ok")
-        and is_at_position(
-            st["location_coord_x"],
-            st["location_coord_y"],
-            target_loc_x,
-            target_loc_y,
-            tol=tol,
-        )
+    ok = st.get("ok") and is_at_position(
+        st["location_coord_x"],
+        st["location_coord_y"],
+        target_loc_x,
+        target_loc_y,
+        tol=tol,
     )
 
     return {

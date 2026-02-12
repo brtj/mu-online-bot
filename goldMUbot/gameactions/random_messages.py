@@ -29,6 +29,7 @@ EXTRAS = [
     "można afk",
 ]
 
+
 def generate_mu_party_message(map_name, x, y):
     opener = random.choice(OPENERS)
     suffix = random.choice(SUFFIXES)
@@ -84,6 +85,7 @@ RESETS_MESS = [
     "{r} reset, achievement bez znaczenia",
 ]
 
+
 def generate_reset_message(resets: int | None = None):
     if resets is None:
         resets = random.randint(80, 220)
@@ -104,6 +106,7 @@ SPOT_MESS = [
     "Posiedze do {level_max} lvl ok?",
     "Tylko {level_max} lvl i wasz spot",
 ]
+
 
 def generate_spot_message(level_max: int):
     return random.choice(SPOT_MESS).format(level_max=level_max)[:50]
@@ -142,7 +145,6 @@ WARP_MESS = [
     "Zaraz teleportuje do {desired_location}",
     "Idziemy teraz na {desired_location}",
 ]
-
 
 
 def generate_warp_message(desired_location: int):

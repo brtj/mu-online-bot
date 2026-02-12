@@ -11,16 +11,29 @@ setup_logging()
 logger = logging.getLogger(__name__)
 
 
-def warp_to(player_info, desired_location, actual_location, actual_location_coord_x, sleept=1, timeout=30):
-    activate_window(player_info=player_info);time.sleep(0.2)
+def warp_to(
+    player_info,
+    desired_location,
+    actual_location,
+    actual_location_coord_x,
+    sleept=1,
+    timeout=30,
+):
+    activate_window(player_info=player_info)
+    time.sleep(0.2)
     logger.info(f"warping from {actual_location} to {desired_location}")
     warp_message = generate_warp_message(desired_location)
     # send_message(warp_message, player_info=player_info)
     send_message(f"/warp {desired_location}", player_info=player_info)
-    wait_for_location_name_change(player_info, actual_location, actual_location_coord_x, timeout=timeout)
+    wait_for_location_name_change(
+        player_info, actual_location, actual_location_coord_x, timeout=timeout
+    )
     time.sleep(sleept)
 
-def wait_for_location_name_change(player_info, before_location, before_location_coord_x, timeout=30, interval=0.5):
+
+def wait_for_location_name_change(
+    player_info, before_location, before_location_coord_x, timeout=30, interval=0.5
+):
     start = time.time()
     before_name = before_location
     before_loc_x = before_location_coord_x
@@ -47,4 +60,6 @@ def wait_for_location_name_change(player_info, before_location, before_location_
             return None
 
         time.sleep(interval)
-        logger.info(f"Warp process... waiting..., before: {before_name}, after: {after_name}, before x: {before_loc_x}, after x: {after_loc_x}")
+        logger.info(
+            f"Warp process... waiting..., before: {before_name}, after: {after_name}, before x: {before_loc_x}, after x: {after_loc_x}"
+        )

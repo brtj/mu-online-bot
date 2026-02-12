@@ -14,24 +14,20 @@ CONFIG = config_loader.load_config()
 HOSTAPI = CONFIG["hostapi"]
 HOSTAPI_BASE_URL = f"http://{HOSTAPI['ip']}:{HOSTAPI['port']}"
 HOSTAPI_ENDPOINTS = {
-    name: f"{HOSTAPI_BASE_URL}{path}"
-    for name, path in HOSTAPI["endpoints"].items()
+    name: f"{HOSTAPI_BASE_URL}{path}" for name, path in HOSTAPI["endpoints"].items()
 }
 HIDAPI = CONFIG["hidapi"]
 HIDAPI_BASE_URL = f"http://{HIDAPI['ip']}:{HIDAPI['port']}"
 HIDAPI_ENDPOINTS = {
-    name: f"{HIDAPI_BASE_URL}{path}"
-    for name, path in HIDAPI["endpoints"].items()
+    name: f"{HIDAPI_BASE_URL}{path}" for name, path in HIDAPI["endpoints"].items()
 }
 
 
 def send_message(text: str, player_info=""):
     logger.info(f"{text}, {player_info}")
-    payload = {
-        "title": f"{player_info}",
-        "text": text
-    }
+    payload = {"title": f"{player_info}", "text": text}
     return post(HOSTAPI_ENDPOINTS["send_message"], payload)
+
 
 def activate_window(player_info=""):
 
@@ -41,41 +37,75 @@ def activate_window(player_info=""):
         logger.info("Activating window...")
 
         x, y = get_hud_xy(HUD_COORDS, "safe_spot")
-        post(HOSTAPI_ENDPOINTS["mouse_goto_xy_relative"], { 
-            "title": f"{player_info}",
-            "target_x": x,
-            "target_y": y,
-            "sleep_s": 0.012,
-            "require_inside": False
-        })
+        post(
+            HOSTAPI_ENDPOINTS["mouse_goto_xy_relative"],
+            {
+                "title": f"{player_info}",
+                "target_x": x,
+                "target_y": y,
+                "sleep_s": 0.012,
+                "require_inside": False,
+            },
+        )
         time.sleep(0.2)
-        post(HIDAPI_ENDPOINTS["mouse_click"], {"button": "left", "action": "click", "hold_time": 0.2})
+        post(
+            HIDAPI_ENDPOINTS["mouse_click"],
+            {"button": "left", "action": "click", "hold_time": 0.2},
+        )
         x, y = get_hud_xy(HUD_COORDS, "shortcut_w_box")
-        post(HOSTAPI_ENDPOINTS["mouse_goto_xy_relative"], { 
-            "title": f"{player_info}",
-            "target_x": x,
-            "target_y": y,
-            "require_inside": False
-        })
-        post(HIDAPI_ENDPOINTS["mouse_click"], {"button": "left", "action": "click", "hold_time": 0.2})
-        post(HIDAPI_ENDPOINTS["mouse_click"], {"button": "left", "action": "click", "hold_time": 0.1})
+        post(
+            HOSTAPI_ENDPOINTS["mouse_goto_xy_relative"],
+            {
+                "title": f"{player_info}",
+                "target_x": x,
+                "target_y": y,
+                "require_inside": False,
+            },
+        )
+        post(
+            HIDAPI_ENDPOINTS["mouse_click"],
+            {"button": "left", "action": "click", "hold_time": 0.2},
+        )
+        post(
+            HIDAPI_ENDPOINTS["mouse_click"],
+            {"button": "left", "action": "click", "hold_time": 0.1},
+        )
         time.sleep(0.2)
         logger.info("Window has been activated")
         return "Window activated"
 
+
 def switch_window(player_info=""):
     x, y = get_hud_xy(HUD_COORDS, "shortcut_w_box")
-    post(HOSTAPI_ENDPOINTS["mouse_goto_xy_relative"], { 
-        "title": f"{player_info}",
-        "target_x": x,
-        "target_y": y,
-        "require_inside": False
-    })
-    post(HIDAPI_ENDPOINTS["mouse_click"], {"button": "left", "action": "click", "hold_time": 0.2})
-    post(HIDAPI_ENDPOINTS["mouse_click"], {"button": "right", "action": "click", "hold_time": 0.2})
-    post(HIDAPI_ENDPOINTS["mouse_click"], {"button": "left", "action": "click", "hold_time": 0.2})
-    post(HIDAPI_ENDPOINTS["mouse_click"], {"button": "right", "action": "click", "hold_time": 0.2})
-    post(HIDAPI_ENDPOINTS["mouse_click"], {"button": "left", "action": "click", "hold_time": 0.2})
+    post(
+        HOSTAPI_ENDPOINTS["mouse_goto_xy_relative"],
+        {
+            "title": f"{player_info}",
+            "target_x": x,
+            "target_y": y,
+            "require_inside": False,
+        },
+    )
+    post(
+        HIDAPI_ENDPOINTS["mouse_click"],
+        {"button": "left", "action": "click", "hold_time": 0.2},
+    )
+    post(
+        HIDAPI_ENDPOINTS["mouse_click"],
+        {"button": "right", "action": "click", "hold_time": 0.2},
+    )
+    post(
+        HIDAPI_ENDPOINTS["mouse_click"],
+        {"button": "left", "action": "click", "hold_time": 0.2},
+    )
+    post(
+        HIDAPI_ENDPOINTS["mouse_click"],
+        {"button": "right", "action": "click", "hold_time": 0.2},
+    )
+    post(
+        HIDAPI_ENDPOINTS["mouse_click"],
+        {"button": "left", "action": "click", "hold_time": 0.2},
+    )
     time.sleep(0.1)
     return "Mouse clicked"
 
@@ -89,33 +119,24 @@ def check_map_on(player_info=""):
     payload = {
         "title": f"{player_info}",
         "rect": get_rect("mapon_box"),
-        "min_white_ratio": 0.34
+        "min_white_ratio": 0.34,
     }
     r = post(HOSTAPI_ENDPOINTS["screen_map"], payload)
     # logger.info(f"Check map on state: {r}")
     time.sleep(0.2)
     return r["state"]
 
+
 def press_leter_i():
-    letter_i_button={
-        "keycode": 12,
-        "modifier": 0,
-        "press_time": 0.1
-    }
+    letter_i_button = {"keycode": 12, "modifier": 0, "press_time": 0.1}
     press_key(letter_i_button)
 
+
 def press_leter_p():
-    letter_p_button={
-        "keycode": 19,
-        "modifier": 0,
-        "press_time": 0.1
-    }
+    letter_p_button = {"keycode": 19, "modifier": 0, "press_time": 0.1}
     press_key(letter_p_button)
 
+
 def press_escape():
-    escape_button={
-      "keycode": 41,
-      "modifier": 0,
-      "press_time": 0.1
-    }
+    escape_button = {"keycode": 41, "modifier": 0, "press_time": 0.1}
     press_key(escape_button)

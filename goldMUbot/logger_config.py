@@ -21,9 +21,7 @@ class NoInfoFilter(logging.Filter):
 
 
 def setup_logging():
-    formatter = logging.Formatter(
-        "%(asctime)s [%(levelname)s]: %(message)s"
-    )
+    formatter = logging.Formatter("%(asctime)s [%(levelname)s]: %(message)s")
 
     root = logging.getLogger()
     root.setLevel(logging.DEBUG)
@@ -31,10 +29,7 @@ def setup_logging():
 
     # -------- INFO -> logs_info.log --------
     info_handler = RotatingFileHandler(
-        LOG_INFO_FILE,
-        maxBytes=5 * 1024 * 1024,
-        backupCount=3,
-        encoding="utf-8"
+        LOG_INFO_FILE, maxBytes=5 * 1024 * 1024, backupCount=3, encoding="utf-8"
     )
     info_handler.setLevel(logging.INFO)
     info_handler.addFilter(OnlyInfoFilter())
@@ -42,10 +37,7 @@ def setup_logging():
 
     # -------- DEBUG+ (bez INFO) -> logs_debug.log --------
     debug_handler = RotatingFileHandler(
-        LOG_DEBUG_FILE,
-        maxBytes=10 * 1024 * 1024,
-        backupCount=5,
-        encoding="utf-8"
+        LOG_DEBUG_FILE, maxBytes=10 * 1024 * 1024, backupCount=5, encoding="utf-8"
     )
     debug_handler.setLevel(logging.DEBUG)
     debug_handler.addFilter(NoInfoFilter())

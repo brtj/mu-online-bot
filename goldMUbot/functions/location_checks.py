@@ -10,34 +10,34 @@ logger = logging.getLogger(__name__)
 from functions import config_loader
 
 
-
 CONFIG = config_loader.load_config()
 HOSTAPI = CONFIG["hostapi"]
 HOSTAPI_BASE_URL = f"http://{HOSTAPI['ip']}:{HOSTAPI['port']}"
 HOSTAPI_ENDPOINTS = {
-    name: f"{HOSTAPI_BASE_URL}{path}"
-    for name, path in HOSTAPI["endpoints"].items()
+    name: f"{HOSTAPI_BASE_URL}{path}" for name, path in HOSTAPI["endpoints"].items()
 }
 
 HOSTAPI_ENDPOINTS["screen_ocr"]
 
+
 def get_location_state(player_info="") -> dict:
-    location_request = post(HOSTAPI_ENDPOINTS["screen_ocr"], {
-        "title": f"{player_info}",
-        "rect": get_rect("location_box"),
-        "psm": 7,
-        "whitelist": "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789(),"
-    })
+    location_request = post(
+        HOSTAPI_ENDPOINTS["screen_ocr"],
+        {
+            "title": f"{player_info}",
+            "rect": get_rect("location_box"),
+            "psm": 7,
+            "whitelist": "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789(),",
+        },
+    )
 
     try:
         parsed = location_request["parsed"]
         location_name = parsed["name"]
-        location_x    = int(parsed["x"])
-        location_y    = int(parsed["y"])
+        location_x = int(parsed["x"])
+        location_y = int(parsed["y"])
 
-        logger.debug(
-            f"Location debug: {parsed['name']}, {parsed['x']}, {parsed['y']}"
-        )
+        logger.debug(f"Location debug: {parsed['name']}, {parsed['x']}, {parsed['y']}")
 
         return {
             "ok": True,
@@ -73,11 +73,10 @@ def is_at_position(x, y, tx, ty, tol=10):
     else:
         reason = f"y out (dy={dy}), tol={tol}"
 
-    logger.info(
-        f"[is_at_position=False] | pos=({x},{y}) target=({tx},{ty}) | {reason}"
-    )
+    logger.info(f"[is_at_position=False] | pos=({x},{y}) target=({tx},{ty}) | {reason}")
 
     return False
+
 
 def wait_until_at_position(tx, ty, tol=10, timeout=80, interval=3, player_info=""):
     start = time.time()

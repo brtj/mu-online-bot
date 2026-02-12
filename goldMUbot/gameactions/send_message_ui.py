@@ -1,5 +1,3 @@
-
-
 from asyncio.log import logger
 from functions.state_singleton import STATE
 from functions.host_api import send_message
@@ -15,6 +13,4 @@ def send_message_via_ui(player_info=None):
                 send_message(text, player_info=player_info)
             except Exception as exc:
                 logger.error(f"Error sending message via UI: {exc}")
-        STATE.update_dict('send_message_via_ui', {
-            'new_message': False
-        })
+        STATE.update_dict("send_message_via_ui", {"new_message": False})

@@ -36,13 +36,9 @@ def merge_with_defaults(custom_limits=None):
 
 def persist_map_level_limits(limits: dict) -> dict:
     merged = merge_with_defaults(limits)
-    STATE.update_dict("main_player_data", {
-        "map_level_limits": merged
-    })
+    STATE.update_dict("main_player_data", {"map_level_limits": merged})
 
-    STATE_SECOND_PLAYER.update_dict("second_player_data", {
-        "map_level_limits": merged
-    })
+    STATE_SECOND_PLAYER.update_dict("second_player_data", {"map_level_limits": merged})
 
     return merged
 
@@ -69,8 +65,9 @@ def api_set_map_level_limits():
     limits = data.get("map_level_limits", data)
 
     if not isinstance(limits, dict):
-        return jsonify({"error": "payload must be a dict (map -> {min,max,enabled})"}), 400
-
+        return jsonify(
+            {"error": "payload must be a dict (map -> {min,max,enabled})"}
+        ), 400
 
     # minimal validation
     allowed_maps = set(MAP_LEVEL_DEFAULTS.keys())
@@ -82,11 +79,23 @@ def api_set_map_level_limits():
         if not isinstance(cfg, dict):
             return jsonify({"error": f"value for '{map_name}' must be an object"}), 400
 
-        if "min" in cfg and cfg["min"] is not None and not isinstance(cfg["min"], (int, float)):
+        if (
+            "min" in cfg
+            and cfg["min"] is not None
+            and not isinstance(cfg["min"], (int, float))
+        ):
             return jsonify({"error": f"'{map_name}.min' must be a number"}), 400
-        if "max" in cfg and cfg["max"] is not None and not isinstance(cfg["max"], (int, float)):
+        if (
+            "max" in cfg
+            and cfg["max"] is not None
+            and not isinstance(cfg["max"], (int, float))
+        ):
             return jsonify({"error": f"'{map_name}.max' must be a number"}), 400
-        if "enabled" in cfg and cfg["enabled"] is not None and not isinstance(cfg["enabled"], bool):
+        if (
+            "enabled" in cfg
+            and cfg["enabled"] is not None
+            and not isinstance(cfg["enabled"], bool)
+        ):
             return jsonify({"error": f"'{map_name}.enabled' must be true/false"}), 400
 
     merged_limits = persist_map_level_limits(limits)

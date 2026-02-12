@@ -14,20 +14,21 @@ CONFIG = config_loader.load_config()
 HOSTAPI = CONFIG["hostapi"]
 BASE_URL = f"http://{HOSTAPI['ip']}:{HOSTAPI['port']}"
 
-ENDPOINTS = {
-    name: f"{BASE_URL}{path}"
-    for name, path in HOSTAPI["endpoints"].items()
-}
+ENDPOINTS = {name: f"{BASE_URL}{path}" for name, path in HOSTAPI["endpoints"].items()}
 
 MAX_LOCATION_RETRIES = 4
 LOCATION_RETRY_DELAY = 0.2
 
+
 def check_helper_state(player_info=""):
-    helper_request = requests_functions.post(ENDPOINTS["autorun_state"], {
-        "title": f"{player_info}",
-        "rect": hud_coords.get_rect("helper_state"),
-        "debug_image": False
-    })
+    helper_request = requests_functions.post(
+        ENDPOINTS["autorun_state"],
+        {
+            "title": f"{player_info}",
+            "rect": hud_coords.get_rect("helper_state"),
+            "debug_image": False,
+        },
+    )
 
     if helper_request["state"] == "PLAY":
         helper_status = "Not running"

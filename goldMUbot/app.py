@@ -40,25 +40,29 @@ app.register_blueprint(map_levels_bp)
 app.register_blueprint(map_spots_bp)
 app.register_blueprint(messages_bp)
 
+
 @app.post("/api/scraper/force")
 def force_scraper():
     force_event.set()
     return {"ok": True}
 
+
 @app.get("/")
 def index():
     return render_template("index.html")
+
 
 @app.get("/tab2.html")
 def tab2():
     return render_template("tab2.html")
 
-CORS(app, resources={
-    r"/bot/*": {"origins": [
-        "http://100.67.68.58:5065",
-        "http://localhost:5065"
-    ]}
-})
+
+CORS(
+    app,
+    resources={
+        r"/bot/*": {"origins": ["http://100.67.68.58:5065", "http://localhost:5065"]}
+    },
+)
 
 stop_event = threading.Event()
 force_event = threading.Event()
@@ -79,7 +83,11 @@ def start_threads():
     )
     t.start()
     logger.info("Scraper for main player thread started")
-    if TYPE_GAME in {"two_players", "two_players_in_party", "two_players_in_party_follower"}:
+    if TYPE_GAME in {
+        "two_players",
+        "two_players_in_party",
+        "two_players_in_party_follower",
+    }:
         t2 = threading.Thread(
             target=second_player_scraper_loop,
             kwargs={
@@ -107,13 +115,15 @@ def start_threads():
     t_action.start()
     logger.info("Action thread started")
 
+
 @app.get("/api/state")
 def api_state():
     snap = STATE.get_snapshot()
     if snap is None:
         snap = STATE.get("snapshot", {})
     return jsonify(snap or {})
-    
+
+
 if __name__ == "__main__":
     start_threads()
     start_scheduler()

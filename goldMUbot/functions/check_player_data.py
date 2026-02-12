@@ -14,46 +14,46 @@ CONFIG = config_loader.load_config()
 HOSTAPI = CONFIG["hostapi"]
 BASE_URL = f"http://{HOSTAPI['ip']}:{HOSTAPI['port']}"
 
-ENDPOINTS = {
-    name: f"{BASE_URL}{path}"
-    for name, path in HOSTAPI["endpoints"].items()
-}
+ENDPOINTS = {name: f"{BASE_URL}{path}" for name, path in HOSTAPI["endpoints"].items()}
 
 MAX_LOCATION_RETRIES = 4
 LOCATION_RETRY_DELAY = 0.2
 
+
 def player_data(player_info="", state_store=None, state_key="main_player_data"):
     if state_store is None:
         state_store = STATE
-    title_request = requests_functions.post(ENDPOINTS["parse_title"], {
-        "title": f"{player_info}",
-        "topmost": False
-    })
+    title_request = requests_functions.post(
+        ENDPOINTS["parse_title"], {"title": f"{player_info}", "topmost": False}
+    )
 
-    helper_request = requests_functions.post(ENDPOINTS["autorun_state"], {
-        "title": f"{player_info}",
-        "rect": hud_coords.get_rect("helper_state"),
-        "debug_image": False
-    })
+    helper_request = requests_functions.post(
+        ENDPOINTS["autorun_state"],
+        {
+            "title": f"{player_info}",
+            "rect": hud_coords.get_rect("helper_state"),
+            "debug_image": False,
+        },
+    )
 
     if helper_request["state"] == "PLAY":
         helper_status = "Not running"
     else:
         helper_status = "Running"
 
-    health_request = requests_functions.post(ENDPOINTS["ocr_health"], {
-        "title": f"{player_info}",
-        "rect": hud_coords.get_rect("health_box")
-    })
+    health_request = requests_functions.post(
+        ENDPOINTS["ocr_health"],
+        {"title": f"{player_info}", "rect": hud_coords.get_rect("health_box")},
+    )
 
-    exppm_request = requests_functions.post(ENDPOINTS["ocr_exp_per_minute"], {
-        "title": f"{player_info}",
-        "rect": hud_coords.get_rect("exppm_box")
-    })
+    exppm_request = requests_functions.post(
+        ENDPOINTS["ocr_exp_per_minute"],
+        {"title": f"{player_info}", "rect": hud_coords.get_rect("exppm_box")},
+    )
 
-    mouse_rel_request = requests_functions.post(ENDPOINTS["mouse_position_relative"], {
-        "title": f"{player_info}"
-    })
+    mouse_rel_request = requests_functions.post(
+        ENDPOINTS["mouse_position_relative"], {"title": f"{player_info}"}
+    )
     mouse_position = requests_functions.request_get(ENDPOINTS["mouse_position"])
 
     conn_status = True if "Connected" in (title_request.get("raw", "") or "") else False
@@ -62,24 +62,39 @@ def player_data(player_info="", state_store=None, state_key="main_player_data"):
     location_x = 0
     location_y = 0
     for attempt in range(MAX_LOCATION_RETRIES):
-        location_request = requests_functions.post(ENDPOINTS["screen_ocr"], {
-            "title": f"{player_info}",
-            "rect": hud_coords.get_rect("location_box"),
-            "psm": 7,
-            "whitelist": "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789(),"
-        })
+        location_request = requests_functions.post(
+            ENDPOINTS["screen_ocr"],
+            {
+                "title": f"{player_info}",
+                "rect": hud_coords.get_rect("location_box"),
+                "psm": 7,
+                "whitelist": "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789(),",
+            },
+        )
 
-        logger.debug("Location OCR attempt %s/%s: %s", attempt + 1, MAX_LOCATION_RETRIES, location_request)
+        logger.debug(
+            "Location OCR attempt %s/%s: %s",
+            attempt + 1,
+            MAX_LOCATION_RETRIES,
+            location_request,
+        )
 
         try:
             parsed = location_request["parsed"]
             location_name = parsed["name"]
             location_x = parsed["x"]
             location_y = parsed["y"]
-            logger.debug("Location debug: %s, %s, %s", location_name, location_x, location_y)
+            logger.debug(
+                "Location debug: %s, %s, %s", location_name, location_x, location_y
+            )
             break
         except (TypeError, KeyError):
-            logger.debug("Location raw ERROR (attempt %s/%s): %s", attempt + 1, MAX_LOCATION_RETRIES, location_request)
+            logger.debug(
+                "Location raw ERROR (attempt %s/%s): %s",
+                attempt + 1,
+                MAX_LOCATION_RETRIES,
+                location_request,
+            )
             location_name = "not_available"
             location_x = 0
             location_y = 0
@@ -104,7 +119,7 @@ def player_data(player_info="", state_store=None, state_key="main_player_data"):
         "mouse_relative_pos": mouse_rel_request or {},
         "helper_status": helper_status,
         "health": health_request.get("value") or 0,
-        "connected": conn_status
+        "connected": conn_status,
     }
 
     # ✅ zapis do wskazanego stanu jako ostatni snapshot

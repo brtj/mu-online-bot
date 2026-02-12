@@ -98,10 +98,7 @@ class JsonStateStore:
 
     def _atomic_write(self, data: Dict[str, Any]) -> None:
         tmp = self.path.with_suffix(self.path.suffix + ".tmp")
-        tmp.write_text(
-            json.dumps(data, ensure_ascii=False, indent=2),
-            encoding="utf-8"
-        )
+        tmp.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
         tmp.replace(self.path)
 
     def update_dict(self, key: str, updates: Dict[str, Any]) -> Dict[str, Any]:

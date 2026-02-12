@@ -14,27 +14,25 @@ CONFIG = config_loader.load_config()
 HOSTAPI = CONFIG["hostapi"]
 HOSTAPI_BASE_URL = f"http://{HOSTAPI['ip']}:{HOSTAPI['port']}"
 HOSTAPI_ENDPOINTS = {
-    name: f"{HOSTAPI_BASE_URL}{path}"
-    for name, path in HOSTAPI["endpoints"].items()
+    name: f"{HOSTAPI_BASE_URL}{path}" for name, path in HOSTAPI["endpoints"].items()
 }
 
 HIDAPI = CONFIG["hidapi"]
 HIDAPI_BASE_URL = f"http://{HIDAPI['ip']}:{HIDAPI['port']}"
 HIDAPI_ENDPOINTS = {
-    name: f"{HIDAPI_BASE_URL}{path}"
-    for name, path in HIDAPI["endpoints"].items()
+    name: f"{HIDAPI_BASE_URL}{path}" for name, path in HIDAPI["endpoints"].items()
 }
 
 LOCALAPI = CONFIG["playerapi"]
 LOCALAPI_BASE_URL = f"http://{LOCALAPI['ip']}:{LOCALAPI['port']}"
 LOCALAPI_ENDPOINTS = {
-    name: f"{LOCALAPI_BASE_URL}{path}"
-    for name, path in LOCALAPI["endpoints"].items()
+    name: f"{LOCALAPI_BASE_URL}{path}" for name, path in LOCALAPI["endpoints"].items()
 }
 
 TYPE_GAME = CONFIG.get("type_game", "single")
 CONFIG_PAUSE_AUTO_RESUME_MINUTES = CONFIG.get("pause_auto_resume_minutes", 5)
 PAUSE_TIMEOUT_STATE_KEY = "pause_auto_resume_minutes"
+
 
 def _as_float_minutes(value):
     if isinstance(value, (int, float)):
@@ -44,14 +42,19 @@ def _as_float_minutes(value):
     except (TypeError, ValueError):
         return None
 
+
 def _default_pause_minutes():
     default_minutes = _as_float_minutes(CONFIG_PAUSE_AUTO_RESUME_MINUTES)
-    return default_minutes if default_minutes is not None and default_minutes >= 0 else 0
+    return (
+        default_minutes if default_minutes is not None and default_minutes >= 0 else 0
+    )
+
 
 def _seed_pause_timeout_default():
     if STATE.get(PAUSE_TIMEOUT_STATE_KEY, None) is not None:
         return
     STATE.set(PAUSE_TIMEOUT_STATE_KEY, _default_pause_minutes())
+
 
 def _pause_timeout_seconds_from_state():
     minutes_raw = STATE.get(PAUSE_TIMEOUT_STATE_KEY, CONFIG_PAUSE_AUTO_RESUME_MINUTES)
@@ -62,7 +65,9 @@ def _pause_timeout_seconds_from_state():
         return minutes * 60
     return None
 
+
 _seed_pause_timeout_default()
+
 
 def action_loop(stop_event, interval=1):
     logger.info("Action loop started")
@@ -90,7 +95,10 @@ def action_loop(stop_event, interval=1):
                     pause_started_at = loop_monotonic
 
                 paused_duration = loop_monotonic - pause_started_at
-                if pause_auto_resume_seconds and paused_duration >= pause_auto_resume_seconds:
+                if (
+                    pause_auto_resume_seconds
+                    and paused_duration >= pause_auto_resume_seconds
+                ):
                     STATE.set("paused", False)
                     STATE.set(PAUSE_TIMEOUT_STATE_KEY, _default_pause_minutes())
                     pause_auto_resume_seconds = _pause_timeout_seconds_from_state()
@@ -102,14 +110,22 @@ def action_loop(stop_event, interval=1):
                     )
                 else:
                     main_player_data = state.get("main_player_data") or {}
-                    main_player_location_x = int(main_player_data.get("location_coord_x") or 0)
-                    main_player_location_y = int(main_player_data.get("location_coord_y") or 0)
+                    main_player_location_x = int(
+                        main_player_data.get("location_coord_x") or 0
+                    )
+                    main_player_location_y = int(
+                        main_player_data.get("location_coord_y") or 0
+                    )
                     mouse_rel = main_player_data.get("mouse_relative_pos") or {}
                     mouse_relative_pos_x = mouse_rel.get("x")
                     mouse_relative_pos_y = mouse_rel.get("y")
                     if pause_auto_resume_seconds:
-                        remaining_seconds = max(pause_auto_resume_seconds - paused_duration, 0)
-                        remaining_label = f"Auto-resume in {remaining_seconds / 60:.1f} min"
+                        remaining_seconds = max(
+                            pause_auto_resume_seconds - paused_duration, 0
+                        )
+                        remaining_label = (
+                            f"Auto-resume in {remaining_seconds / 60:.1f} min"
+                        )
                     else:
                         remaining_label = "Auto-resume disabled"
 
@@ -127,10 +143,9 @@ def action_loop(stop_event, interval=1):
                 pause_started_at = None
 
             main_player_loop(state=state)
-            
+
             if TYPE_GAME == "two_players_in_party":
                 second_player_loop()
-
 
         except Exception:
             logger.exception("action_loop error")

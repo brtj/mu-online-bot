@@ -7,7 +7,7 @@ ATLANS_LOCATIONS = [
         "loc_x": 226,
         "loc_y": 204,
         "tolerance": 9,
-        "moobs": "Lizard King 70 lvl"
+        "moobs": "Lizard King 70 lvl",
     },
     {
         "id": "aa5",
@@ -17,7 +17,7 @@ ATLANS_LOCATIONS = [
         "loc_x": 181,
         "loc_y": 92,
         "tolerance": 9,
-        "moobs": "Lizard King 70 lvl"
+        "moobs": "Lizard King 70 lvl",
     },
     {
         "id": "aa6",
@@ -27,7 +27,7 @@ ATLANS_LOCATIONS = [
         "loc_x": 142,
         "loc_y": 113,
         "tolerance": 9,
-        "moobs": "Lizard King 70 lvl"
+        "moobs": "Lizard King 70 lvl",
     },
     {
         "id": "aa7",
@@ -37,8 +37,8 @@ ATLANS_LOCATIONS = [
         "loc_x": 26,
         "loc_y": 204,
         "tolerance": 9,
-        "moobs": "Lizard King 70 lvl"
-    },  
+        "moobs": "Lizard King 70 lvl",
+    },
 ]
 
 AIDA_LOCATIONS = [
@@ -50,7 +50,7 @@ AIDA_LOCATIONS = [
         "loc_x": 93,
         "loc_y": 142,
         "tolerance": 9,
-        "moobs": "Bloody Orc 114 lvl"
+        "moobs": "Bloody Orc 114 lvl",
     },
     {
         "id": "aida2_orc2",
@@ -60,7 +60,7 @@ AIDA_LOCATIONS = [
         "loc_x": 57,
         "loc_y": 160,
         "tolerance": 12,
-        "moobs": "Bloody Orc 114 lvl"
+        "moobs": "Bloody Orc 114 lvl",
     },
     {
         "id": "aida2_orc3",
@@ -70,7 +70,7 @@ AIDA_LOCATIONS = [
         "loc_x": 66,
         "loc_y": 230,
         "tolerance": 9,
-        "moobs": "Bloody Orc 114 lvl"
+        "moobs": "Bloody Orc 114 lvl",
     },
     {
         "id": "aida2_orc4",
@@ -80,7 +80,7 @@ AIDA_LOCATIONS = [
         "loc_x": 1,
         "loc_y": 1,
         "tolerance": 9,
-        "moobs": "Bloody Orc 114 lvl"
+        "moobs": "Bloody Orc 114 lvl",
     },
     {
         "id": "aida2_drider1",
@@ -90,7 +90,7 @@ AIDA_LOCATIONS = [
         "loc_x": 22,
         "loc_y": 147,
         "tolerance": 9,
-        "moobs": "Bloody Death Rider 115 lvl"
+        "moobs": "Bloody Death Rider 115 lvl",
     },
     {
         "id": "aida2_drider2",
@@ -100,7 +100,7 @@ AIDA_LOCATIONS = [
         "loc_x": 21,
         "loc_y": 116,
         "tolerance": 15,
-        "moobs": "Bloody Death Rider 115 lvl"
+        "moobs": "Bloody Death Rider 115 lvl",
     },
     {
         "id": "aida2_drider3",
@@ -110,7 +110,7 @@ AIDA_LOCATIONS = [
         "loc_x": 54,
         "loc_y": 119,
         "tolerance": 20,
-        "moobs": "Bloody Death Rider 115 lvl"
+        "moobs": "Bloody Death Rider 115 lvl",
     },
     {
         "id": "aida2_drider4",
@@ -120,7 +120,7 @@ AIDA_LOCATIONS = [
         "loc_x": 30,
         "loc_y": 205,
         "tolerance": 9,
-        "moobs": "Bloody Death Rider 115 lvl"
+        "moobs": "Bloody Death Rider 115 lvl",
     },
     {
         "id": "aida2_gol1",
@@ -130,7 +130,7 @@ AIDA_LOCATIONS = [
         "loc_x": 160,
         "loc_y": 111,
         "tolerance": 9,
-        "moobs": "Blue Golem 84 lvl"
+        "moobs": "Blue Golem 84 lvl",
     },
     {
         "id": "aida2_wch1",
@@ -140,7 +140,7 @@ AIDA_LOCATIONS = [
         "loc_x": 95,
         "loc_y": 174,
         "tolerance": 9,
-        "moobs": "Witch Queen 94 lvl"
+        "moobs": "Witch Queen 94 lvl",
     },
 ]
 
@@ -153,7 +153,7 @@ KALIMA_LOCATIONS = [
         "loc_x": 12,
         "loc_y": 15,
         "tolerance": 9,
-        "moobs": "Aegis 95 lvl"
+        "moobs": "Aegis 95 lvl",
     },
     {
         "id": "kalima_k2",
@@ -163,7 +163,7 @@ KALIMA_LOCATIONS = [
         "loc_x": 44,
         "loc_y": 12,
         "tolerance": 9,
-        "moobs": "Aegis 95 lvl"
+        "moobs": "Aegis 95 lvl",
     },
     {
         "id": "kalima_k3",
@@ -173,7 +173,7 @@ KALIMA_LOCATIONS = [
         "loc_x": 59,
         "loc_y": 27,
         "tolerance": 9,
-        "moobs": "Aegis 95 lvl"
+        "moobs": "Aegis 95 lvl",
     },
     {
         "id": "kalima_k4",
@@ -183,7 +183,7 @@ KALIMA_LOCATIONS = [
         "loc_x": 81,
         "loc_y": 9,
         "tolerance": 9,
-        "moobs": "Aegis 95 lvl"
+        "moobs": "Aegis 95 lvl",
     },
     {
         "id": "kalima_k5",
@@ -193,7 +193,7 @@ KALIMA_LOCATIONS = [
         "loc_x": 115,
         "loc_y": 22,
         "tolerance": 9,
-        "moobs": "Aegis 95 lvl"
+        "moobs": "Aegis 95 lvl",
     },
     {
         "id": "kalima_k6",
@@ -203,7 +203,7 @@ KALIMA_LOCATIONS = [
         "loc_x": 103,
         "loc_y": 40,
         "tolerance": 9,
-        "moobs": "Aegis 95 lvl"
+        "moobs": "Aegis 95 lvl",
     },
     {
         "id": "kalima_k7",
@@ -213,7 +213,7 @@ KALIMA_LOCATIONS = [
         "loc_x": 119,
         "loc_y": 72,
         "tolerance": 9,
-        "moobs": "Rogue 98 lvl"
+        "moobs": "Rogue 98 lvl",
     },
     {
         "id": "kalima_k8",
@@ -223,7 +223,7 @@ KALIMA_LOCATIONS = [
         "loc_x": 110,
         "loc_y": 110,
         "tolerance": 9,
-        "moobs": "Rogue 98 lvl"
+        "moobs": "Rogue 98 lvl",
     },
     {
         "id": "kalima_k9",
@@ -233,7 +233,7 @@ KALIMA_LOCATIONS = [
         "loc_x": 89,
         "loc_y": 95,
         "tolerance": 9,
-        "moobs": "Rogue 98 lvl"
+        "moobs": "Rogue 98 lvl",
     },
     {
         "id": "kalima_k10",
@@ -243,7 +243,7 @@ KALIMA_LOCATIONS = [
         "loc_x": 58,
         "loc_y": 70,
         "tolerance": 9,
-        "moobs": "Rogue 98 lvl"
+        "moobs": "Rogue 98 lvl",
     },
 ]
 
@@ -256,7 +256,7 @@ KARUTAN2_LOCATIONS = [
         "loc_x": 106,
         "loc_y": 116,
         "tolerance": 9,
-        "moobs": "Narcondra 120 lvl"
+        "moobs": "Narcondra 120 lvl",
     },
     {
         "id": "karutan2_k2",
@@ -266,7 +266,7 @@ KARUTAN2_LOCATIONS = [
         "loc_x": 181,
         "loc_y": 75,
         "tolerance": 9,
-        "moobs": "Condra 117 lvl"
+        "moobs": "Condra 117 lvl",
     },
     {
         "id": "karutan2_k3",
@@ -276,7 +276,7 @@ KARUTAN2_LOCATIONS = [
         "loc_x": 218,
         "loc_y": 59,
         "tolerance": 7,
-        "moobs": "Narcondra 120 lvl"
+        "moobs": "Narcondra 120 lvl",
     },
     {
         "id": "karutan2_k4",
@@ -286,7 +286,7 @@ KARUTAN2_LOCATIONS = [
         "loc_x": 180,
         "loc_y": 23,
         "tolerance": 4,
-        "moobs": "Condra 117 lvl"
+        "moobs": "Condra 117 lvl",
     },
     {
         "id": "karutan2_k5",
@@ -296,8 +296,8 @@ KARUTAN2_LOCATIONS = [
         "loc_x": 152,
         "loc_y": 39,
         "tolerance": 4,
-        "moobs": "Gollock 108 lvl"
-    }
+        "moobs": "Gollock 108 lvl",
+    },
 ]
 
 ICARUS1_LOCATIONS = [
@@ -309,7 +309,7 @@ ICARUS1_LOCATIONS = [
         "loc_x": 10,
         "loc_y": 40,
         "tolerance": 5,
-        "moobs": "Alquamos 75 lvl"
+        "moobs": "Alquamos 75 lvl",
     },
     {
         "id": "icarus1_2",
@@ -319,7 +319,7 @@ ICARUS1_LOCATIONS = [
         "loc_x": 37,
         "loc_y": 26,
         "tolerance": 5,
-        "moobs": "Alquamos 75 lvl"
+        "moobs": "Alquamos 75 lvl",
     },
     {
         "id": "icarus1_3",
@@ -329,7 +329,7 @@ ICARUS1_LOCATIONS = [
         "loc_x": 50,
         "loc_y": 41,
         "tolerance": 5,
-        "moobs": "Mega Crust 78 lvl"
+        "moobs": "Mega Crust 78 lvl",
     },
     {
         "id": "icarus1_4",
@@ -337,9 +337,9 @@ ICARUS1_LOCATIONS = [
         "x": 273,
         "y": 423,
         "loc_x": 92,
-        "loc_y": 37 ,
+        "loc_y": 37,
         "tolerance": 5,
-        "moobs": "King Rainier 82 lvl"
+        "moobs": "King Rainier 82 lvl",
     },
 ]
 
@@ -352,7 +352,7 @@ ICARUS2_LOCATIONS = [
         "loc_x": 221,
         "loc_y": 13,
         "tolerance": 5,
-        "moobs": "Alquamos 75 lvl"
+        "moobs": "Alquamos 75 lvl",
     },
     {
         "id": "icarus2_2",
@@ -362,7 +362,7 @@ ICARUS2_LOCATIONS = [
         "loc_x": 214,
         "loc_y": 34,
         "tolerance": 5,
-        "moobs": "Mega Crust 78 lvl"
+        "moobs": "Mega Crust 78 lvl",
     },
     {
         "id": "icarus2_3",
@@ -372,7 +372,7 @@ ICARUS2_LOCATIONS = [
         "loc_x": 210,
         "loc_y": 57,
         "tolerance": 5,
-        "moobs": "King Rainier 82 lvl"
+        "moobs": "King Rainier 82 lvl",
     },
     {
         "id": "icarus2_4",
@@ -382,7 +382,7 @@ ICARUS2_LOCATIONS = [
         "loc_x": 180,
         "loc_y": 66,
         "tolerance": 5,
-        "moobs": "Alpha Crust 92 lvl"
+        "moobs": "Alpha Crust 92 lvl",
     },
     {
         "id": "icarus2_5",
@@ -392,7 +392,7 @@ ICARUS2_LOCATIONS = [
         "loc_x": 128,
         "loc_y": 101,
         "tolerance": 5,
-        "moobs": "Alpha Crust 92 lvl"
+        "moobs": "Alpha Crust 92 lvl",
     },
     {
         "id": "icarus2_6",
@@ -402,7 +402,7 @@ ICARUS2_LOCATIONS = [
         "loc_x": 101,
         "loc_y": 127,
         "tolerance": 5,
-        "moobs": "Alpha Crust 92 lvl"
+        "moobs": "Alpha Crust 92 lvl",
     },
     {
         "id": "icarus2_7",
@@ -412,7 +412,7 @@ ICARUS2_LOCATIONS = [
         "loc_x": 119,
         "loc_y": 150,
         "tolerance": 5,
-        "moobs": "Alpha Crust 92 lvl"
+        "moobs": "Alpha Crust 92 lvl",
     },
     {
         "id": "icarus2_8",
@@ -422,7 +422,7 @@ ICARUS2_LOCATIONS = [
         "loc_x": 103,
         "loc_y": 176,
         "tolerance": 5,
-        "moobs": "Great Drakan 100 lvl"
+        "moobs": "Great Drakan 100 lvl",
     },
     {
         "id": "icarus2_9",
@@ -432,7 +432,7 @@ ICARUS2_LOCATIONS = [
         "loc_x": 89,
         "loc_y": 198,
         "tolerance": 5,
-        "moobs": "Great Drakan 100 lvl"
+        "moobs": "Great Drakan 100 lvl",
     },
     {
         "id": "icarus2_10",
@@ -442,7 +442,7 @@ ICARUS2_LOCATIONS = [
         "loc_x": 141,
         "loc_y": 180,
         "tolerance": 5,
-        "moobs": "Great Drakan 100 lvl"
+        "moobs": "Great Drakan 100 lvl",
     },
 ]
 
@@ -456,7 +456,7 @@ LACLEON_LOCATIONS = [
         "loc_x": 76,
         "loc_y": 86,
         "tolerance": 9,
-        "moobs": "Shadow Master 136 lvl"
+        "moobs": "Shadow Master 136 lvl",
     },
     {
         "id": "r1",
@@ -466,7 +466,7 @@ LACLEON_LOCATIONS = [
         "loc_x": 176,
         "loc_y": 182,
         "tolerance": 9,
-        "moobs": "Iron Knight 142 lvl"
+        "moobs": "Iron Knight 142 lvl",
     },
     {
         "id": "r3",
@@ -476,7 +476,7 @@ LACLEON_LOCATIONS = [
         "loc_x": 102,
         "loc_y": 223,
         "tolerance": 9,
-        "moobs": "Iron Knight 142 lvl"
+        "moobs": "Iron Knight 142 lvl",
     },
     {
         "id": "r14",
@@ -486,7 +486,7 @@ LACLEON_LOCATIONS = [
         "loc_x": 38,
         "loc_y": 108,
         "tolerance": 9,
-        "moobs": "Shadow Master 136 lvl"
+        "moobs": "Shadow Master 136 lvl",
     },
     {
         "id": "r15",
@@ -496,7 +496,7 @@ LACLEON_LOCATIONS = [
         "loc_x": 31,
         "loc_y": 157,
         "tolerance": 9,
-        "moobs": "Dark Coolutin 145 lvl"
+        "moobs": "Dark Coolutin 145 lvl",
     },
     {
         "id": "r16",
@@ -506,7 +506,7 @@ LACLEON_LOCATIONS = [
         "loc_x": 68,
         "loc_y": 155,
         "tolerance": 9,
-        "moobs": "Iron Knight 142 lvl"
+        "moobs": "Iron Knight 142 lvl",
     },
     {
         "id": "r17",
@@ -516,7 +516,7 @@ LACLEON_LOCATIONS = [
         "loc_x": 49,
         "loc_y": 196,
         "tolerance": 9,
-        "moobs": "Iron Knight 142 lvl"
+        "moobs": "Iron Knight 142 lvl",
     },
     {
         "id": "r5",
@@ -526,6 +526,6 @@ LACLEON_LOCATIONS = [
         "loc_x": 121,
         "loc_y": 146,
         "tolerance": 7,
-        "moobs": "Dark Coolutin 145 lvl"
+        "moobs": "Dark Coolutin 145 lvl",
     },
 ]

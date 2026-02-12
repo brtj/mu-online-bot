@@ -5,6 +5,7 @@ from functions import check_player_data
 
 logger = logging.getLogger(__name__)
 
+
 def scraper_loop(
     stop_event,
     force_event,
@@ -34,4 +35,3 @@ def scraper_loop(
         # - ALBO force_event
         force_event.wait(scraper_interval)
         force_event.clear()
-
