@@ -1,7 +1,7 @@
 {
   "players": {},
-  "_ts": 1770909332.613229,
-  "paused": true,
+  "_ts": 1770918263.7348285,
+  "paused": false,
   "send_message_via_ui": {
     "message": "~mialem rr teraz atlans",
     "new_message": false,
@@ -9,12 +9,12 @@
   },
   "inventory_interval": 10,
   "main_player_data": {
-    "time": "16:15:32",
+    "time": "18:44:23",
     "player": "AleElfisko",
     "player_in_party": "to do 2",
-    "level": 375,
-    "exp_per_minute": "31300200",
-    "reset": 185,
+    "level": 389,
+    "exp_per_minute": "30545000",
+    "reset": 186,
     "rect": {
       "bottom": 651,
       "height": 639,
@@ -25,18 +25,18 @@
     },
     "location_name": "Karutan",
     "location_coord_x": 218,
-    "location_coord_y": 60,
+    "location_coord_y": 59,
     "mouse_position": {
       "ok": true,
-      "x": 654,
-      "y": 614
+      "x": 935,
+      "y": 1079
     },
     "mouse_relative_pos": {
       "cursor": {
-        "x": 654,
-        "y": 614
+        "x": 935,
+        "y": 1079
       },
-      "inside": true,
+      "inside": false,
       "ok": true,
       "window": {
         "bottom": 651,
@@ -44,13 +44,13 @@
         "right": 821,
         "top": 12
       },
-      "x": 649,
-      "y": 602
+      "x": 930,
+      "y": 1067
     },
     "helper_status": "Running",
-    "health": 94424,
+    "health": 103393,
     "connected": true,
-    "zen_ammount": 1069369986,
+    "zen_ammount": 1072119751,
     "map_level_limits": {
       "Lorencia": {
         "min": 1,
@@ -160,14 +160,14 @@
     ]
   },
   "snapshot": {
-    "ts": 1770909332.6131752,
+    "ts": 1770918255.8724823,
     "state": {
-      "time": "16:15:32",
+      "time": "18:44:15",
       "player": "AleElfisko",
       "player_in_party": "to do 2",
-      "level": 375,
-      "exp_per_minute": "31300200",
-      "reset": 185,
+      "level": 389,
+      "exp_per_minute": "33261800",
+      "reset": 186,
       "rect": {
         "bottom": 651,
         "height": 639,
@@ -178,16 +178,16 @@
       },
       "location_name": "Karutan",
       "location_coord_x": 218,
-      "location_coord_y": 60,
+      "location_coord_y": 59,
       "mouse_position": {
         "ok": true,
-        "x": 654,
-        "y": 614
+        "x": 111,
+        "y": 469
       },
       "mouse_relative_pos": {
         "cursor": {
-          "x": 654,
-          "y": 614
+          "x": 106,
+          "y": 463
         },
         "inside": true,
         "ok": true,
@@ -197,13 +197,13 @@
           "right": 821,
           "top": 12
         },
-        "x": 649,
-        "y": 602
+        "x": 101,
+        "y": 451
       },
       "helper_status": "Running",
-      "health": 94424,
+      "health": 103388,
       "connected": true
     }
   },
-  "pause_auto_resume_minutes": 22.0
+  "pause_auto_resume_minutes": 30.0
 }

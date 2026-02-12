@@ -1,7 +1,7 @@
 import logging
 import time
 from logger_config import setup_logging
-from functions.host_api import activate_window
+from functions.host_api import activate_window, check_map_on, press_key
 from functions.requests_functions import post
 from functions.hud_coords import get_hud_xy, HUD_COORDS
 from functions import config_loader
@@ -38,14 +38,14 @@ def popups_closer(player_info):
     payload = {
         "title": f"{player_info}",
         "rect": {"x": 0, "y": 0, "w": 800, "h": 650},
-        "templates": ["ok_button_icon.png"],
+        "templates": ["ok_button.png"],
         "thr": 0.85,
         "nms_radius": 25,
         "pick": "best",
         "hover": {"require_inside": False},
     }
     popup_status = post(HOSTAPI_ENDPOINTS["find_and_hover"], payload)
-    logger.debug(f"{popup_status}")
+    # logger.info(f"{popup_status}")
     if popup_status.get("ok") == True:
         logger.info("need to close popup with OK button")
         logger.debug("need to close popup with OK button")
@@ -53,6 +53,12 @@ def popups_closer(player_info):
         logger.debug(player_info)
         post(HIDAPI_ENDPOINTS["mouse_click"], payload_click)
         time.sleep(0.1)
+
+    # MAP OFF
+    if check_map_on(player_info=player_info) == "MAP ON":
+        press_key_payload = {"keycode": 43, "press_time": 1}  # press tab
+        press_key(payload=press_key_payload)
+        time.sleep(0.3)
 
     payload_close_button_x = {
         "title": f"{player_info}",

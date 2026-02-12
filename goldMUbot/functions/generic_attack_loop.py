@@ -28,6 +28,7 @@ def generic_attack_on_spot(
         state = STATE_SECOND_PLAYER.get_all()
         player_data = state.get("second_player_data") or {}
 
+    # logger.info(f"Debug {map_name}, {map_enabled}, {player_level}, {player_name}, spot: {map_spot}")
     desired_coord_x = map_spot.get("loc_x", 0)
     desired_coord_y = map_spot.get("loc_y", 0)
 

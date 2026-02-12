@@ -32,6 +32,7 @@ LOCALAPI_ENDPOINTS = {
 TYPE_GAME = CONFIG.get("type_game", "single")
 CONFIG_PAUSE_AUTO_RESUME_MINUTES = CONFIG.get("pause_auto_resume_minutes", 5)
 PAUSE_TIMEOUT_STATE_KEY = "pause_auto_resume_minutes"
+SCRAPER_TIMEOUT = CONFIG["scraper"]["interval"] * 1.5
 
 
 def _as_float_minutes(value):
@@ -74,7 +75,8 @@ def action_loop(stop_event, interval=1):
 
     last_log_sig = None  # żeby nie spamować logów
 
-    time.sleep(2)  # dajmy czas na zebranie pierwszych danych
+    logger.info("Waiting %.1f seconds before starting action loop to allow scraper to gather initial data", SCRAPER_TIMEOUT)
+    time.sleep(SCRAPER_TIMEOUT)  # dajmy czas na zebranie pierwszych danych
 
     last_check_inventory = 0
     pause_started_at = None

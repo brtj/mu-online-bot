@@ -272,7 +272,7 @@ def second_player_loop():
     )
 
     # atlans2
-    atlans2_spot = (second_player_data.get("map_spots") or {}).get("atlans2_map_spots")
+    atlans2_spot = (second_player_data.get("map_spots") or {}).get("atlans_map_spots")
     atlans2_min = 120  # hardcoded lvl_min due to teleport case
 
     generic_attack_on_spot(
