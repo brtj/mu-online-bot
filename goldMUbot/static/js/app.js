@@ -3,6 +3,7 @@ window.loadAllMapSpots = function() {
   loadMapSpotsLocations('aida');
   loadMapSpotsLocations('atlans');
   loadMapSpotsLocations('lacleon');
+  loadMapSpotsLocations('karutan2');
   loadMapSpotsLocations('icarus2');
 }
 
@@ -11,6 +12,7 @@ async function loadMapSpotsLocations(map) {
     aida: '/api/locations/aida',
     atlans: '/api/locations/atlans',
     lacleon: '/api/locations/lacleon',
+    karutan2: '/api/locations/karutan2',
     icarus2: '/api/locations/icarus2',
   };
   const selectId = `map-spots-${map}`;
@@ -261,6 +263,7 @@ async function loadMapSpotsLocations(map) {
     aida: '/api/locations/aida',
     atlans: '/api/locations/atlans',
     lacleon: '/api/locations/lacleon',
+    karutan2: '/api/locations/karutan2',
     icarus2: '/api/locations/icarus2',
   };
   const selectId = `map-spots-${map}`;
@@ -308,10 +311,13 @@ window.loadAllMapSpots = function() {
   loadMapSpotsLocations('aida');
   loadMapSpotsLocations('atlans');
   loadMapSpotsLocations('lacleon');
+  loadMapSpotsLocations('karutan2');
   loadMapSpotsLocations('icarus2');
 }
 
 // --- Map levels helpers ---
+let mapLevelLimitsCache = {};
+
 function createActiveRow(mapName, min=0, max=0, enabled=true) {
   const tr = document.createElement('tr');
   tr.dataset.map = mapName;
@@ -334,7 +340,7 @@ function createInactiveRow(mapName) {
   return tr;
 }
 
-function collectMapLimitsFromDom() {
+function collectMapLimitsFromDom(cache = {}) {
   const out = {};
   for (const tr of document.querySelectorAll('#map-level-table tr')) {
     const name = tr.dataset.map;
@@ -345,7 +351,14 @@ function collectMapLimitsFromDom() {
   }
   for (const tr of document.querySelectorAll('#map-level-table-inactive tr')) {
     const name = tr.dataset.map;
-    if (!(name in out)) out[name] = { min: 0, max: 0, enabled: false };
+    if (!(name in out)) {
+      const prev = cache[name] || {};
+      out[name] = {
+        min: prev.min ?? 0,
+        max: prev.max ?? 0,
+        enabled: false
+      };
+    }
   }
   return out;
 }
@@ -372,6 +385,7 @@ async function wireMapLevels() {
   if (!activeTbody || !inactiveTbody || !btnSave) return;
 
   const limits = await loadMapLimits().catch(() => ({}));
+  mapLevelLimitsCache = { ...limits };
   activeTbody.innerHTML = ''; inactiveTbody.innerHTML = '';
 
   // sort by min then name
@@ -395,7 +409,11 @@ async function wireMapLevels() {
     if (!btn) return;
     const map = btn.dataset.map;
     const tr = btn.closest('tr'); if (tr) tr.remove();
-    activeTbody.appendChild(createActiveRow(map, 0, 0, true));
+    const cfg = mapLevelLimitsCache[map] || {};
+    const min = cfg.min ?? 0;
+    const max = cfg.max ?? 0;
+    mapLevelLimitsCache[map] = { ...cfg, min, max, enabled: true };
+    activeTbody.appendChild(createActiveRow(map, min, max, true));
   });
 
   // move to inactive when unchecked
@@ -403,15 +421,19 @@ async function wireMapLevels() {
     if (!e.target.matches('.map-enabled')) return;
     const chk = e.target; const tr = chk.closest('tr'); if (!tr) return;
     if (!chk.checked) {
-      const map = tr.dataset.map; tr.remove(); inactiveTbody.appendChild(createInactiveRow(map));
+      const map = tr.dataset.map;
+      const cfg = mapLevelLimitsCache[map] || {};
+      mapLevelLimitsCache[map] = { ...cfg, enabled: false };
+      tr.remove(); inactiveTbody.appendChild(createInactiveRow(map));
     }
   });
 
   btnSave.addEventListener('click', async () => {
     const msg = document.getElementById('mapLevelsMsg');
     try {
-      const out = collectMapLimitsFromDom();
-      await saveMapLimits(out);
+      const out = collectMapLimitsFromDom(mapLevelLimitsCache);
+      const resp = await saveMapLimits(out);
+      if (resp?.map_level_limits) mapLevelLimitsCache = resp.map_level_limits;
       if (msg) { msg.textContent = 'Saved'; setTimeout(()=>msg.textContent='',1500); }
     } catch (e) { if (msg) msg.textContent = 'Save failed'; }
   });

@@ -1,6 +1,6 @@
 {
   "players": {},
-  "_ts": 1770907330.5282223,
+  "_ts": 1770907471.73268,
   "paused": false,
   "send_message_via_ui": {
     "message": "~mialem rr teraz atlans",
@@ -9,11 +9,11 @@
   },
   "inventory_interval": 10,
   "main_player_data": {
-    "time": "15:42:10",
+    "time": "15:44:31",
     "player": "AleElfisko",
     "player_in_party": "to do 2",
     "level": 352,
-    "exp_per_minute": "30584000",
+    "exp_per_minute": 0,
     "reset": 185,
     "rect": {
       "bottom": 651,
@@ -23,9 +23,9 @@
       "top": 12,
       "width": 816
     },
-    "location_name": "Karutan",
-    "location_coord_x": 219,
-    "location_coord_y": 59,
+    "location_name": "Aida",
+    "location_coord_x": 187,
+    "location_coord_y": 173,
     "mouse_position": {
       "ok": true,
       "x": 146,
@@ -47,8 +47,8 @@
       "x": 141,
       "y": 599
     },
-    "helper_status": "Running",
-    "health": 103348,
+    "helper_status": "Not running",
+    "health": 94397,
     "connected": true,
     "zen_ammount": 1123187387,
     "map_level_limits": {
@@ -145,13 +145,13 @@
     ]
   },
   "snapshot": {
-    "ts": 1770907322.2236907,
+    "ts": 1770907467.6145282,
     "state": {
-      "time": "15:42:02",
+      "time": "15:44:27",
       "player": "AleElfisko",
       "player_in_party": "to do 2",
       "level": 352,
-      "exp_per_minute": "32502800",
+      "exp_per_minute": 0,
       "reset": 185,
       "rect": {
         "bottom": 651,
@@ -161,20 +161,20 @@
         "top": 12,
         "width": 816
       },
-      "location_name": "Karutan",
-      "location_coord_x": 219,
-      "location_coord_y": 59,
+      "location_name": "Aida",
+      "location_coord_x": 187,
+      "location_coord_y": 173,
       "mouse_position": {
         "ok": true,
-        "x": 1473,
-        "y": 1077
+        "x": 146,
+        "y": 611
       },
       "mouse_relative_pos": {
         "cursor": {
-          "x": 1473,
-          "y": 1077
+          "x": 146,
+          "y": 611
         },
-        "inside": false,
+        "inside": true,
         "ok": true,
         "window": {
           "bottom": 651,
@@ -182,11 +182,11 @@
           "right": 821,
           "top": 12
         },
-        "x": 1468,
-        "y": 1065
+        "x": 141,
+        "y": 599
       },
-      "helper_status": "Running",
-      "health": 103338,
+      "helper_status": "Not running",
+      "health": 94397,
       "connected": true
     }
   },
