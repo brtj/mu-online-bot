@@ -1,6 +1,6 @@
 {
   "players": {},
-  "_ts": 1770880428.4310448,
+  "_ts": 1770907134.1623774,
   "paused": false,
   "send_message_via_ui": {
     "message": "~mialem rr teraz atlans",
@@ -9,89 +9,89 @@
   },
   "inventory_interval": 10,
   "snapshot": {
-    "ts": 1770880423.8955002,
+    "ts": 1770907134.162202,
     "state": {
-      "time": "08:13:43",
+      "time": "15:38:54",
       "player": "AleToBot",
       "player_in_party": "to do 2",
-      "level": 1,
+      "level": 321,
       "exp_per_minute": 0,
-      "reset": 29,
+      "reset": 31,
       "rect": {
-        "bottom": 644,
+        "bottom": 652,
         "height": 639,
-        "left": 798,
-        "right": 1614,
-        "top": 5,
+        "left": 812,
+        "right": 1628,
+        "top": 13,
         "width": 816
       },
-      "location_name": "Lorencia",
-      "location_coord_x": 148,
-      "location_coord_y": 139,
+      "location_name": "Karutan",
+      "location_coord_x": 218,
+      "location_coord_y": 60,
       "mouse_position": {
         "ok": true,
-        "x": 336,
-        "y": 423
+        "x": 15,
+        "y": 52
       },
       "mouse_relative_pos": {
         "cursor": {
-          "x": 336,
-          "y": 423
+          "x": 15,
+          "y": 52
         },
         "inside": false,
         "ok": true,
         "window": {
-          "bottom": 644,
-          "left": 798,
-          "right": 1614,
-          "top": 5
+          "bottom": 652,
+          "left": 812,
+          "right": 1628,
+          "top": 13
         },
-        "x": -462,
-        "y": 418
+        "x": -797,
+        "y": 39
       },
-      "helper_status": "Not running",
-      "health": 14374,
+      "helper_status": "Running",
+      "health": 16595,
       "connected": true
     }
   },
   "second_player_data": {
-    "time": "08:13:48",
+    "time": "15:38:54",
     "player": "AleToBot",
     "player_in_party": "to do 2",
-    "level": 1,
+    "level": 321,
     "exp_per_minute": 0,
-    "reset": 29,
+    "reset": 31,
     "rect": {
-      "bottom": 644,
+      "bottom": 652,
       "height": 639,
-      "left": 798,
-      "right": 1614,
-      "top": 5,
+      "left": 812,
+      "right": 1628,
+      "top": 13,
       "width": 816
     },
-    "location_name": "Lorencia",
-    "location_coord_x": 148,
-    "location_coord_y": 139,
+    "location_name": "Karutan",
+    "location_coord_x": 218,
+    "location_coord_y": 60,
     "mouse_position": {
       "ok": true,
-      "x": 1495,
-      "y": 682
+      "x": 15,
+      "y": 52
     },
     "mouse_relative_pos": {
       "cursor": {
-        "x": 1495,
-        "y": 682
+        "x": 15,
+        "y": 52
       },
       "inside": false,
       "ok": true,
       "window": {
-        "bottom": 644,
-        "left": 798,
-        "right": 1614,
-        "top": 5
+        "bottom": 652,
+        "left": 812,
+        "right": 1628,
+        "top": 13
       },
-      "x": 697,
-      "y": 677
+      "x": -797,
+      "y": 39
     },
     "map_level_limits": {
       "Lorencia": {
@@ -111,20 +111,25 @@
       },
       "Atlans": {
         "min": 80,
-        "max": 400,
+        "max": 210,
         "enabled": true
       },
       "Aida": {
-        "min": 0,
-        "max": 0,
+        "min": 210,
+        "max": 310,
         "enabled": true
       },
-      "LaCleon": {
+      "Karutan2": {
+        "min": 310,
+        "max": 399,
+        "enabled": true
+      },
+      "Icarus2": {
         "min": 0,
         "max": 0,
         "enabled": false
       },
-      "Icarus2": {
+      "LaCleon": {
         "min": 0,
         "max": 0,
         "enabled": false
@@ -170,10 +175,20 @@
         "tolerance": 5,
         "x": 334,
         "y": 161
+      },
+      "karutan2_map_spots": {
+        "id": "karutan2_k3",
+        "loc_x": 218,
+        "loc_y": 59,
+        "map": "Karutan2",
+        "moobs": "Narcondra 120 lvl",
+        "tolerance": 7,
+        "x": 596,
+        "y": 444
       }
     },
-    "helper_status": "Not running",
-    "health": 14374,
+    "helper_status": "Running",
+    "health": 16595,
     "connected": true,
     "stats_added": true,
     "is_it_speedrun": false,

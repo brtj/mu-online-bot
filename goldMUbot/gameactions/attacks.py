@@ -5,6 +5,7 @@ from functions.host_api import activate_window, check_map_on, press_key
 from functions.host_api import send_message
 import logging, time
 from gameactions.random_messages import generate_mu_party_message, generate_spot_message
+from gameactions.warp_to import warp_to
 from logger_config import setup_logging
 
 from functions import config_loader
@@ -148,7 +149,15 @@ def round_attack(player_info, deltas, step_delay=0.005, pause_range=(0.1, 0.4), 
             
             current_level = player_data["level"]
         logger.info(f"Round attack, current level: {current_level}")
-        if current_level > 80:
+        if 65 > current_level >= 50:
+           #warp to safe spot Devias
+            warp_to(
+                player_info=player_info,
+                desired_location="Devias",
+                actual_location=player_data.get("location_name"),
+                actual_location_coord_x=player_data.get("location_coord_x"),
+            )
+        if current_level >= 80:
            click_on_helper(player_info)
 
 
@@ -171,7 +180,7 @@ def attack_with_helper_on_spot(player_info, mouse_on_map_x, mouse_on_map_y, desi
     check_helper_status = check_helper_state(player_info=player_info)
     if check_helper_status == "Not running":
       logger.info("I need to turn on helper...")
-      go_to_point_and_wait(player_info=player_info, mouse_x=mouse_on_map_x, mouse_y=mouse_on_map_y, target_loc_x=desired_coord_x, target_loc_y=desired_coord_y, timeout=timeout, tol=tolerance, print_txt=print_txt)
+      go_to_point_and_wait(player_info=player_info, mouse_x=mouse_on_map_x, mouse_y=mouse_on_map_y, target_loc_x=desired_coord_x, target_loc_y=desired_coord_y, timeout=timeout, tol=tolerance, print_txt=print_txt, attack_after_reach=True)
       
       check_helper_status = check_helper_state(player_info=player_info)
       if check_helper_status == "Not running":
@@ -186,5 +195,5 @@ def attack_with_helper_on_spot(player_info, mouse_on_map_x, mouse_on_map_y, desi
 
   else:
     logger.info(f"go to spot on XYZ - {desired_coord_x},{desired_coord_y}")
-    go_to_point_and_wait(player_info=player_info, mouse_x=mouse_on_map_x, mouse_y=mouse_on_map_y, target_loc_x=desired_coord_x, target_loc_y=desired_coord_y, timeout=timeout, tol=tolerance, print_txt=print_txt)
+    go_to_point_and_wait(player_info=player_info, mouse_x=mouse_on_map_x, mouse_y=mouse_on_map_y, target_loc_x=desired_coord_x, target_loc_y=desired_coord_y, timeout=timeout, tol=tolerance, print_txt=print_txt, attack_after_reach=True)
 

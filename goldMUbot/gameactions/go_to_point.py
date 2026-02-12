@@ -3,7 +3,7 @@ from functions.requests_functions import post
 from functions.host_api import press_key
 from functions import config_loader
 from functions.location_checks import wait_until_at_position, get_location_state, is_at_position
-from gameactions.helper_attack import click_on_helper_to_turn_off
+from gameactions.helper_attack import click_on_helper, click_on_helper_to_turn_off
 
 from functions.helper_request import check_helper_state
 
@@ -30,7 +30,7 @@ HIDAPI_ENDPOINTS = {
 }
 
 
-def go_to_point_and_wait(mouse_x, mouse_y, target_loc_x, target_loc_y, print_txt="...", player_info="", tol=10, timeout=80, click_interval=3, poll_interval=2):
+def go_to_point_and_wait(mouse_x, mouse_y, target_loc_x, target_loc_y, print_txt="...", player_info="", tol=10, timeout=80, click_interval=3, poll_interval=2, attack_after_reach=False):
     logger.info(
         f"go_to_point → mouse=({mouse_x},{mouse_y}) "
         f"target_loc=({target_loc_x},{target_loc_y}) {print_txt}"
@@ -100,6 +100,8 @@ def go_to_point_and_wait(mouse_x, mouse_y, target_loc_x, target_loc_y, print_txt
                 f"go_to_point: reached target "
                 f"({target_loc_x},{target_loc_y}) after {attempt} clicks"
             )
+            if attack_after_reach:
+                click_on_helper(player_info=player_info)
             break
 
         # 4️⃣ TIMEOUT GLOBALNY

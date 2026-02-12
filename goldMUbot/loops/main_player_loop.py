@@ -76,6 +76,11 @@ def main_player_loop(state):
             aida_min = int(aida_cfg.get("min") or 0)
             aida_max = int(aida_cfg.get("max") or 0)
 
+            karutan2_cfg = map_level_limits.get("Karutan2") or {}
+            karutan2_enabled = ("enabled" in karutan2_cfg) and bool(karutan2_cfg.get("enabled"))
+            karutan2_min = int(karutan2_cfg.get("min") or 0)
+            karutan2_max = int(karutan2_cfg.get("max") or 0)
+
             lacleon_cfg = map_level_limits.get("LaCleon") or {}
             lacleon_enabled = ("enabled" in lacleon_cfg) and bool(lacleon_cfg.get("enabled"))
             lacleon_min = int(lacleon_cfg.get("min") or 0)
@@ -164,7 +169,7 @@ def main_player_loop(state):
                 elif type_game == "two_players_in_party":
                     second_player_data = STATE_SECOND_PLAYER.get("second_player_data") or {}
                     second_player_level = int(second_player_data.get("level") or 0)
-                    if 400 > second_player_level > 340:
+                    if 400 > second_player_level > 370:
                         logger.info("Doing nothing, waiting for second player to reach reset level...")
                     else:
                         jewels_to_bank(player_info=main_player_name)
@@ -266,6 +271,7 @@ def main_player_loop(state):
             )
             # atlans2 ends ------------------------------------
 
+            # icarus2 -----------------------------------------
             icarus2_spot = (main_player_data.get("map_spots") or {}).get("icarus2_map_spots")
             generic_attack_on_spot(
                 map_enabled=icarus2_enabled, 
@@ -281,21 +287,82 @@ def main_player_loop(state):
                 send_message=False
             )
 
-            aida_spot = (main_player_data.get("map_spots") or {}).get("aida_map_spots")
-            generic_attack_on_spot(
-                map_enabled=aida_enabled, 
-                map_name="Aida", # map_name
-                map_max=aida_max, # lvl_max
-                map_min=aida_min, # lvl_min
-                player_name=main_player_name,
-                player_level=main_player_level,
-                player_location_name=main_player_location_name,
-                player_location_x=main_player_location_x,
-                warp_to_location="Aida2", #warp string (ex atlans2, aida2 etc)
-                map_spot=aida_spot, # map_spot data
-                send_message=False
-            )
+            # player_level = main_player_data.get("level", 0)
+            # player_location_name = main_player_data.get("location_name", "not_available")
+            # logger.info("Main player level: %s, location: %s", player_level, player_location_name)
+            # if player_level >= 210 and player_location_name == "Aida" and second_player_level >= 210:
 
+            # aida2 -----------------------------------------
+            aida_spot = (main_player_data.get("map_spots") or {}).get("aida_map_spots")
+            if type_game == "two_players_in_party":
+                second_player_data = STATE_SECOND_PLAYER.get("second_player_data") or {}
+                second_player_level = int(second_player_data.get("level") or 0)
+                if aida_max > second_player_level > aida_min:
+                    logger.info("Staying on Aida2 spot... waiting for second player to reach level...")
+                    generic_attack_on_spot(
+                        map_enabled=aida_enabled, 
+                        map_name="Aida", # map_name
+                        map_max=aida_max, # lvl_max
+                        map_min=aida_min, # lvl_min
+                        player_name=main_player_name,
+                        player_level=main_player_level,
+                        player_location_name=main_player_location_name,
+                        player_location_x=main_player_location_x,
+                        warp_to_location="Aida2", #warp string (ex atlans2, aida2 etc)
+                        map_spot=aida_spot, # map_spot data
+                        send_message=False
+                    )
+            else:
+                generic_attack_on_spot(
+                    map_enabled=aida_enabled, 
+                    map_name="Aida", # map_name
+                    map_max=aida_max, # lvl_max
+                    map_min=aida_min, # lvl_min
+                    player_name=main_player_name,
+                    player_level=main_player_level,
+                    player_location_name=main_player_location_name,
+                    player_location_x=main_player_location_x,
+                    warp_to_location="Aida2", #warp string (ex atlans2, aida2 etc)
+                    map_spot=aida_spot, # map_spot data
+                    send_message=False
+                )
+
+            # karutan2 ------------------------------------------
+            karutan2_spot = (main_player_data.get("map_spots") or {}).get("karutan2_map_spots")
+            if type_game == "two_players_in_party":
+                second_player_data = STATE_SECOND_PLAYER.get("second_player_data") or {}
+                second_player_level = int(second_player_data.get("level") or 0)
+                if karutan2_max > second_player_level > karutan2_min:
+                    logger.info("Staying on Karutan2 spot... waiting for second player to reach level...")
+                    generic_attack_on_spot(
+                        map_enabled=karutan2_enabled, 
+                        map_name="Karutan", # map_name
+                        map_max=karutan2_max, # lvl_max
+                        map_min=karutan2_min, # lvl_min
+                        player_name=main_player_name,
+                        player_level=main_player_level,
+                        player_location_name=main_player_location_name,
+                        player_location_x=main_player_location_x,
+                        warp_to_location="karutan2", #warp string (ex atlans2, aida2 etc)
+                        map_spot=karutan2_spot, # map_spot data
+                        send_message=False
+                    )
+            else:
+                generic_attack_on_spot(
+                    map_enabled=karutan2_enabled, 
+                    map_name="Karutan", # map_name
+                    map_max=karutan2_max, # lvl_max
+                    map_min=karutan2_min, # lvl_min
+                    player_name=main_player_name,
+                    player_level=main_player_level,
+                    player_location_name=main_player_location_name,
+                    player_location_x=main_player_location_x,
+                    warp_to_location="karutan2", #warp string (ex atlans2, aida2 etc)
+                    map_spot=karutan2_spot, # map_spot data
+                    send_message=False
+                )
+
+            # raklion ------------------------------------------
             lacleon_spot = (main_player_data.get("map_spots") or {}).get("lacleon_map_spots")
             generic_attack_on_spot(
                 map_enabled=lacleon_enabled, 
