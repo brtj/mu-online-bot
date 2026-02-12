@@ -22,7 +22,7 @@ def second_player_add_stats(player_info="", second_player_reset=0):
     sleept = 0.2
     if second_player_reset <= 161:
         send_message("/addene 2000", player_info=player_info); time.sleep(sleept)
-        send_message("/addstr 7400", player_info=player_info); time.sleep(sleept)
-        send_message("/addagi 4000", player_info=player_info); time.sleep(sleept)
+        send_message("/addstr 11400", player_info=player_info); time.sleep(sleept)
+        send_message("/addagi 4500", player_info=player_info); time.sleep(sleept)
         send_message("/addvit 4000", player_info=player_info); time.sleep(sleept)
     send_message("/re auto", player_info=player_info)
