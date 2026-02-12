@@ -1,6 +1,6 @@
 {
   "players": {},
-  "_ts": 1770907471.73268,
+  "_ts": 1770907519.9259152,
   "paused": false,
   "send_message_via_ui": {
     "message": "~mialem rr teraz atlans",
@@ -9,7 +9,7 @@
   },
   "inventory_interval": 10,
   "main_player_data": {
-    "time": "15:44:31",
+    "time": "15:45:19",
     "player": "AleElfisko",
     "player_in_party": "to do 2",
     "level": 352,
@@ -24,17 +24,17 @@
       "width": 816
     },
     "location_name": "Aida",
-    "location_coord_x": 187,
-    "location_coord_y": 173,
+    "location_coord_x": 150,
+    "location_coord_y": 119,
     "mouse_position": {
       "ok": true,
-      "x": 146,
-      "y": 611
+      "x": 201,
+      "y": 280
     },
     "mouse_relative_pos": {
       "cursor": {
-        "x": 146,
-        "y": 611
+        "x": 201,
+        "y": 280
       },
       "inside": true,
       "ok": true,
@@ -44,8 +44,8 @@
         "right": 821,
         "top": 12
       },
-      "x": 141,
-      "y": 599
+      "x": 196,
+      "y": 268
     },
     "helper_status": "Not running",
     "health": 94397,
@@ -74,6 +74,11 @@
       },
       "Aida": {
         "min": 210,
+        "max": 310,
+        "enabled": true
+      },
+      "Karutan2": {
+        "min": 310,
         "max": 400,
         "enabled": true
       },
@@ -145,9 +150,9 @@
     ]
   },
   "snapshot": {
-    "ts": 1770907467.6145282,
+    "ts": 1770907510.8098452,
     "state": {
-      "time": "15:44:27",
+      "time": "15:45:10",
       "player": "AleElfisko",
       "player_in_party": "to do 2",
       "level": 352,
@@ -162,17 +167,17 @@
         "width": 816
       },
       "location_name": "Aida",
-      "location_coord_x": 187,
-      "location_coord_y": 173,
+      "location_coord_x": 163,
+      "location_coord_y": 150,
       "mouse_position": {
         "ok": true,
-        "x": 146,
-        "y": 611
+        "x": 201,
+        "y": 280
       },
       "mouse_relative_pos": {
         "cursor": {
-          "x": 146,
-          "y": 611
+          "x": 201,
+          "y": 280
         },
         "inside": true,
         "ok": true,
@@ -182,8 +187,8 @@
           "right": 821,
           "top": 12
         },
-        "x": 141,
-        "y": 599
+        "x": 196,
+        "y": 268
       },
       "helper_status": "Not running",
       "health": 94397,

@@ -1,6 +1,6 @@
 {
   "players": {},
-  "_ts": 1770907471.8428712,
+  "_ts": 1770907519.8690655,
   "paused": false,
   "send_message_via_ui": {
     "message": "~mialem rr teraz atlans",
@@ -9,9 +9,9 @@
   },
   "inventory_interval": 10,
   "snapshot": {
-    "ts": 1770907467.666304,
+    "ts": 1770907510.7594965,
     "state": {
-      "time": "15:44:27",
+      "time": "15:45:10",
       "player": "AleToBot",
       "player_in_party": "to do 2",
       "level": 328,
@@ -30,13 +30,13 @@
       "location_coord_y": 124,
       "mouse_position": {
         "ok": true,
-        "x": 146,
-        "y": 611
+        "x": 201,
+        "y": 280
       },
       "mouse_relative_pos": {
         "cursor": {
-          "x": 146,
-          "y": 611
+          "x": 201,
+          "y": 280
         },
         "inside": false,
         "ok": true,
@@ -46,8 +46,8 @@
           "right": 1628,
           "top": 13
         },
-        "x": -666,
-        "y": 598
+        "x": -611,
+        "y": 267
       },
       "helper_status": "Not running",
       "health": 15080,
@@ -55,7 +55,7 @@
     }
   },
   "second_player_data": {
-    "time": "15:44:31",
+    "time": "15:45:19",
     "player": "AleToBot",
     "player_in_party": "to do 2",
     "level": 328,
@@ -74,13 +74,13 @@
     "location_coord_y": 124,
     "mouse_position": {
       "ok": true,
-      "x": 146,
-      "y": 611
+      "x": 201,
+      "y": 280
     },
     "mouse_relative_pos": {
       "cursor": {
-        "x": 146,
-        "y": 611
+        "x": 201,
+        "y": 280
       },
       "inside": false,
       "ok": true,
@@ -90,8 +90,8 @@
         "right": 1628,
         "top": 13
       },
-      "x": -666,
-      "y": 598
+      "x": -611,
+      "y": 267
     },
     "map_level_limits": {
       "Lorencia": {
@@ -121,7 +121,7 @@
       },
       "Karutan2": {
         "min": 310,
-        "max": 399,
+        "max": 400,
         "enabled": true
       },
       "Icarus2": {

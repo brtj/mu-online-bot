@@ -261,13 +261,43 @@ KARUTAN2_LOCATIONS = [
     {
         "id": "karutan2_k2",
         "map": "Karutan2",
-        "x": 0,
-        "y": 0,
-        "loc_x": 0,
-        "loc_y": 0,
+        "x": 521,
+        "y": 413,
+        "loc_x": 181,
+        "loc_y": 75,
         "tolerance": 9,
-        "moobs": "do zrobienia"
+        "moobs": "Condra 117 lvl"
     },
+    {
+        "id": "karutan2_k3",
+        "map": "Karutan2",
+        "x": 596,
+        "y": 444,
+        "loc_x": 218,
+        "loc_y": 59,
+        "tolerance": 7,
+        "moobs": "Narcondra 120 lvl"
+    },
+    {
+        "id": "karutan2_k4",
+        "map": "Karutan2",
+        "x": 520,
+        "y": 519,
+        "loc_x": 180,
+        "loc_y": 23,
+        "tolerance": 4,
+        "moobs": "Condra 117 lvl"
+    },
+    {
+        "id": "karutan2_k5",
+        "map": "Karutan2",
+        "x": 461,
+        "y": 486,
+        "loc_x": 152,
+        "loc_y": 39,
+        "tolerance": 4,
+        "moobs": "Gollock 108 lvl"
+    }
 ]
 
 ICARUS1_LOCATIONS = [
