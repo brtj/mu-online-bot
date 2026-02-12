@@ -7,7 +7,7 @@
     "new_message": false,
     "player": "AleElfisko"
   },
-  "inventory_interval": 10,
+  "inventory_interval": 30,
   "snapshot": {
     "ts": 1770918257.2283933,
     "state": {

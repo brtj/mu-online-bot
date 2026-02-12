@@ -7,7 +7,7 @@
     "new_message": false,
     "player": "AleElfisko"
   },
-  "inventory_interval": 10,
+  "inventory_interval": 30,
   "main_player_data": {
     "time": "18:44:23",
     "player": "AleElfisko",

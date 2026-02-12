@@ -408,7 +408,7 @@ def main_player_loop(state):
 
     # --- akcje wymagające izolacji od innych cykliczne ---
     inv_interval_state = STATE.get(
-        "inventory_interval", 60 * 5
+        "inventory_interval", 60 * 20
     )  # default 5 minut, można nadpisać z state.json
     INVENTORY_INTERVAL = 60 * inv_interval_state
     now = time.time()
