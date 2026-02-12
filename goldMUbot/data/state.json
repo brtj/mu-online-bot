@@ -1,7 +1,7 @@
 {
   "players": {},
   "_ts": 1770909332.613229,
-  "paused": false,
+  "paused": true,
   "send_message_via_ui": {
     "message": "~mialem rr teraz atlans",
     "new_message": false,
