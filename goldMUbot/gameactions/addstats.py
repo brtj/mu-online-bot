@@ -29,7 +29,7 @@ def second_player_add_stats(player_info="", second_player_reset=0):
         time.sleep(sleept)
         send_message("/addstr 11400", player_info=player_info)
         time.sleep(sleept)
-        send_message("/addagi 4500", player_info=player_info)
+        send_message("/addagi 7500", player_info=player_info)
         time.sleep(sleept)
         send_message("/addvit 4000", player_info=player_info)
         time.sleep(sleept)
