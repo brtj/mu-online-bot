@@ -1,6 +1,6 @@
 {
   "players": {},
-  "_ts": 1770825423.395006,
+  "_ts": 1770880426.360967,
   "paused": true,
   "send_message_via_ui": {
     "message": "~mialem rr teraz atlans",
@@ -9,48 +9,48 @@
   },
   "inventory_interval": 10,
   "main_player_data": {
-    "time": "16:57:03",
+    "time": "08:13:46",
     "player": "AleElfisko",
     "player_in_party": "to do 2",
-    "level": 386,
-    "exp_per_minute": "29236400",
-    "reset": 176,
+    "level": 400,
+    "exp_per_minute": 0,
+    "reset": 182,
     "rect": {
-      "bottom": 642,
+      "bottom": 646,
       "height": 639,
-      "left": -4,
-      "right": 812,
-      "top": 3,
+      "left": -5,
+      "right": 811,
+      "top": 7,
       "width": 816
     },
-    "location_name": "Aida",
-    "location_coord_x": 22,
-    "location_coord_y": 145,
+    "location_name": "Lorencia",
+    "location_coord_x": 147,
+    "location_coord_y": 139,
     "mouse_position": {
       "ok": true,
-      "x": 5,
-      "y": 210
+      "x": 1450,
+      "y": 614
     },
     "mouse_relative_pos": {
       "cursor": {
-        "x": 5,
-        "y": 210
+        "x": 1450,
+        "y": 614
       },
-      "inside": true,
+      "inside": false,
       "ok": true,
       "window": {
-        "bottom": 642,
-        "left": -4,
-        "right": 812,
-        "top": 3
+        "bottom": 646,
+        "left": -5,
+        "right": 811,
+        "top": 7
       },
-      "x": 9,
-      "y": 207
+      "x": 1455,
+      "y": 607
     },
-    "helper_status": "Running",
-    "health": 103423,
+    "helper_status": "Not running",
+    "health": 94538,
     "connected": true,
-    "zen_ammount": 1122156667,
+    "zen_ammount": 1123187387,
     "map_level_limits": {
       "Lorencia": {
         "min": 1,
@@ -130,7 +130,7 @@
         "y": 161
       }
     },
-    "stats_added": false,
+    "stats_added": true,
     "is_it_speedrun": false,
     "run_speedrun": false,
     "reset_history": [
@@ -145,50 +145,50 @@
     ]
   },
   "snapshot": {
-    "ts": 1770825423.3949482,
+    "ts": 1770880426.3341486,
     "state": {
-      "time": "16:57:03",
+      "time": "08:13:46",
       "player": "AleElfisko",
       "player_in_party": "to do 2",
-      "level": 386,
-      "exp_per_minute": "29236400",
-      "reset": 176,
+      "level": 400,
+      "exp_per_minute": 0,
+      "reset": 182,
       "rect": {
-        "bottom": 642,
+        "bottom": 646,
         "height": 639,
-        "left": -4,
-        "right": 812,
-        "top": 3,
+        "left": -5,
+        "right": 811,
+        "top": 7,
         "width": 816
       },
-      "location_name": "Aida",
-      "location_coord_x": 22,
-      "location_coord_y": 145,
+      "location_name": "Lorencia",
+      "location_coord_x": 147,
+      "location_coord_y": 139,
       "mouse_position": {
         "ok": true,
-        "x": 5,
-        "y": 210
+        "x": 1450,
+        "y": 614
       },
       "mouse_relative_pos": {
         "cursor": {
-          "x": 5,
-          "y": 210
+          "x": 1450,
+          "y": 614
         },
-        "inside": true,
+        "inside": false,
         "ok": true,
         "window": {
-          "bottom": 642,
-          "left": -4,
-          "right": 812,
-          "top": 3
+          "bottom": 646,
+          "left": -5,
+          "right": 811,
+          "top": 7
         },
-        "x": 9,
-        "y": 207
+        "x": 1455,
+        "y": 607
       },
-      "helper_status": "Running",
-      "health": 103423,
+      "helper_status": "Not running",
+      "health": 94538,
       "connected": true
     }
   },
-  "pause_auto_resume_minutes": 15.0
+  "pause_auto_resume_minutes": 22.0
 }

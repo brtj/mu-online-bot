@@ -1,6 +1,6 @@
 {
   "players": {},
-  "_ts": 1770825423.4629111,
+  "_ts": 1770880428.4310448,
   "paused": false,
   "send_message_via_ui": {
     "message": "~mialem rr teraz atlans",
@@ -9,14 +9,14 @@
   },
   "inventory_interval": 10,
   "snapshot": {
-    "ts": 1770825423.462859,
+    "ts": 1770880423.8955002,
     "state": {
-      "time": "16:57:03",
+      "time": "08:13:43",
       "player": "AleToBot",
       "player_in_party": "to do 2",
-      "level": 379,
-      "exp_per_minute": "30369600",
-      "reset": 22,
+      "level": 1,
+      "exp_per_minute": 0,
+      "reset": 29,
       "rect": {
         "bottom": 644,
         "height": 639,
@@ -25,18 +25,18 @@
         "top": 5,
         "width": 816
       },
-      "location_name": "Aida",
-      "location_coord_x": 23,
-      "location_coord_y": 144,
+      "location_name": "Lorencia",
+      "location_coord_x": 148,
+      "location_coord_y": 139,
       "mouse_position": {
         "ok": true,
-        "x": 5,
-        "y": 210
+        "x": 336,
+        "y": 423
       },
       "mouse_relative_pos": {
         "cursor": {
-          "x": 5,
-          "y": 210
+          "x": 336,
+          "y": 423
         },
         "inside": false,
         "ok": true,
@@ -46,21 +46,21 @@
           "right": 1614,
           "top": 5
         },
-        "x": -793,
-        "y": 205
+        "x": -462,
+        "y": 418
       },
-      "helper_status": "Running",
-      "health": 16564,
+      "helper_status": "Not running",
+      "health": 14374,
       "connected": true
     }
   },
   "second_player_data": {
-    "time": "16:57:03",
+    "time": "08:13:48",
     "player": "AleToBot",
     "player_in_party": "to do 2",
-    "level": 379,
-    "exp_per_minute": "30369600",
-    "reset": 22,
+    "level": 1,
+    "exp_per_minute": 0,
+    "reset": 29,
     "rect": {
       "bottom": 644,
       "height": 639,
@@ -69,18 +69,18 @@
       "top": 5,
       "width": 816
     },
-    "location_name": "Aida",
-    "location_coord_x": 23,
-    "location_coord_y": 144,
+    "location_name": "Lorencia",
+    "location_coord_x": 148,
+    "location_coord_y": 139,
     "mouse_position": {
       "ok": true,
-      "x": 5,
-      "y": 210
+      "x": 1495,
+      "y": 682
     },
     "mouse_relative_pos": {
       "cursor": {
-        "x": 5,
-        "y": 210
+        "x": 1495,
+        "y": 682
       },
       "inside": false,
       "ok": true,
@@ -90,8 +90,8 @@
         "right": 1614,
         "top": 5
       },
-      "x": -793,
-      "y": 205
+      "x": 697,
+      "y": 677
     },
     "map_level_limits": {
       "Lorencia": {
@@ -172,9 +172,11 @@
         "y": 161
       }
     },
-    "helper_status": "Running",
-    "health": 16564,
+    "helper_status": "Not running",
+    "health": 14374,
     "connected": true,
-    "stats_added": true
+    "stats_added": true,
+    "is_it_speedrun": false,
+    "run_speedrun": false
   }
 }
