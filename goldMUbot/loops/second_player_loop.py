@@ -210,12 +210,14 @@ def second_player_loop():
 
     devias_min = 50
     devias_max = 80
+    second_player_data = STATE_SECOND_PLAYER.get("second_player_data") or {}
+    second_player_location_name = (second_player_data.get("location_name") or "not_available"
+    )
     if (
         devias_enabled
         and devias_max >= second_player_level >= devias_min
         and (
             second_player_location_name != "Devias"
-            or second_player_location_name == "not_available"
         )
     ):
         warp_to(

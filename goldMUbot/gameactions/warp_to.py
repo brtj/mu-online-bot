@@ -49,7 +49,7 @@ def wait_for_location_name_change(
         after_name = player_data["location_name"]
         after_loc_x = player_data["location_coord_x"]
 
-        if after_name != before_name and after_loc_x != before_loc_x:
+        if after_name != before_name or after_loc_x != before_loc_x:
             logger.info(f"Warped from {before_name} to {after_name}")
             return after_name
         elif after_name == "Atlans" and before_name == "Atlans":
