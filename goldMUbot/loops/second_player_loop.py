@@ -279,83 +279,92 @@ def second_player_loop():
     atlans2_spot = (second_player_data.get("map_spots") or {}).get("atlans_map_spots")
     atlans2_min = 120  # hardcoded lvl_min due to teleport case
 
-    generic_attack_on_spot(
-        map_enabled=atlans_enabled,
-        map_name="Atlans",  # map_name
-        map_max=atlans2_max,  # lvl_max
-        map_min=atlans2_min,  # lvl_min
-        player_name=second_player_name,
-        player_level=second_player_level,
-        player_location_name=second_player_location_name,
-        player_location_x=second_player_location_x,
-        warp_to_location="atlans2",  # warp string (ex atlans2, aida2 etc)
-        map_spot=atlans2_spot,
-        send_message=False,
-    )
+    if main_player_level >= atlans2_min and second_player_level >= atlans2_min:
+        generic_attack_on_spot(
+            map_enabled=atlans_enabled,
+            map_name="Atlans",  # map_name
+            map_max=atlans2_max,  # lvl_max
+            map_min=atlans2_min,  # lvl_min
+            player_name=second_player_name,
+            player_level=second_player_level,
+            player_location_name=second_player_location_name,
+            player_location_x=second_player_location_x,
+            warp_to_location="atlans2",  # warp string (ex atlans2, aida2 etc)
+            map_spot=atlans2_spot,
+            send_message=False,
+        )
 
     # icarus2 -----------------------------------------
     icarus2_spot = (main_player_data.get("map_spots") or {}).get("icarus2_map_spots")
-    generic_attack_on_spot(
-        map_enabled=icarus2_enabled,
-        map_name="Icarus",  # map_name
-        map_max=icarus2_max,  # lvl_max
-        map_min=icarus2_min,  # lvl_min
-        player_name=second_player_name,
-        player_level=second_player_level,
-        player_location_name=second_player_location_name,
-        player_location_x=second_player_location_x,
-        warp_to_location="Icarus2",  # warp string (ex atlans2, aida2 etc)
-        map_spot=icarus2_spot,  # map_spot data
-        send_message=False,
-    )
+
+    if main_player_level >= icarus2_min and second_player_level >= icarus2_min:
+        generic_attack_on_spot(
+            map_enabled=icarus2_enabled,
+            map_name="Icarus",  # map_name
+            map_max=icarus2_max,  # lvl_max
+            map_min=icarus2_min,  # lvl_min
+            player_name=second_player_name,
+            player_level=second_player_level,
+            player_location_name=second_player_location_name,
+            player_location_x=second_player_location_x,
+            warp_to_location="Icarus2",  # warp string (ex atlans2, aida2 etc)
+            map_spot=icarus2_spot,  # map_spot data
+            send_message=False,
+        )
 
     # aida2 -----------------------------------------
     aida_spot = (main_player_data.get("map_spots") or {}).get("aida_map_spots")
-    generic_attack_on_spot(
-        map_enabled=aida_enabled,
-        map_name="Aida",  # map_name
-        map_max=aida_max,  # lvl_max
-        map_min=aida_min,  # lvl_min
-        player_name=second_player_name,
-        player_level=second_player_level,
-        player_location_name=second_player_location_name,
-        player_location_x=second_player_location_x,
-        warp_to_location="Aida2",  # warp string (ex atlans2, aida2 etc)
-        map_spot=aida_spot,  # map_spot data
-        send_message=False,
-    )
+
+    if main_player_level >= aida_min and second_player_level >= aida_min:
+        generic_attack_on_spot(
+            map_enabled=aida_enabled,
+            map_name="Aida",  # map_name
+            map_max=aida_max,  # lvl_max
+            map_min=aida_min,  # lvl_min
+            player_name=second_player_name,
+            player_level=second_player_level,
+            player_location_name=second_player_location_name,
+            player_location_x=second_player_location_x,
+            warp_to_location="Aida2",  # warp string (ex atlans2, aida2 etc)
+            map_spot=aida_spot,  # map_spot data
+            send_message=False,
+        )
 
     # karutan2 -----------------------------------------
     karutan2_spot = (main_player_data.get("map_spots") or {}).get("karutan2_map_spots")
-    generic_attack_on_spot(
-        map_enabled=karutan2_enabled,
-        map_name="Karutan",  # map_name
-        map_max=karutan2_max,  # lvl_max
-        map_min=karutan2_min,  # lvl_min
-        player_name=second_player_name,
-        player_level=second_player_level,
-        player_location_name=second_player_location_name,
-        player_location_x=second_player_location_x,
-        warp_to_location="karutan2",  # warp string (ex atlans2, aida2 etc)
-        map_spot=karutan2_spot,  # map_spot data
-        send_message=False,
-    )
+
+    if main_player_level >= karutan2_min and second_player_level >= karutan2_min:
+        generic_attack_on_spot(
+            map_enabled=karutan2_enabled,
+            map_name="Karutan",  # map_name
+            map_max=karutan2_max,  # lvl_max
+            map_min=karutan2_min,  # lvl_min
+            player_name=second_player_name,
+            player_level=second_player_level,
+            player_location_name=second_player_location_name,
+            player_location_x=second_player_location_x,
+            warp_to_location="karutan2",  # warp string (ex atlans2, aida2 etc)
+            map_spot=karutan2_spot,  # map_spot data
+            send_message=False,
+        )
 
     # raklion ------------------------------------------
     lacleon_spot = (main_player_data.get("map_spots") or {}).get("lacleon_map_spots")
-    generic_attack_on_spot(
-        map_enabled=lacleon_enabled,
-        map_name="LaCleon",  # map_name
-        map_max=lacleon_max,  # lvl_max
-        map_min=lacleon_min,  # lvl_min
-        player_name=second_player_name,
-        player_level=second_player_level,
-        player_location_name=second_player_location_name,
-        player_location_x=second_player_location_x,
-        warp_to_location="raklion",  # warp string (ex atlans2, aida2 etc)
-        map_spot=lacleon_spot,  # map_spot data
-        send_message=False,
-    )
+
+    if main_player_level >= lacleon_min and second_player_level >= lacleon_min:
+        generic_attack_on_spot(
+            map_enabled=lacleon_enabled,
+            map_name="LaCleon",  # map_name
+            map_max=lacleon_max,  # lvl_max
+            map_min=lacleon_min,  # lvl_min
+            player_name=second_player_name,
+            player_level=second_player_level,
+            player_location_name=second_player_location_name,
+            player_location_x=second_player_location_x,
+            warp_to_location="raklion",  # warp string (ex atlans2, aida2 etc)
+            map_spot=lacleon_spot,  # map_spot data
+            send_message=False,
+        )
 
     # player_level = main_player_data.get("level", 0)
     # player_location_name = main_player_data.get("location_name", "not_available")
