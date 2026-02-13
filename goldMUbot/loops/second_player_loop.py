@@ -49,6 +49,7 @@ def second_player_loop():
 
     main_player_data = STATE.get("main_player_data") or {}
     main_player_name = CONFIG["mainplayer"]["nickname"]
+    main_player_level = int(main_player_data.get("level") or 0)
 
     second_player_data = STATE_SECOND_PLAYER.get("second_player_data") or {}
     second_player_name = CONFIG["secondaccount"]["nickname"]
@@ -247,31 +248,32 @@ def second_player_loop():
         )
 
     # atlans1 manual
-    atlans1_min = 80
-    atlans1_max = 120
-    atlans1_spot_manual = {
-        "id": "test",
-        "loc_x": 23,
-        "loc_y": 123,
-        "map": "Atlans2",
-        "moobs": "Vepar 45 lvl",
-        "tolerance": 9,
-        "x": 199,
-        "y": 315,
-    }
-    generic_attack_on_spot(
-        map_enabled=atlans_enabled,
-        map_name="Atlans",  # map_name
-        map_max=atlans1_max,  # lvl_max
-        map_min=atlans1_min,  # lvl_min
-        player_name=second_player_name,
-        player_level=second_player_level,
-        player_location_name=second_player_location_name,
-        player_location_x=second_player_location_x,
-        warp_to_location="atlans",  # warp string (ex atlans2, aida2 etc)
-        map_spot=atlans1_spot_manual,  # map_spot data
-        send_message=False,
-    )
+    if main_player_level >= 80 and second_player_level >= 80:
+        atlans1_min = 80
+        atlans1_max = 120
+        atlans1_spot_manual = {
+            "id": "test",
+            "loc_x": 23,
+            "loc_y": 123,
+            "map": "Atlans2",
+            "moobs": "Vepar 45 lvl",
+            "tolerance": 9,
+            "x": 199,
+            "y": 315,
+        }
+        generic_attack_on_spot(
+            map_enabled=atlans_enabled,
+            map_name="Atlans",  # map_name
+            map_max=atlans1_max,  # lvl_max
+            map_min=atlans1_min,  # lvl_min
+            player_name=second_player_name,
+            player_level=second_player_level,
+            player_location_name=second_player_location_name,
+            player_location_x=second_player_location_x,
+            warp_to_location="atlans",  # warp string (ex atlans2, aida2 etc)
+            map_spot=atlans1_spot_manual,  # map_spot data
+            send_message=False,
+        )
 
     # atlans2
     atlans2_spot = (second_player_data.get("map_spots") or {}).get("atlans_map_spots")
