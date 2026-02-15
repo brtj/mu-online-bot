@@ -27,9 +27,9 @@ def second_player_add_stats(player_info="", second_player_reset=0):
     if second_player_reset <= 161:
         send_message("/addene 2000", player_info=player_info)
         time.sleep(sleept)
-        send_message("/addstr 23000", player_info=player_info)
+        send_message("/addstr 29972", player_info=player_info)
         time.sleep(sleept)
-        send_message("/addagi 8500", player_info=player_info)
+        send_message("/addagi 8700", player_info=player_info)
         time.sleep(sleept)
         send_message("/addvit 4000", player_info=player_info)
         time.sleep(sleept)
