@@ -1,7 +1,7 @@
 {
   "players": {},
-  "_ts": 1770918263.7348285,
-  "paused": false,
+  "_ts": 1771144951.6781402,
+  "paused": true,
   "send_message_via_ui": {
     "message": "~mialem rr teraz atlans",
     "new_message": false,
@@ -9,12 +9,12 @@
   },
   "inventory_interval": 30,
   "main_player_data": {
-    "time": "18:44:23",
+    "time": "09:42:31",
     "player": "AleElfisko",
     "player_in_party": "to do 2",
-    "level": 389,
-    "exp_per_minute": "30545000",
-    "reset": 186,
+    "level": 400,
+    "exp_per_minute": 0,
+    "reset": 212,
     "rect": {
       "bottom": 651,
       "height": 639,
@@ -23,18 +23,18 @@
       "top": 12,
       "width": 816
     },
-    "location_name": "Karutan",
-    "location_coord_x": 218,
-    "location_coord_y": 59,
+    "location_name": "LaCleon",
+    "location_coord_x": 118,
+    "location_coord_y": 146,
     "mouse_position": {
       "ok": true,
-      "x": 935,
-      "y": 1079
+      "x": 1425,
+      "y": 826
     },
     "mouse_relative_pos": {
       "cursor": {
-        "x": 935,
-        "y": 1079
+        "x": 1425,
+        "y": 845
       },
       "inside": false,
       "ok": true,
@@ -44,13 +44,13 @@
         "right": 821,
         "top": 12
       },
-      "x": 930,
-      "y": 1067
+      "x": 1420,
+      "y": 833
     },
     "helper_status": "Running",
-    "health": 103393,
+    "health": 94441,
     "connected": true,
-    "zen_ammount": 1072119751,
+    "zen_ammount": 1305503551,
     "map_level_limits": {
       "Lorencia": {
         "min": 1,
@@ -74,13 +74,13 @@
       },
       "Aida": {
         "min": 210,
-        "max": 310,
+        "max": 325,
         "enabled": true
       },
       "Karutan2": {
         "min": 310,
         "max": 400,
-        "enabled": true
+        "enabled": false
       },
       "Icarus2": {
         "min": 0,
@@ -88,9 +88,9 @@
         "enabled": false
       },
       "LaCleon": {
-        "min": 0,
-        "max": 0,
-        "enabled": false
+        "min": 325,
+        "max": 400,
+        "enabled": true
       }
     },
     "map_spots": {
@@ -115,14 +115,14 @@
         "y": 379
       },
       "lacleon_map_spots": {
-        "id": "r14",
-        "loc_x": 38,
-        "loc_y": 108,
+        "id": "r5",
+        "loc_x": 121,
+        "loc_y": 146,
         "map": "LaCleon",
-        "moobs": "Shadow Master 136 lvl",
-        "tolerance": 9,
-        "x": 230,
-        "y": 343
+        "moobs": "Dark Coolutin 145 lvl",
+        "tolerance": 7,
+        "x": 396,
+        "y": 271
       },
       "icarus2_map_spots": {
         "id": "icarus2_9",
@@ -156,18 +156,22 @@
       {
         "date": "2026-02-11",
         "reset": 170
+      },
+      {
+        "date": "2026-02-15",
+        "reset": 209
       }
     ]
   },
   "snapshot": {
-    "ts": 1770918255.8724823,
+    "ts": 1771144943.27133,
     "state": {
-      "time": "18:44:15",
+      "time": "09:42:23",
       "player": "AleElfisko",
       "player_in_party": "to do 2",
-      "level": 389,
-      "exp_per_minute": "33261800",
-      "reset": 186,
+      "level": 400,
+      "exp_per_minute": 0,
+      "reset": 212,
       "rect": {
         "bottom": 651,
         "height": 639,
@@ -176,20 +180,20 @@
         "top": 12,
         "width": 816
       },
-      "location_name": "Karutan",
-      "location_coord_x": 218,
-      "location_coord_y": 59,
+      "location_name": "LaCleon",
+      "location_coord_x": 118,
+      "location_coord_y": 146,
       "mouse_position": {
         "ok": true,
-        "x": 111,
-        "y": 469
+        "x": 1290,
+        "y": 228
       },
       "mouse_relative_pos": {
         "cursor": {
-          "x": 106,
-          "y": 463
+          "x": 1290,
+          "y": 228
         },
-        "inside": true,
+        "inside": false,
         "ok": true,
         "window": {
           "bottom": 651,
@@ -197,11 +201,11 @@
           "right": 821,
           "top": 12
         },
-        "x": 101,
-        "y": 451
+        "x": 1285,
+        "y": 216
       },
       "helper_status": "Running",
-      "health": 103388,
+      "health": 94404,
       "connected": true
     }
   },
